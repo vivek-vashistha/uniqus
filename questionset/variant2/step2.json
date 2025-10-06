@@ -1,6 +1,6 @@
 {
     "step": "Step 2",
-    "step_goal": "Revenue Recognition Checklist",
+    "step_goal": "Identifying the performance obligation in a contract: ",
     "step_section": [
         {
             "name": "Identifying the performance obligation in a contract:",
@@ -8,17 +8,17 @@
             "section": [
                 {
                     "name": "Analyzing whether identified promises represent performance obligations:",
-                    "instructions": "Guidance A promise is classified as a performance obligation, if the good or service is capable of being distinct  distinct (ASC 606-10-25-19 (a)) and distinct in the context of the contract (ASC 606-10-25-19 (b)). (ASC 606-10-25-14).",
+                    "instructions": "Guidance A promise is classified as a performance obligation, if the good or service is capable of being distinct  distinct (ASC 606-10-25-19 (a)) and distinct in the context of the contract (ASC 606-10-25-19 (b)). (ASC 606-10-25-14)."
                     
                 },
                 {
                     "name": "Criterion 1",
-                    "instructions": "Can the customer benefit from the goods or services (e.g. good or service could be used, consumed, sold for an amount that is greater than scrap value) on its own or together with other readily available resources (a readily available resource is a good or service that is sold separately (by the entity or another entity) or a resource that the customer has already obtained from the entity (including goods or services that the entity will have already transferred to the customer under the contract) or from other transactions or events) (ASC 606-10-25-19(a))?",
+                    "instructions": "Can the customer benefit from the goods or services (e.g. good or service could be used, consumed, sold for an amount that is greater than scrap value) on its own or together with other readily available resources (a readily available resource is a good or service that is sold separately (by the entity or another entity) or a resource that the customer has already obtained from the entity (including goods or services that the entity will have already transferred to the customer under the contract) or from other transactions or events) (ASC 606-10-25-19(a))?"
  
                 },
                 {
                     "name": "Is the Company promise to transfer the good or service separately identifiable from other promises in the contract (ASC 606-10-25-19(b))?? The following factors should be considered with regard to the above question:",
-                    "instructions": "i  Significant integration service: the Company provides a significant service of integrating the good or service with other goods or services promised in the contract into a bundle of goods or services that represents the combined output for which the customer has contracted.\nii Significant modification/customisation: Goods or services significantly modify or customise another good or service promised in the contract.\niii Highly dependent/highly interrelated: Goods or services are highly dependent on, or highly interrelated with, other goods or services promised in the contract",
+                    "instructions": "i  Significant integration service: the Company provides a significant service of integrating the good or service with other goods or services promised in the contract into a bundle of goods or services that represents the combined output for which the customer has contracted.\nii Significant modification/customisation: Goods or services significantly modify or customise another good or service promised in the contract.\niii Highly dependent/highly interrelated: Goods or services are highly dependent on, or highly interrelated with, other goods or services promised in the contract"
  
                 },
                 {
@@ -73,7 +73,7 @@
                             "expected_answer_Criterion_2": "No",
                             "expected_answer_Performance Obligation_?": "No",
                             "expected_analysis": "Not a distinct service in the contract as it does not transfer any incremental benefit to the Customer on standalone basis. These are treated as input to the overall combined output of the contract."
-                        },
+                        }
                         
                     ]
                 },

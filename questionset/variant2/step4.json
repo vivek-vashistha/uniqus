@@ -1,0 +1,44 @@
+{
+    "step": "Step 4",
+    "step_goal": "Allocate the transaction price to the performance obligations in the contract",
+    "step_section": [
+        {
+            "name": "Allocate the transaction price to the performance obligations in the contract",
+            "instructions": "The transaction price is allocated to each performance obligation - generally each distinct good or service - to depict the amount of consideration to which an entity expects to be entitled in exchange for transferring the promised goods or services to the customer. \nAn entity generally allocates the transaction price to each performance obligation in proportion to its stand-alone selling price. \nHowever, when specified criteria are met, a discount or variable consideration is allocated to one or more, but not all, performance obligations.\n\nThis step of the revenue model comprises two sub-steps that an entity performs at contract inception:\n1. Determine stand-alone selling prices\n2. Allocate the transaction price",
+            "questions": [
+                {
+                    "id": "S4_A_1_1",
+                    "question": "Step 4: Allocate the transaction price to the performance obligations in the contract",
+                    "answer": "{{numeric value}}",
+                    "analysis": "{{Evidences that support answer}}",
+                    "expected_answer": "1",
+                    "expected_analysis": ""
+                },
+                {
+                    "id": "S4_A_1_2",
+                    "question": "Allocation of transaction price required?",
+                    "answer": "{{Yes/No/NA}}",
+                    "analysis": "{{Evidences that support answer}}",
+                    "expected_answer": "No",
+                    "expected_analysis": "Since there is only 1 performance obligation, allocation of transaction price is not required."
+                }
+            ],
+            "section": [
+                {
+                    "name": "Allocation of variable consideration",
+                    "instructions": "",
+                    "questions": [
+                        {
+                            "id": "S4_A_2_1",
+                            "question": "Is there an allocation of a variable consideration? (ASC 606-10-32-39 to 32-41)?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that support answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": "Not required to be allocated as only 1 performance obligation has been identified in the contract."
+                        }
+                    ]
+                }                
+            ]
+        }
+    ]
+}
