@@ -1,0 +1,1849 @@
+{
+  "workbook": "Contract 1 file 1 1.xlsm",
+  "sheets_processed": [
+    "Step 1",
+    "Step 2",
+    "Step 3",
+    "Step 4",
+    "Step 5"
+  ],
+  "items": [
+    {
+      "step": "Step 1",
+      "row": 6,
+      "question": "Step 1: Identifying contract with the customer:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 8,
+      "question": "A. contract exists if:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 10,
+      "question": "i.",
+      "yes_no": "Collection is considered probable",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 11,
+      "question": "ii.",
+      "yes_no": "It has commercial substance",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 12,
+      "question": "iii.",
+      "yes_no": "Rights to goods and services and payment terms can be identified",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 13,
+      "question": "iv.",
+      "yes_no": "It is approved and the parties are committed to their obligations",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 15,
+      "question": "Existence of a contract:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 17,
+      "question": "Description",
+      "yes_no": null,
+      "analysis": "Yes/No",
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 18,
+      "question": "Is the contract approved and the parties are committed to their obligation ((ASC 606-10-25-1(a) ) ?",
+      "yes_no": "Yes",
+      "analysis": "Yes",
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 19,
+      "question": "Are each parties' rights regarding the goods or services to be transferred identifiable (ASC 606-10-25-1(b)) ?",
+      "yes_no": "Yes",
+      "analysis": "Yes",
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 20,
+      "question": "Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c)) ?",
+      "yes_no": "Yes",
+      "analysis": "Yes",
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 21,
+      "question": "Has the contract commercial substance (ASC 606-10-25-1(d)) ?",
+      "yes_no": "Yes",
+      "analysis": "Yes",
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 22,
+      "question": "Is the collection of consideration probable (\"likely\") (ASC 606-10-25-1(e)) ?",
+      "yes_no": "Yes",
+      "analysis": "Yes",
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 24,
+      "question": "Conclusion:",
+      "yes_no": "Contract exists between the parties",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 27,
+      "question": "B. Combination of contracts:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 29,
+      "question": "Accounted for as a single contract if one or more of the following criteria are met:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 30,
+      "question": "• Contracts were negotiated as a single commercial package;",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 31,
+      "question": "• Consideration in one contract depends on the other contract; or",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 32,
+      "question": "• Goods and services are a single performance obligation",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 34,
+      "question": "Analyzing combination contracts:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 35,
+      "question": "Please fill out the following questions if answer is \"Yes\":",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 37,
+      "question": "Are there any contracts entered into at or near the same time (rebuttable presumption 3 months) with the same customer or related parties of the customer?",
+      "yes_no": "No",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 39,
+      "question": "Is there a combination of contracts necessary (606-10-25-9) ?",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 41,
+      "question": "Contracts were negotiated as a package with a single commercial objective (e.g. contract would be loss-making without taking into account the consideration received under another contract)?",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 42,
+      "question": "Consideration in one contract depends on price or performance of the other contract (e.g. failure to perform under one contract affect the amount paid under another contract)?",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 43,
+      "question": "Goods or services promised in the contracts (or some goods or services promised in each contract) are a single performance obligation in accordance with paragraphs 606-10-25-14 through 25-22 ?",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 45,
+      "question": "If one or more of the above questions are answered with \"Yes\", the contracts should be combined.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 47,
+      "question": "Conclusion:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 48,
+      "question": "No contracts are combined as none of the above criteria are met.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 49,
+      "question": "Remarks :",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 50,
+      "question": "Combination of contract is not applicable as no other contracts are entered at or near the same time.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 51,
+      "question": "C. Modification of contract",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 52,
+      "question": "Is the contract modification approved ?",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 53,
+      "question": "Conclusion:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 56,
+      "question": "Does the modification solely add additional goods or services ?",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 59,
+      "question": "Are the additional goods or services distinct ?",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 62,
+      "question": "Are the remaning goods or services distinct ?",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 67,
+      "question": "Does the contract price increase by an amount that reflect standalone selling price for the new goods or services (considering the circumstances of the contract) ?",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 69,
+      "question": "Conclusion:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 1",
+      "row": 72,
+      "question": "Remarks:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 1"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 5,
+      "question": "Step 2: Identifying the performance obligation in a contract:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 6,
+      "question": "The process of identifying performance obligation requires an entity to determine whether it promises to transfer either goods or services that are distinct, or a series of distinct goods and services that meet certain conditions. There promises may not be limited to those explicitly included in written contracts.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 8,
+      "question": "Analyzing whether identified promises represent performance obligations:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 9,
+      "question": "Guidance",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 10,
+      "question": "A promise is classified as a performance obligation, if the good or service is capable of being distinct distinct (ASC 606-10-25-19 (a)) and distinct in the context of the contract (ASC 606-10-25-19 (b)). (ASC 606-10-25-14)",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 11,
+      "question": "Criterion 1",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 12,
+      "question": "Can the customer benefit from the goods or services (e.g. good or service could be used, consumed, sold for an amount that is greater than scrap value) on its own or together with other readily available resources (a readily available resource is a good or service that is sold separately (by the entity or another entity) or a resource that the customer has already obtained from the entity (including goods or services that the entity will have already transferred to the customer under the contract) or from other transactions or events) (ASC 606-10-25-19(a))?",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 14,
+      "question": "Is the Company promise to transfer the good or service separately identifiable from other promises in the contract (ASC 606-10-25-19(b))?? The following factors should be considered with regard to the above question:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 15,
+      "question": "i Significant integration service: the Company provides a significant service of integrating the good or service with other goods or services promised in the contract into a bundle of goods or services that represents the combined output for which the customer has contracted.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 16,
+      "question": "ii Significant modification/customisation: Goods or services significantly modify or customise another good or service promised in the contract.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 17,
+      "question": "iii Highly dependent/highly interrelated: Goods or services of the Company are highly dependent on, or highly interrelated with, other goods or services promised in the contract",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 19,
+      "question": "The following obligations are classified as performance obligations:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 20,
+      "question": "Promises in the contract",
+      "yes_no": "Criterion 1",
+      "analysis": "Criterion 2",
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 21,
+      "question": "Support services for below Activities: • Unlicensed Inbound Service Call • Chat Activties • Policy Support Activities Shared Services",
+      "yes_no": "Yes",
+      "analysis": "Yes",
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 22,
+      "question": "Transition services",
+      "yes_no": "No",
+      "analysis": "No",
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 23,
+      "question": "Transformation services",
+      "yes_no": "No",
+      "analysis": "No",
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 24,
+      "question": "Technology setup -One time & Recurring",
+      "yes_no": "No",
+      "analysis": "No",
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 26,
+      "question": "Conclusion:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 2",
+      "row": 27,
+      "question": "“Support services for Inbound Call, Chat, Policy support activities & Shared services\" are single performance obligation in the contract by applying series guidance. Support services are considered as Stand Ready obligations a fixed fee is charged to service the unspecified quantities over specified period. Shared Services are considered as a promise to transfer services to the customer based on no.of FTEs and the rate applicable per FTE. Transition services / Transformation services / Setup of Technology does not provide any incremental benefit to the Customer. As per Customer, they have entered into the contract for support services and these activities cannot benefit the Customer on standalone basis. Hence, these are considered as setup activities and hence are inputs to the overall combined output of the contract.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 2"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 4,
+      "question": null,
+      "yes_no": "Step 3: Determining transaction price",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 5,
+      "question": null,
+      "yes_no": "The 'transaction price' is the amount of consideration to which an entity expects to be entitled in exchange for transferring goods or services to a customer, excluding the amount collected on behalf of third parties - e.g. some sales taxes. To determine this amount, an entity considers multiple factors.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 6,
+      "question": null,
+      "yes_no": "An entity estimates the transaction price at contract inception, including any variable consideration, and updates the estimate each reporting period for any changes in circumstances. When determining the transaction price, an entity assumes that the goods or services will be transferred to the customer based on the terms of the existing contract, and does not take into consideration the possibility of a contract being cancelled, renewed, or modified.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 7,
+      "question": null,
+      "yes_no": "Transaction price includes:",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 8,
+      "question": "i",
+      "yes_no": "Variable consideration (and the constraint):",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 9,
+      "question": null,
+      "yes_no": "The Company estimated the amount of variable consideration to which it expects to be entitled, giving consideration to the risk of revenue reversal in making an estimate.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 10,
+      "question": "Ii",
+      "yes_no": "Non-cash consideration:",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 11,
+      "question": null,
+      "yes_no": "Non-cash consideration is measured at fair value, if it can be reasonably estimated, if not, an entity uses the stand-alone selling price of the good or service that was promised in exchange for noncash consideration.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 12,
+      "question": "Iii",
+      "yes_no": "Significant financing component",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 13,
+      "question": null,
+      "yes_no": "For contracts with a significant financing component, an entity adjusts the promised amount of consideration to reflect the time value of money.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 14,
+      "question": "Iv",
+      "yes_no": "Consideration payable to the customer:",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 15,
+      "question": null,
+      "yes_no": "An entity needs to determine whether consideration payable to a customer represents a reduction of the transaction price, a payment for a distinct goods or services or a combination of the two.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 17,
+      "question": null,
+      "yes_no": "A. Cash consideration:",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 18,
+      "question": null,
+      "yes_no": "Is the consideration or a part of the consideration fixed?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 19,
+      "question": null,
+      "yes_no": "Is the consideration or a part of the consideration variable (e.g. liquidated damages, discounts, standby rates etc.) (ASC 606-10-32-5 to 32-9)?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 21,
+      "question": null,
+      "yes_no": "Variable consideration consists of:",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 22,
+      "question": null,
+      "yes_no": "Service Credit",
+      "analysis": "Refer Para no from Contract clauses",
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 23,
+      "question": null,
+      "yes_no": "Earnbacks",
+      "analysis": "Refer Para no from Contract clauses",
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 24,
+      "question": null,
+      "yes_no": "Gain Share",
+      "analysis": "Refer Para no from Contract clauses",
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 25,
+      "question": null,
+      "yes_no": "Improvement Initiatives",
+      "analysis": "Refer Para no from Contract clauses",
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 32,
+      "question": null,
+      "yes_no": "Is there a valid expectation arising from business practices, published policies or specific statements that the consideration is less than the price stated in the contract representing a variable consideration (ASC 606-10-32-7a)?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 33,
+      "question": null,
+      "yes_no": "Are there other facts and circumstances indicating that the Company intention was to offer a price concession to the customer representing a variable consideration?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 35,
+      "question": null,
+      "yes_no": "If the previous questions were answered \"Yes\" please describe the facts and circumstances and specify why the criteria mentioned above are met:",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 36,
+      "question": null,
+      "yes_no": "As per Para 10-32-6 of ASC 606 consideration can vary because of discounts, rebates, refunds, credits, price concessions, incentives, performance bonuses, penalties, or other similar items. Hence Service credit, Earnback, Gain share and Improvement Initiatives shall be considered as variable consideration.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 38,
+      "question": null,
+      "yes_no": "Please describe the approach to estimate the variable amount for each variable consideration (most likely amount, expected value) and explain why the method used better predicts the consideration to which the Company will be entitled",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 39,
+      "question": null,
+      "yes_no": "Variable consideration",
+      "analysis": "Method",
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 40,
+      "question": null,
+      "yes_no": "Service Credit",
+      "analysis": "Expected Value Method",
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 41,
+      "question": null,
+      "yes_no": "Earnbacks",
+      "analysis": "Most Likely Method",
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 42,
+      "question": null,
+      "yes_no": "Gain Share",
+      "analysis": "Most Likely Method",
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 43,
+      "question": null,
+      "yes_no": "Improvement Initiatives",
+      "analysis": "Most Likely Method",
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 50,
+      "question": null,
+      "yes_no": "Please explain the reasonableness whether it is highly probable that a significant reversal in the amount of cumulative revenue recognized will not occur (ASC 606-10-32-11. (Please consider the likelihood and the magnitude of a revenue reversal)",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 51,
+      "question": null,
+      "yes_no": "Since the variable considerations are measured monthly and a monthly provision for credit to be passed to the Customer for failure to meet achieve agreed service level is made by the service delivery team which is reviewed and approved by BU Finance Head of respective vertical. Based on the approval of BU Head, CRT Team accrues service credit, if any. This control ensures that a significant reversal in the amount of cumulative revenue recognized will not occur. Earnback will be recorded as revenue by CRT team only after proper confirmation from the Operations team. The amount is estimated by Operations team by applying any constraint if any. CRT team sends the probability template to Operations team at each reporting period here quarterly for confirming if there are any Earnbacks which needs to be recorded. Gain share should be estimated and recognized when negotiations/ discussions with client are at an advanced stage. Most likely method will be used for estimation as per ASC 606. However, the estimates made for variable considerations are subject to the variable consideration constraints, if any. Gain share is assessed when negotiation is at the advance stage applying most likely method after applying the constraints to the amount , if any.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 52,
+      "question": null,
+      "yes_no": "Please consider the following factors, which could increase the likelihood or the magnitude of a revenue reversal (ASC 606-10-32-12)",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 53,
+      "question": null,
+      "yes_no": "Is the amount of consideration highly susceptible to factors outside the Company' influence (e.g. movement of a market or an index like commodity price index, subsequent sales of a good or service of the customer)?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 54,
+      "question": null,
+      "yes_no": "Does the Company expect that the uncertainty about the amount of consideration is not expected to be resolved for a long period of time?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 55,
+      "question": null,
+      "yes_no": "Have the Company limited experience or other limited evidence with similar types of contracts resulting in limited predictive value?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 56,
+      "question": null,
+      "yes_no": "Does the Company have a practice of offering price concessions or changing payment terms of similar contracts in similar circumstances?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 57,
+      "question": null,
+      "yes_no": "Has the Company a practice of either offering a broad range of price concessions or changing the payment terms and conditions of similar contracts in similar circumstances?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 59,
+      "question": null,
+      "yes_no": "If the answer is \"Yes\" to any of the above questions, the variable consideration may not be highly probable and cannot be included in the transaction price until it is deemed highly probable that the variable consideration will not result in a significant revenue reversal.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 61,
+      "question": null,
+      "yes_no": "The transaction price consists of variable consideration(s) which are deemed probable and need(s) to be included in the transaction price.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 62,
+      "question": null,
+      "yes_no": "Conclusion :",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 63,
+      "question": null,
+      "yes_no": "Service levels are measured on monthly basis and hence service credit need not to be estimated because estimated amounts when trued up at each reporting date will provide almost the same results. Service Credits will be accounted as reduction to revenue on monthly basis in case of service level default. In the given case as the service level credits are measured on monthy basis estimation is not required. Earnback should be estimated using most likely method as there would be only two possible outcomes, i.e., ABC meets the contracted Service Level at least (2) consecutive times in the six (6) month period following the month in which the failure that generated the Service Credit occurred or ABC fails to meet the same. The expected performance incentive be recognized as revenue on monthly basis. Gain share should be estimated and recognized when negotiations/ discussions with client are at an advanced stage. Most likely method will be used for estimation as per ASC 606. However, the estimates made for variable considerations are subject to the variable consideration constraints, if any. Gain share is assessed when negotiation is at the advance stage applying most likely method after applying the constraints to the amount , if any . Improvement Initiatives - The Continuous improvement & Capacity creation is in the nature of efficiency gains which are being passed on to client over the period as mentioned in the current contract. This will be recorded as reduction of revenue in the form of reduction in monthly charges via lower headcount/ reduced charges and any other method agreed. The Company will do a monthly estimate of the efficiency benefits that will be passed on to the customer.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 65,
+      "question": null,
+      "yes_no": "B. Non-cash consideration:",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 67,
+      "question": null,
+      "yes_no": "Does the consideration include a non-cash component?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 69,
+      "question": null,
+      "yes_no": "If the previous question was answered \"Yes\" please describe the type of non-cash consideration in the contract",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 72,
+      "question": null,
+      "yes_no": "Is the consideration received a non-cash consideration (a non-cash consideration also include the customer contribution of goods or services to facilitate the Company fulfilment of the contract), if the Company obtains control of those contributed goods or services ?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 75,
+      "question": null,
+      "yes_no": "If fair value cannot be reasonably estimated, please describe the reasons for the non-identification of the fair value and the determination of the stand-alone selling price of the goods or services promised to the customer",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 76,
+      "question": null,
+      "yes_no": "Can the fair value of the non-cash consideration reasonably be estimated?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 78,
+      "question": null,
+      "yes_no": "If fair value cannot be reasonably estimated, please describe the reasons for the non-identification of the fair value and the determination of the stand-alone selling price of the goods or services promised to the customer",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 82,
+      "question": null,
+      "yes_no": "C. Consideration payable to a customer:",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 83,
+      "question": null,
+      "yes_no": "Guidance",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 84,
+      "question": null,
+      "yes_no": "Consideration payable to a customer includes cash amounts that an entity pays, or expects to pay, to the customer (or to other parties that purchase the Company' goods or services from the customer) and credits or other items (e.g. coupon or voucher) that can be applied against amounts owed to the Company (or to other parties that purchase the Company' goods or services from the customer).",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 86,
+      "question": null,
+      "yes_no": "Is there any consideration payable to a customer (ASC 606-10-32-25, 32-26 and 32-27)?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 88,
+      "question": null,
+      "yes_no": "Guidance",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 89,
+      "question": null,
+      "yes_no": "If the consideration payable to a customer includes a variable amount, an entity shall estimate the transaction price (including assessing whether the estimate of variable consideration is constrained) in accordance with paragraphs ASC 606-10-32-5 to 32-1350–58",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 90,
+      "question": null,
+      "yes_no": "Consideration Payable to customer :",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 91,
+      "question": null,
+      "yes_no": "Signing Bonus of $8,500,000 in the month of December 2024 to offset one-time costs incurred by XYZ in 2024 for transitioning the Services to Vendor.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 95,
+      "question": null,
+      "yes_no": "Does the consideration payable to a customer (or to the customer's) represent a payable for a distinct goods or service ?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 97,
+      "question": null,
+      "yes_no": "If answer of the previous question is \"Yes\", the following questions are relevant:",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 98,
+      "question": null,
+      "yes_no": "Can the entity reasonably estimate the fair value of the goods or service received ?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 99,
+      "question": null,
+      "yes_no": "Does the consideration payble exceed the fair value of the distinct good or services ?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 101,
+      "question": null,
+      "yes_no": "Conclusion",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 102,
+      "question": null,
+      "yes_no": "Consideration payble is accounted for as a reduction of the transaction price. ABC has agreed to pay to Customer, a signing bonus of in the amount of $8,500,000 in the month of December 2024 to offset one-time costs incurred by XYZ in 2024 for transitioning the Services (as per Section 5(c)) to Vendor. ABC has paid nonrefundable upfront fees in the form of Signing bonus to the Customer to help offset transition cost for this contract to ABC. The contract term is 60 months and is considered as non-cancellable as there are substantial termination penalty and hence the term is considered as 60 months. ABC expects the customer to purchase the services for full 5 years based on the experience with similar customers and its customary business practice of making similar payments. These signing bonus are recovered through margins [not mentioning the margin due to confidentiality]. Hence it can be concluded that ABC is recovering this payment through the cash flows from initial contract. ABC expects the life of customer beyond the initial five-year term based on its history with similar customers and making similar payments. The purpose of the payment is to incentivize the customer so that they enter into contract with ABC. Such amounts are generally paid at the start of customer relationship and generally ABC does not make additional payments on renewal.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 106,
+      "question": null,
+      "yes_no": "D. Significant financing component:",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 107,
+      "question": null,
+      "yes_no": "Is the period between the transfer of promised goods and services to a customer and the customer payment less than one year (also relevant in situations with regard to customer payments before transfer of goods and services) (ASC 606-10-32-18)?",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 109,
+      "question": null,
+      "yes_no": "If one of the following questions are answered with \"No\", no indication for a financing component exists (practical expedient)",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 110,
+      "question": null,
+      "yes_no": "The customer paid for the goods or services in advance, and the timing of the transfer of those goods or services is in the discretion of the customer.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 111,
+      "question": null,
+      "yes_no": "A substantial amount of the consideration promised by the customer is variable, and the variability is not substantially within the control of the customer or the entity.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 112,
+      "question": null,
+      "yes_no": "Differences between the promised consideration and the cash selling price arises for other reasons other than the provision of finance to either the customer or the entity.",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 114,
+      "question": null,
+      "yes_no": "Please specify why the criteria mentioned above are met",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 115,
+      "question": null,
+      "yes_no": "No financing component",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 3",
+      "row": 117,
+      "question": null,
+      "yes_no": "A significant financing component exists for which the entity needs to account",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 3"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 5,
+      "question": "Step 4: Allocate the transaction price to the performance obligations in the contract",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 6,
+      "question": "The transaction price is allocated to each performance obligation - generally each distinct good or service - to depict the amount of consideration to which an entity expects to be entities in exchange for transferring the promised goods or services to the customer.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 7,
+      "question": "An entity generally allocates the transaction price to each performance obligation in proportion to its stand-alone selling price. However, when specified criteria are met, a discount or variable consideration is allocated to one or more, but not all, performance obligations.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 9,
+      "question": "This step of the revenue model comprises two sub-steps that an entity performs at contract inception.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 10,
+      "question": "1. Determine stand-alone selling prices",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 11,
+      "question": "2. Allocate the transaction price",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 18,
+      "question": "Step 4: Allocate the transaction price to the performance obligations in the contract",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 19,
+      "question": null,
+      "yes_no": "1",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 20,
+      "question": "Allocation of transaction price required?",
+      "yes_no": "No",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 21,
+      "question": "Since there is only 1 performance obligation, allocation of transaction price is not required",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 23,
+      "question": "Allocation of Transaction price",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 24,
+      "question": "Performance obligation",
+      "yes_no": "Method used",
+      "analysis": "Standalone Selling price",
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 25,
+      "question": "Support services for below Activities: • Unlicensed Inbound Service Call • Chat Activties • Policy Support Activities Shared Services",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 35,
+      "question": "Allocation of variable consideration",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 36,
+      "question": "Is there an allocation of a variable consideration ? (ASC 606-10-32-39 to 32-41)?",
+      "yes_no": "No",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 4",
+      "row": 37,
+      "question": "Not required to be allocated as only 1 performance obligation has been identified in the contract.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 4"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 5,
+      "question": "Step 5: Recognize revenue when (or as) each performance obligation is satisfied",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 6,
+      "question": "An entity recognizes revenue when or as it satisfies a performance by transferring a good or service to a customer, either at a point in time (when) or over time (as). A good or service is 'transferred' when or as the customer obtains control of it.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 7,
+      "question": "Identification whether the performance obligation is satisfied over time or at a point in time.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 8,
+      "question": "If one or more of the following questions are answered with \"Yes\", the performance obligation is satisfied over time. If none of the criteria is met, control transfers to the customer at a point in time.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 9,
+      "question": "Criterion 1 ASC 606-10-25-27(a)",
+      "yes_no": "The customer simultaneously receives and consumes the benefits provided by the Company' performance as the Company performs",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 10,
+      "question": "Criterion 2 ASC 606-10-25-27(b)",
+      "yes_no": "The Company's performance creates or enhances an asset that the customer controls as the asset is created or enhanced",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 11,
+      "question": "Criterion 3 ASC 606-10-25-27(c)",
+      "yes_no": "The Company's performance does not create an asset with an alternative use to the Company and the Company has an enforceable right to payment for performance completed to date - e.g. a right to recover cost incurred plus a reasonable profit margin",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 14,
+      "question": "Performance obligations according to Step 2",
+      "yes_no": "Criterion 1",
+      "analysis": "Criterion 2",
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 15,
+      "question": "Support services for below Activities: • Unlicensed Inbound Service Call • Chat Activties • Policy Support Activities Shared Services",
+      "yes_no": "Yes",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 20,
+      "question": "Performance obligations satisfied over time",
+      "yes_no": "Yes",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 22,
+      "question": "Perforamance obligation satisfied at a point in time",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 24,
+      "question": "Selecting a method that depicts the performance i.e. a pattern of transfer of control of the goods and services to the customer:",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 25,
+      "question": "Guidance when performance obligation is satisfied over time.",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 26,
+      "question": "According to ASC 606 either output or input related methods can be applied consistently in order to measure the progress (ASC 606-10-25-32) , if a reasonable estimate is possible (ASC 606-10-25-36 to 25-37)",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 27,
+      "question": "Method 1: Output:",
+      "yes_no": "Progress is measured based on the value of goods and services transferred to the customer to date (e.g. based on surveys of performance completed to date, appraisals of results achieved, milestones reached, time elapsed and units produced or units delivered).",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 28,
+      "question": "Method 2: Input:",
+      "yes_no": "Progress is measured based on the Company efforts or inputs towards satisfying a performance obligation, relative to the total expected inputs (e.g. resources consumed, labour hours expended, costs incurred, time elapsed or machine hours used).",
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 31,
+      "question": "Performance Obligation satisfied over time",
+      "yes_no": "Method used",
+      "analysis": "Description",
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 32,
+      "question": "Support services for below Activities: • Unlicensed Inbound Service Call • Chat Activties • Policy Support Activities Shared Services",
+      "yes_no": "Input",
+      "analysis": "Time elapsed FTE Efforts Consumed i.e no. of FTE's",
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 39,
+      "question": "Guidance: Limitations on applying the units-of-delivery or units-of-production methods",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    },
+    {
+      "step": "Step 5",
+      "row": 40,
+      "question": "An output method would not provide a faithful depiction of the Company' performance if the output selected would fail to measure some of the goods or services for which control has transferred to the customer (for example, output methods based on units produced or units delivered would not faithfully depict an entity’s performance in satisfying a performance obligation if, at the end of the reporting period, the entity’s performance has produced work in progress or finished goods controlled by the customer that are not included in the measurement of the output).",
+      "yes_no": null,
+      "analysis": null,
+      "source": {
+        "sheet": "Step 5"
+      },
+      "confidence": "table"
+    }
+  ]
+}

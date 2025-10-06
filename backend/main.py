@@ -1,0 +1,769 @@
+"""
+FastAPI Backend for Contract→606 Intelligence & Autofill
+Implements the POC plan for ASC-606 compliance automation
+"""
+
+from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse, FileResponse
+from pydantic import BaseModel
+from typing import List, Optional, Dict, Any, Literal
+import os
+import json
+import uuid
+from datetime import datetime
+import logging
+from dotenv import load_dotenv
+from openai import OpenAI
+from backend.services.cache_manager import CacheManager
+
+# Load environment variables
+load_dotenv()
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# OpenAI configuration
+API_KEY = os.getenv("DIRECT_OPENAI_API_KEY")
+MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
+VECTOR_STORE_ID = os.getenv("VECTOR_STORE_ID")
+
+if not API_KEY:
+    raise RuntimeError("DIRECT_OPENAI_API_KEY missing in .env")
+
+client = OpenAI(api_key=API_KEY)
+
+# Initialize cache manager
+cache_manager = CacheManager()
+
+app = FastAPI(
+    title="Contract→606 Intelligence API",
+    description="ASC-606 compliance automation with human-in-the-loop review",
+    version="1.0.0"
+)
+
+# CORS middleware for frontend integration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Pydantic models
+class ClauseHit(BaseModel):
+    clause_text: str
+    page_number: int
+    section: str
+    confidence_score: float
+    clause_type: str
+
+class ChecklistAnswer(BaseModel):
+    question_id: str
+    question_text: str
+    suggested_answer: str
+    confidence: float
+    clause_hits: List[ClauseHit]
+    alternative_hits: Optional[List[ClauseHit]] = None
+    reviewer_override: Optional[str] = None
+    reviewer_comment: Optional[str] = None
+    final_answer: Optional[str] = None
+
+class ChecklistRow(BaseModel):
+    """Schema for checklist responses from LLM"""
+    description: str
+    yes_no: Literal["Yes", "No", "N/A"]
+    analysis: str
+
+class DocumentAnalysis(BaseModel):
+    document_id: str
+    document_name: str
+    upload_timestamp: datetime
+    processing_status: str
+    extracted_sections: List[Dict[str, Any]]
+    clause_hits: List[ClauseHit]
+    checklist_answers: List[ChecklistAnswer]
+    vector_store_id: Optional[str] = None
+    project_id: Optional[str] = None
+    file_hash: Optional[str] = None
+
+class Project(BaseModel):
+    project_id: str
+    project_name: str
+    created_timestamp: datetime
+    vector_store_id: str
+    file_hashes: List[str]
+    analysis_results: Dict[str, Any]
+    last_updated: datetime
+
+class UploadRequest(BaseModel):
+    project_name: Optional[str] = None
+    reuse_existing: bool = True
+
+class EvidenceBinder(BaseModel):
+    document_id: str
+    generated_timestamp: datetime
+    highlighted_clauses: List[Dict[str, Any]]
+    checklist_summary: List[ChecklistAnswer]
+    export_formats: Dict[str, str]  # CSV, JSON, PDF paths
+
+# In-memory storage for demo (replace with database in production)
+documents_db: Dict[str, DocumentAnalysis] = {}
+evidence_binders: Dict[str, EvidenceBinder] = {}
+
+# Vector store management
+def create_file_in_vector_store(file_content: bytes, filename: str) -> str:
+    """Upload file to OpenAI and return file ID"""
+    try:
+        file_obj = (filename, file_content)
+        created = client.files.create(file=file_obj, purpose="assistants")
+        logger.info(f"Uploaded file to OpenAI: {created.id}")
+        return created.id
+    except Exception as e:
+        logger.error(f"Error uploading file to OpenAI: {e}")
+        raise HTTPException(status_code=500, detail=f"File upload failed: {str(e)}")
+
+def ensure_vector_store(existing_id: Optional[str], name: str = "contract_analysis") -> str:
+    """Create or reuse a vector store"""
+    if existing_id:
+        logger.info(f"Reusing existing vector store: {existing_id}")
+        return existing_id
+    
+    try:
+        vs = client.vector_stores.create(name=name)
+        logger.info(f"Created vector store: {vs.id}")
+        return vs.id
+    except Exception as e:
+        logger.error(f"Error creating vector store: {e}")
+        raise HTTPException(status_code=500, detail=f"Vector store creation failed: {str(e)}")
+
+def add_file_to_vector_store(vector_store_id: str, file_id: str):
+    """Add a file to the vector store"""
+    try:
+        added = client.vector_stores.files.create(
+            vector_store_id=vector_store_id,
+            file_id=file_id
+        )
+        logger.info(f"Added file {file_id} to vector store {vector_store_id}")
+        return added
+    except Exception as e:
+        logger.error(f"Error adding file to vector store: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to add file to vector store: {str(e)}")
+
+def analyze_question_with_llm(question: str, vector_store_id: str) -> ChecklistRow:
+    """Use LLM to analyze a question based on vector store content"""
+    try:
+        schema = ChecklistRow.model_json_schema()
+        
+        response = client.responses.create(
+            model=MODEL,
+            input=[
+                {
+                    "role": "system",
+                    "content": (
+                        """You are a contract review assistant specializing in ASC 606. Use File Search over the provided 
+                        vector store and answer ONLY from those documents. If evidence is insufficient, 
+                        return 'No' and explain why. Output must match the JSON schema.
+                        JSON schema:
+                        {
+                            "description": "The description of the checklist row",
+                            "yes_no": "Yes, No or N/A",
+                            "analysis": "The analysis of the checklist row"
+                        }
+                        Example:
+                        {
+                            "description": "Is the contract approved and are the parties committed to their obligations (ASC 606-10-25-1(a))?",
+                            "yes_no": "Yes",
+                            "analysis": "The contract is approved and the parties are committed to their obligations (ASC 606-10-25-1(a))"
+                        }
+                        """
+                    ),
+                },
+                {"role": "user", "content": question},
+            ],
+            tools=[{
+                "type": "file_search",
+                "vector_store_ids": [vector_store_id]
+            }],
+            reasoning={"effort": "low"},
+        )
+        
+        # Parse the response
+        try:
+            response_data = json.loads(response.output_text)
+            return ChecklistRow(**response_data)
+        except json.JSONDecodeError:
+            # Fallback if JSON parsing fails
+            return ChecklistRow(
+                description=question,
+                yes_no="N/A",
+                analysis=f"LLM Response: {response.output_text}"
+            )
+            
+    except Exception as e:
+        logger.error(f"Error analyzing question with LLM: {e}")
+        return ChecklistRow(
+            description=question,
+            yes_no="N/A",
+            analysis=f"Error analyzing question: {str(e)}"
+        )
+
+# ASC-606 Question Set (10-15 high-value questions as per POC plan)
+ASC_606_QUESTIONS = [
+    {
+        "id": "contract_approved",
+        "text": "Is the contract approved and are the parties committed to their obligations (ASC 606-10-25-1(a))?",
+        "clause_types": ["signature", "approval", "commitment"]
+    },
+    {
+        "id": "payment_terms_identifiable",
+        "text": "Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c))?",
+        "clause_types": ["payment_terms", "pricing", "invoicing"]
+    },
+    {
+        "id": "commercial_substance",
+        "text": "Has the contract commercial substance (ASC 606-10-25-1(d))?",
+        "clause_types": ["commercial_terms", "business_purpose"]
+    },
+    {
+        "id": "customer_acceptance",
+        "text": "Is there customer acceptance present and what is its nature?",
+        "clause_types": ["acceptance", "inspection", "approval"]
+    },
+    {
+        "id": "termination_penalties",
+        "text": "Are there termination penalties or early termination payments?",
+        "clause_types": ["termination", "penalties", "early_termination"]
+    },
+    {
+        "id": "refund_credits",
+        "text": "Are there refund or credit provisions for failed acceptance?",
+        "clause_types": ["refund", "credit", "remedy"]
+    },
+    {
+        "id": "variable_consideration",
+        "text": "Is there variable consideration that needs to be constrained?",
+        "clause_types": ["variable_pricing", "contingencies", "adjustments"]
+    },
+    {
+        "id": "performance_obligations",
+        "text": "What are the distinct performance obligations?",
+        "clause_types": ["deliverables", "services", "obligations"]
+    },
+    {
+        "id": "over_time_indicators",
+        "text": "Are there indicators that revenue should be recognized over time?",
+        "clause_types": ["over_time", "milestones", "progress"]
+    },
+    {
+        "id": "contract_modifications",
+        "text": "Are there contract modifications or amendments?",
+        "clause_types": ["modifications", "amendments", "changes"]
+    }
+]
+
+@app.get("/")
+async def root():
+    return {"message": "Contract→606 Intelligence API", "version": "1.0.0"}
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+
+@app.get("/questions")
+async def get_asc_606_questions():
+    """Get the ASC-606 question set for the POC"""
+    return {"questions": ASC_606_QUESTIONS}
+
+@app.post("/upload")
+async def upload_document(
+    file: UploadFile = File(...),
+    project_name: Optional[str] = None,
+    reuse_existing: bool = True
+):
+    """Upload and process a contract document with caching"""
+    try:
+        # Read file content
+        file_content = await file.read()
+        
+        # Calculate file hash for deduplication
+        file_hash = cache_manager.calculate_file_hash(file_content)
+        
+        # Check if file is already cached
+        cached_file = cache_manager.is_file_cached(file_content)
+        
+        if cached_file and reuse_existing:
+            logger.info(f"File already cached: {file.filename} (hash: {file_hash[:8]}...)")
+            
+            # Find existing project
+            project = None
+            for p in cache_manager.projects_db.values():
+                if file_hash in p.file_hashes:
+                    project = p
+                    break
+            
+            if project:
+                # Return cached analysis
+                return {
+                    "document_id": cached_file.file_id,
+                    "vector_store_id": project.vector_store_id,
+                    "project_id": project.project_id,
+                    "file_hash": file_hash,
+                    "status": "cached",
+                    "message": f"File already analyzed in project: {project.project_name}",
+                    "cached": True
+                }
+        
+        # Generate unique document ID
+        document_id = str(uuid.uuid4())
+        
+        # Initialize document analysis
+        analysis = DocumentAnalysis(
+            document_id=document_id,
+            document_name=file.filename,
+            upload_timestamp=datetime.now(),
+            processing_status="processing",
+            extracted_sections=[],
+            clause_hits=[],
+            checklist_answers=[],
+            file_hash=file_hash
+        )
+        
+        # Store in memory
+        documents_db[document_id] = analysis
+        
+        # Upload file to OpenAI vector store
+        file_id = create_file_in_vector_store(file_content, file.filename)
+        
+        # Create or reuse vector store
+        vector_store_id = ensure_vector_store(VECTOR_STORE_ID, f"contract_analysis_{document_id}")
+        
+        # Add file to vector store
+        add_file_to_vector_store(vector_store_id, file_id)
+        
+        # Cache file metadata
+        cache_manager.cache_file(file_id, file.filename, file_content, vector_store_id)
+        
+        # Create or get project
+        project_name = project_name or f"Project_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        project = cache_manager.get_or_create_project(project_name, [file_hash], vector_store_id)
+        
+        # Update analysis with project info
+        analysis.processing_status = "completed"
+        analysis.vector_store_id = vector_store_id
+        analysis.project_id = project.project_id
+        analysis.extracted_sections = [
+            {"section": "Document", "page": 1, "content": f"Uploaded {file.filename} to vector store {vector_store_id}"}
+        ]
+        
+        # Generate real LLM-based checklist answers with caching
+        for question in ASC_606_QUESTIONS:
+            try:
+                # Check if analysis is cached
+                cached_analysis = cache_manager.get_cached_analysis(question["id"], [file_hash])
+                
+                if cached_analysis:
+                    logger.info(f"Using cached analysis for question: {question['id']}")
+                    # Use cached analysis
+                    answer = ChecklistAnswer(
+                        question_id=question["id"],
+                        question_text=question["text"],
+                        suggested_answer=cached_analysis.analysis_result.get("yes_no", "N/A"),
+                        confidence=cached_analysis.confidence,
+                        clause_hits=[
+                            ClauseHit(
+                                clause_text=cached_analysis.analysis_result.get("analysis", ""),
+                                page_number=1,
+                                section="Cached Analysis",
+                                confidence_score=cached_analysis.confidence,
+                                clause_type="cached_analysis"
+                            )
+                        ],
+                        reviewer_override=None,
+                        reviewer_comment=None,
+                        final_answer=None
+                    )
+                else:
+                    # Use LLM to analyze the question
+                    llm_response = analyze_question_with_llm(question["text"], vector_store_id)
+                    
+                    # Cache the analysis
+                    analysis_result = {
+                        "yes_no": llm_response.yes_no,
+                        "analysis": llm_response.analysis,
+                        "description": llm_response.description
+                    }
+                    cache_manager.cache_analysis(
+                        question["id"], 
+                        question["text"], 
+                        [file_hash], 
+                        analysis_result, 
+                        0.85
+                    )
+                    
+                    # Convert LLM response to our format
+                    answer = ChecklistAnswer(
+                        question_id=question["id"],
+                        question_text=question["text"],
+                        suggested_answer=llm_response.yes_no,
+                        confidence=0.85,
+                        clause_hits=[
+                            ClauseHit(
+                                clause_text=llm_response.analysis,
+                                page_number=1,
+                                section="LLM Analysis",
+                                confidence_score=0.85,
+                                clause_type="llm_analysis"
+                            )
+                        ],
+                        reviewer_override=None,
+                        reviewer_comment=None,
+                        final_answer=None
+                    )
+                
+                analysis.checklist_answers.append(answer)
+                
+                # Update project with analysis result
+                cache_manager.update_project_analysis(
+                    project.project_id, 
+                    question["id"], 
+                    {
+                        "suggested_answer": answer.suggested_answer,
+                        "confidence": answer.confidence,
+                        "analysis": answer.clause_hits[0].clause_text if answer.clause_hits else ""
+                    }
+                )
+                
+            except Exception as e:
+                logger.error(f"Error analyzing question {question['id']}: {e}")
+                # Add error answer
+                answer = ChecklistAnswer(
+                    question_id=question["id"],
+                    question_text=question["text"],
+                    suggested_answer="N/A",
+                    confidence=0.0,
+                    clause_hits=[],
+                    reviewer_override=None,
+                    reviewer_comment=f"Error: {str(e)}",
+                    final_answer=None
+                )
+                analysis.checklist_answers.append(answer)
+        
+        documents_db[document_id] = analysis
+        
+        return {
+            "document_id": document_id,
+            "vector_store_id": vector_store_id,
+            "project_id": project.project_id,
+            "file_hash": file_hash,
+            "status": "uploaded",
+            "message": "Document uploaded and processed successfully with LLM analysis",
+            "cached": False
+        }
+        
+    except Exception as e:
+        logger.error(f"Error uploading document: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Upload failed: {str(e)}")
+
+@app.get("/documents/{document_id}")
+async def get_document_analysis(document_id: str):
+    """Get analysis results for a specific document"""
+    if document_id not in documents_db:
+        raise HTTPException(status_code=404, detail="Document not found")
+    
+    return documents_db[document_id]
+
+@app.get("/documents")
+async def list_documents():
+    """List all uploaded documents"""
+    return {"documents": list(documents_db.values())}
+
+@app.post("/documents/{document_id}/review")
+async def update_reviewer_decision(
+    document_id: str,
+    question_id: str,
+    reviewer_override: str,
+    reviewer_comment: Optional[str] = None
+):
+    """Update reviewer decision for a specific question"""
+    if document_id not in documents_db:
+        raise HTTPException(status_code=404, detail="Document not found")
+    
+    analysis = documents_db[document_id]
+    
+    # Find and update the specific answer
+    for answer in analysis.checklist_answers:
+        if answer.question_id == question_id:
+            answer.reviewer_override = reviewer_override
+            answer.reviewer_comment = reviewer_comment
+            answer.final_answer = reviewer_override
+            break
+    else:
+        raise HTTPException(status_code=404, detail="Question not found")
+    
+    return {"status": "updated", "message": "Reviewer decision recorded"}
+
+@app.post("/documents/{document_id}/reanalyze")
+async def reanalyze_question(
+    document_id: str,
+    question_id: str
+):
+    """Re-analyze a specific question using LLM"""
+    if document_id not in documents_db:
+        raise HTTPException(status_code=404, detail="Document not found")
+    
+    analysis = documents_db[document_id]
+    
+    if not analysis.vector_store_id:
+        raise HTTPException(status_code=400, detail="No vector store found for this document")
+    
+    # Find the question
+    question = None
+    for q in ASC_606_QUESTIONS:
+        if q["id"] == question_id:
+            question = q
+            break
+    
+    if not question:
+        raise HTTPException(status_code=404, detail="Question not found")
+    
+    try:
+        # Use LLM to re-analyze the question
+        llm_response = analyze_question_with_llm(question["text"], analysis.vector_store_id)
+        
+        # Update the answer
+        for answer in analysis.checklist_answers:
+            if answer.question_id == question_id:
+                answer.suggested_answer = llm_response.yes_no
+                answer.clause_hits = [
+                    ClauseHit(
+                        clause_text=llm_response.analysis,
+                        page_number=1,
+                        section="LLM Analysis",
+                        confidence_score=0.85,
+                        clause_type="llm_analysis"
+                    )
+                ]
+                break
+        
+        return {
+            "status": "reanalyzed",
+            "message": "Question re-analyzed with LLM",
+            "new_answer": llm_response.yes_no,
+            "analysis": llm_response.analysis
+        }
+        
+    except Exception as e:
+        logger.error(f"Error re-analyzing question: {e}")
+        raise HTTPException(status_code=500, detail=f"Re-analysis failed: {str(e)}")
+
+@app.post("/documents/{document_id}/evidence-binder")
+async def generate_evidence_binder(document_id: str):
+    """Generate evidence binder with highlighted clauses and citations"""
+    if document_id not in documents_db:
+        raise HTTPException(status_code=404, detail="Document not found")
+    
+    analysis = documents_db[document_id]
+    
+    # Generate evidence binder
+    binder_id = str(uuid.uuid4())
+    binder = EvidenceBinder(
+        document_id=document_id,
+        generated_timestamp=datetime.now(),
+        highlighted_clauses=[
+            {
+                "question": answer.question_text,
+                "answer": answer.final_answer or answer.suggested_answer,
+                "clause_hits": [hit.dict() for hit in answer.clause_hits],
+                "page_references": [hit.page_number for hit in answer.clause_hits]
+            }
+            for answer in analysis.checklist_answers
+        ],
+        checklist_summary=analysis.checklist_answers,
+        export_formats={
+            "csv": f"exports/{binder_id}_checklist.csv",
+            "json": f"exports/{binder_id}_analysis.json",
+            "pdf": f"exports/{binder_id}_evidence_binder.pdf"
+        }
+    )
+    
+    evidence_binders[binder_id] = binder
+    
+    # TODO: Implement actual file generation
+    # This would create:
+    # 1. CSV file for portal import
+    # 2. JSON file with full analysis
+    # 3. PDF evidence binder with highlighted clauses
+    
+    return {
+        "binder_id": binder_id,
+        "status": "generated",
+        "export_formats": binder.export_formats
+    }
+
+@app.get("/evidence-binders/{binder_id}")
+async def get_evidence_binder(binder_id: str):
+    """Get evidence binder details"""
+    if binder_id not in evidence_binders:
+        raise HTTPException(status_code=404, detail="Evidence binder not found")
+    
+    return evidence_binders[binder_id]
+
+@app.get("/download/{binder_id}/{format}")
+async def download_export(binder_id: str, format: str):
+    """Download exported files (CSV, JSON, PDF)"""
+    if binder_id not in evidence_binders:
+        raise HTTPException(status_code=404, detail="Evidence binder not found")
+    
+    binder = evidence_binders[binder_id]
+    
+    if format not in binder.export_formats:
+        raise HTTPException(status_code=404, detail="Export format not found")
+    
+    file_path = binder.export_formats[format]
+    
+    # TODO: Implement actual file generation and return
+    # For now, return a placeholder response
+    return {"message": f"Download {format} file", "path": file_path}
+
+@app.get("/analytics")
+async def get_analytics():
+    """Get analytics and metrics for the POC"""
+    total_documents = len(documents_db)
+    total_binders = len(evidence_binders)
+    
+    # Calculate average processing metrics
+    avg_confidence = 0
+    total_answers = 0
+    
+    for analysis in documents_db.values():
+        for answer in analysis.checklist_answers:
+            avg_confidence += answer.confidence
+            total_answers += 1
+    
+    if total_answers > 0:
+        avg_confidence /= total_answers
+    
+    # Get cache statistics
+    cache_stats = cache_manager.get_cache_stats()
+    
+    return {
+        "total_documents": total_documents,
+        "total_evidence_binders": total_binders,
+        "average_confidence": round(avg_confidence, 2),
+        "total_questions_processed": total_answers,
+        "cache_stats": cache_stats
+    }
+
+@app.get("/projects")
+async def list_projects():
+    """List all projects"""
+    projects = []
+    for project in cache_manager.projects_db.values():
+        projects.append({
+            "project_id": project.project_id,
+            "project_name": project.project_name,
+            "created_timestamp": project.created_timestamp.isoformat(),
+            "last_updated": project.last_updated.isoformat(),
+            "vector_store_id": project.vector_store_id,
+            "file_count": len(project.file_hashes),
+            "analysis_count": len(project.analysis_results)
+        })
+    return {"projects": projects}
+
+@app.get("/projects/{project_id}")
+async def get_project(project_id: str):
+    """Get details of a specific project"""
+    project = cache_manager.get_project_by_id(project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    
+    # Get file details
+    files = cache_manager.get_files_by_hashes(project.file_hashes)
+    
+    return {
+        "project_id": project.project_id,
+        "project_name": project.project_name,
+        "created_timestamp": project.created_timestamp.isoformat(),
+        "last_updated": project.last_updated.isoformat(),
+        "vector_store_id": project.vector_store_id,
+        "files": [
+            {
+                "file_id": f.file_id,
+                "filename": f.filename,
+                "file_hash": f.file_hash,
+                "file_size": f.file_size,
+                "upload_timestamp": f.upload_timestamp.isoformat()
+            }
+            for f in files
+        ],
+        "analysis_results": project.analysis_results
+    }
+
+@app.post("/projects/{project_id}/add-file")
+async def add_file_to_project(
+    project_id: str,
+    file: UploadFile = File(...)
+):
+    """Add a file to an existing project"""
+    project = cache_manager.get_project_by_id(project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    
+    try:
+        # Read file content
+        file_content = await file.read()
+        file_hash = cache_manager.calculate_file_hash(file_content)
+        
+        # Check if file is already in project
+        if file_hash in project.file_hashes:
+            return {
+                "status": "already_exists",
+                "message": "File already exists in this project",
+                "file_hash": file_hash
+            }
+        
+        # Upload file to OpenAI
+        file_id = create_file_in_vector_store(file_content, file.filename)
+        
+        # Add to vector store
+        add_file_to_vector_store(project.vector_store_id, file_id)
+        
+        # Cache file metadata
+        cache_manager.cache_file(file_id, file.filename, file_content, project.vector_store_id)
+        
+        # Add to project
+        project.file_hashes.append(file_hash)
+        project.last_updated = datetime.now()
+        cache_manager._save_cache()
+        
+        return {
+            "status": "added",
+            "message": "File added to project successfully",
+            "file_hash": file_hash,
+            "project_id": project_id
+        }
+        
+    except Exception as e:
+        logger.error(f"Error adding file to project: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to add file: {str(e)}")
+
+@app.get("/cache/stats")
+async def get_cache_stats():
+    """Get cache statistics"""
+    return cache_manager.get_cache_stats()
+
+@app.post("/cache/cleanup")
+async def cleanup_cache(max_age_hours: int = 168):
+    """Clean up expired cache entries"""
+    cache_manager.cleanup_expired_cache(max_age_hours)
+    return {
+        "status": "cleaned",
+        "message": f"Cleaned up cache entries older than {max_age_hours} hours"
+    }
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

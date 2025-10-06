@@ -1,0 +1,158 @@
+{
+    "step": "Step 1",
+    "step_goal": "Identifying contract with the customer",
+    "step_section": [
+        {
+            "name": "A. Existence of a contract",
+            "instructions": "A. Contract exists if: \ni. Collection is considered probable \nii. It has commercial substance \niii. Rights to goods and services and payment terms can be identified \niv. It is approved and the parties are committed to their obligations",
+            "section": [
+                {
+                    "name": "Existence of a contract",
+                    "instructions": "Please fill out the following questions if answer is 'Yes':",
+                    "questions": [
+                        {
+                            "id": "S1_A_1_1",
+                            "question": "Is the contract approved and the parties are committed to their obligation ((ASC 606-10-25-1(a) ) ?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": "Agreement is signed by both the parties to the contract."
+                        },
+                        {
+                            "id": "S1_A_1_2",
+                            "question": "Are each parties' rights regarding the goods or services to be transferred identifiable (ASC 606-10-25-1(b)) ?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": "Scope of services has been identified in  Agreement -  Support services for Unlicensed Inbound service call Support, Chat Support and Policy support"
+                        },
+                        {
+                            "id": "S1_A_1_3",
+                            "question": "Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c)) ?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": "Payment terms are defined in  Agreement."
+                        },
+                        {
+                            "id": "S1_A_1_4",
+                            "question": "Has the contract commercial substance (ASC 606-10-25-1(d)) ?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": "MSA & SOW define the pricing, risks and timing of the services, therefore commercial substance of the contract exists"
+                        },
+                        {
+                            "id": "S1_A_1_5",
+                            "question": "Is the collection of consideration probable (\"likely\") (ASC 606-10-25-1(e)) ?",
+                            "answer": "Yes/No/NA",
+                            "analysis": "Evidences that supports answer",
+                            "expected_answer": "Yes",
+                            "expected_analysis": "Company's Credit Rating Team performs a comprehensive study of the credit worthiness for new customers at pipeline stage i.e. before contract acceptance and execution stage through the S&P Global ratings. Credit Rating Model (CRAM) is used for review of ratings and overdue status of the existing customers on a monthly basis. ABC follows above established process for assessing the credit ratings of the prospective and existing Customers"
+                        }
+                    ]
+                },
+                {
+                    "name": "Conclusion",
+                    "instruction": "Based on the answer to the question, determine if the contract exists between the parties",
+                    "questions": [
+                        {
+                            "id": "S1_A_2_1",
+                            "question": "Conclusion",
+                            "answer": "{{text answer}}",
+                            "analysis": "",
+                            "expected_answer": "Contract exists between the parties",
+                            "expected_analysis": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "B. Combination of contracts",
+            "instructions": "Accounted for as a single contract if one or more of the following criteria are met: \n1. Contracts were negotiated as a single commercial package; \n2. Consideration in one contract depends on the other contract; or \n3. Goods and services are a single performance obligation",
+            "section": [
+                {
+                    "name": "Analyzing combination contracts",
+                    "instruction": "Please fill out the following questions if answer is 'Yes':",
+                    "questions": [
+                        {
+                            "id": "S1_B_1_1",
+                            "question": "Are there any contracts entered into at or near the same time (rebuttable presumption 3 months) with the same customer or related parties of the customer? (ASC 606-10-25-9)",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Is there a combination of contracts necessary (606-10-25-9) ?",
+                    "instruction": "",
+                    "questions": [
+                        {
+                            "id": "S1_B_2_1",
+                            "question": "Contracts were negotiated as a package with a single commercial objective (e.g. contract would be loss-making without taking into account the consideration received under another contract)?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": "No combination of contracts is necessary"
+                        },
+                        {
+                            "id": "S1_B_2_2",
+                            "question": "Consideration in one contract depends on price or performance of the other contract (e.g. failure to perform under one contract affect the amount paid under another contract)?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": "No consideration in one contract depends on price or performance of the other contract"
+                        },
+                        {
+                            "id": "S1_B_2_3",
+                            "question": "Goods or services promised in the contracts (or some goods or services promised in each contract) are a single performance obligation in accordance with paragraphs 606-10-25-14 through 25-22 ?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": "No goods or services promised in the contracts (or some goods or services promised in each contract) are a single performance obligation"
+                        }
+                    ]
+                },
+                {
+                    "name": "Conclusion",
+                    "instruction": "If one or more of the above questions are answered with 'Yes', the contracts should be combined.",
+                    "questions": [
+                        {
+                            "id": "S1_B_3_1",
+                            "question": "Conclusion",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": "No contracts should be combined"
+                        },
+                        {
+                            "id": "S1_B_3_2",
+                            "question": "Remarks",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": "No remarks"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "C. Modification of contract",
+            "instructions": "",
+            "questions": [
+                {
+                    "id": "S1_C_1",
+                    "question": "Remarks",
+                    "answer": "{{any remarks}}",
+                    "analysis": "",
+                    "expected_answer": "N/A",
+                    "expected_analysis": ""
+                }
+            ]
+        }
+    ]
+}
