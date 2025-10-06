@@ -29,15 +29,23 @@ def parse_placeholder_options(placeholder: str) -> Tuple[str, List[str]]:
     Examples:
       "{{Yes/No/NA}}" -> ("choice", ["Yes","No","NA"])
       "{{text answer}}" -> ("text", [])
+      "Yes/No/NA" -> ("choice", ["Yes","No","NA"])
     """
+    # First try the {{...}} format
     m = PLACEHOLDER_RE.search(placeholder or "")
-    if not m:
+    if m:
+        inner = m.group(1).strip()
+        # Heuristic: if it contains "/", treat as enumerated options; else text
+        if "/" in inner:
+            vals = [v.strip() for v in inner.split("/")]
+            return "choice", vals
         return "text", []
-    inner = m.group(1).strip()
-    # Heuristic: if it contains "/", treat as enumerated options; else text
-    if "/" in inner:
-        vals = [v.strip() for v in inner.split("/")]
+    
+    # Handle simple format like "Yes/No/NA"
+    if placeholder and "/" in placeholder:
+        vals = [v.strip() for v in placeholder.split("/")]
         return "choice", vals
+    
     return "text", []
 
 def normalize_yes_no_na(x: str) -> str:
@@ -48,7 +56,8 @@ def normalize_yes_no_na(x: str) -> str:
     return x  # leave as-is if not recognized
 
 def is_placeholder(value: str) -> bool:
-    return bool(PLACEHOLDER_RE.search(value or ""))
+    # Check for both {{...}} format and simple Yes/No/NA format
+    return bool(PLACEHOLDER_RE.search(value or "")) or (value and value.strip() in ["Yes/No/NA", "Yes/No", "Yes/No/NA/Other"])
 
 # ---------- Optional dependency & derivation support ----------
 
@@ -92,13 +101,15 @@ class Context:
     answers: Dict[str, str] = field(default_factory=dict)
     analyses: Dict[str, str] = field(default_factory=dict)
 
-    def to_brief_bullets(self, limit: int = 12) -> str:
+    def to_brief_bullets(self, limit: int = 8) -> str:
         items = list(self.answers.items())[-limit:]
         lines = []
         for k, v in items:
             av = v
             an = self.analyses.get(k, "")
-            lines.append(f"- {k}: {av}" + (f" | evidence: {an[:240]}" if an else ""))
+            # Truncate analysis to 80 chars to keep context manageable
+            analysis_snippet = an[:80] + "..." if len(an) > 80 else an
+            lines.append(f"- {k}: {av}" + (f" | {analysis_snippet}" if an else ""))
         return "\n".join(lines)
 
 # ---------- LLM prompting ----------
@@ -126,6 +137,7 @@ Constraints:
 - {allowed}
 - If not determinable from the provided evidence, use "NA".
 - The "analysis" must quote the exact supporting text (or say "Not found").
+- IMPORTANT: For choice questions, return ONLY ONE value (e.g., "Yes", "No", or "NA"), not multiple values.
 
 {format_req}
 """
@@ -371,6 +383,47 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
         "analyses_by_qid": {qid: r["analysis"] for qid, r in results.items()},
     }
 
+# ---------- JSON Output Generation ----------
+
+def generate_filled_json(original_json: Dict[str, Any], results: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Generate a filled JSON with all placeholders replaced by LLM responses
+    """
+    def fill_placeholders_recursive(node: Any, qid_map: Dict[str, Dict[str, str]]) -> Any:
+        if isinstance(node, dict):
+            filled_node = {}
+            for key, value in node.items():
+                if key == "answer" and isinstance(value, str):
+                    # Check if this is a placeholder that was filled
+                    if value in qid_map:
+                        filled_node[key] = qid_map[value]["answer"]
+                    else:
+                        filled_node[key] = value
+                elif key == "analysis" and isinstance(value, str):
+                    # Check if this is a placeholder that was filled
+                    if value in qid_map:
+                        filled_node[key] = qid_map[value]["analysis"]
+                    else:
+                        filled_node[key] = value
+                else:
+                    filled_node[key] = fill_placeholders_recursive(value, qid_map)
+            return filled_node
+        elif isinstance(node, list):
+            return [fill_placeholders_recursive(item, qid_map) for item in node]
+        else:
+            return node
+    
+    # Create a mapping from original placeholders to filled values
+    qid_map = {}
+    for qid, result in results.items():
+        if "answer" in result and "analysis" in result:
+            qid_map[qid] = {
+                "answer": result["answer"],
+                "analysis": result["analysis"]
+            }
+    
+    return fill_placeholders_recursive(original_json, qid_map)
+
 # ---------- Metrics: expected vs actual ----------
 
 def compare_expected_vs_actual(results: Dict[str, Any]) -> Dict[str, Any]:
@@ -422,11 +475,21 @@ def main():
         # Run the form filling process
         step_result = fill_form_step(step_1_json, deps_map)
         
+        # Generate filled JSON
+        print("\n📄 Generating filled JSON...")
+        filled_json = generate_filled_json(step_1_json, step_result)
+        
+        # Save filled JSON to file
+        output_file = "step1_filled.json"
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(filled_json, f, indent=2, ensure_ascii=False)
+        print(f"✅ Saved filled JSON to {output_file}")
+        
         # Compare expected vs actual results
         report = compare_expected_vs_actual(step_result)
         
         # Print results
-        print(f"Accuracy: {report['accuracy']}")
+        print(f"\n📊 Accuracy: {report['accuracy']}")
         print("=" * 60)
         print("Detailed Results:")
         print("=" * 60)
