@@ -1,0 +1,68 @@
+{
+    "step": "Step 5",
+    "step_goal": "Recognize revenue when (or as) each performance obligation is satisfied",
+    "step_section": [
+        {
+            "name": "Recognize revenue when (or as) each performance obligation is satisfied",
+            "instructions": "An entity recognizes revenue when or as it satisfies a performance by transferring a good or service to a customer, either at a point in time (when) or over time (as).\nA good or service is “transferred” when or as the customer obtains control of it.",
+            "section": [
+                {
+                    "name": "Identification whether the performance obligation is satisfied over time or at a point in time.",
+                    "instructions": "If one or more of the following questions are answered with 'Yes', the performance obligation is satisfied over time. If none of the criteria is met, control transfers to the customer at a point in time.\nCriterion 1 ASC 606-10-25-27(a)\nThe customer simultaneously receives and consumes the benefits provided by the Company’s performance as the Company performs.\nCriterion 2 ASC 606-10-25-27(b)\nThe Company’s performance creates or enhances an asset that the customer controls as the asset is created or enhanced.\nCriterion 3 ASC 606-10-25-27(c)\nThe Company’s performance does not create an asset with an alternative use to the Company and the Company has an enforceable right to payment for performance completed to date – e.g. a right to recover cost incurred plus a reasonable profit margin.",
+                    
+                    "questions": [
+                        {
+                            "id": "S1_A_1_1",
+                            "question_Performance_obligations_according_to_Step_2": "Support services for below Activities:\n• Unlicensed Inbound Service Call\n• Chat Activties\n• Policy Support Activities\nShared Services",
+                            "answer_Criterion_1": "{{Yes/No/NA}}",
+                            "answer_Criterion_2": "{{Yes/No/NA}}",
+                            "answer_Criterion_3": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer_Criterion_1": "Yes",
+                            "expected_answer_Criterion_2": "N/A",
+                            "expected_answer_Criterion_3": "N/A",
+                            "expected_analysis": "Performance obligations is satisfied over time."
+                        },
+                        {
+                            "id": "S1_A_1_2",
+                            "question": "Performance obligations satisfied over time:",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S1_A_1_3",
+                            "question": "Performance obligation satisfied at a point in time:",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "N/A",
+                            "expected_analysis": ""
+                        }
+                        ]
+                },
+                {
+                    "name": "Selecting a method that depicts the performance i.e. a pattern of transfer of control of the goods and services to the customer:",
+                    "instruction": "Guidance when performance obligation is satisfied over time. \nAccording to ASC 606 either output or input related methods can be applied consistently in order to measure the progress (ASC 606-10-25-32), if a reasonable estimate is possible (ASC 606-10-25-36 to 25-37). \nMethod 1: Output \nProgress is measured based on the value of goods and services transferred to the customer to date (e.g. based on surveys of performance completed to date, appraisals of results achieved, milestones reached, time elapsed and units produced or units delivered). \nMethod 2: Input \nProgress is measured based on the Company efforts or inputs towards satisfying a performance obligation, relative to the total expected inputs (e.g. resources consumed, labour hours expended, costs incurred, time elapsed or machine hours used).",
+                    "questions": [
+                        {
+                            "id": "S1_A_1_1",
+                            "question_Performance_obligations_according_to_Step_2": "Promise 1 - Operational Services  \n- Business Operations  \n- Accounts Payable  \n- Accounts Receivables  \n- General Ledger  \n- SOA  ",
+                            "answer_method_used": "{{Input/Output}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer_Criterion_3": "Input",
+                            "expected_analysis": "Progress is measured based on FTE consumed for performing the services. Therefore, method 2 i.e. measurement of progress based on Input appears to be appropriate. \n\nSince XYZ is using As-Invoiced practical expedient, the estimation of variable consideration and input method use has been foregone."
+
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Guidance: Limitations on applying the units-of-delivery or units-of-production methods",
+            "instructions": "An output method would not provide a faithful depiction of the Company’s performance if the output selected would fail to measure some of the goods or services for which control has transferred to the customer (for example, output methods based on units produced or units delivered would not faithfully depict an entity’s performance in satisfying a performance obligation if, at the end of the reporting period, the entity’s performance has produced work in progress or finished goods controlled by the customer that are not included in the measurement of the output)."
+            
+        }
+        
+    ]
+}
