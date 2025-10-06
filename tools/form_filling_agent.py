@@ -1,4 +1,4 @@
-import json, re, math, os, sys
+import json, re, math, os, sys, time
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
 from dotenv import load_dotenv
@@ -10,6 +10,7 @@ load_dotenv()
 # Environment variables
 API_KEY = os.getenv("DIRECT_OPENAI_API_KEY")
 MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
+VECTOR_STORE_ID = os.getenv("VECTOR_STORE_ID")
 
 # Initialize client only when needed
 def get_client():
@@ -131,28 +132,50 @@ Constraints:
 
 def call_llm(prompt: str) -> Dict[str, Any]:
     """
-    Call OpenAI LLM to fill form questions. Must return {"answer": str, "analysis": str}
+    Call OpenAI LLM to fill form questions using vector store. Must return {"answer": str, "analysis": str}
     """
     try:
+        if not VECTOR_STORE_ID:
+            print("❌ VECTOR_STORE_ID is missing in .env", file=sys.stderr)
+            return {"answer": "NA", "analysis": "Vector store not configured"}
+            
+        print(f"   🔗 Using vector store: {VECTOR_STORE_ID}")
+        print(f"   📝 Prompt length: {len(prompt)} characters")
+        
         client = get_client()
-        response = client.chat.completions.create(
-            model=MODEL,
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a contract review assistant specializing in ASC 606. Analyze the provided question and return a JSON response with 'answer' and 'analysis' fields."
-                },
-                {
-                    "role": "user", 
-                    "content": prompt
-                }
-            ],
-            temperature=0.1,
-            max_tokens=1000
-        )
+        print(f"   🚀 Making API call to {MODEL}...")
+        start_time = time.time()
+        
+        try:
+            response = client.responses.create(
+                model=MODEL,
+                input=[
+                    {
+                        "role": "system",
+                        "content": (
+                            """You are a contract review assistant specializing in ASC 606. Use File Search over the provided 
+                            vector store and answer ONLY from those documents. If evidence is insufficient, 
+                            return 'No' and explain why. Return strict JSON: {"answer": "<value>", "analysis": "<evidence>"} 
+                            with no extra text. The "analysis" must quote the exact supporting text (or say "Not found")."""
+                        ),
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                tools=[{
+                    "type": "file_search",
+                    "vector_store_ids": [VECTOR_STORE_ID]
+                }],
+                reasoning={"effort": "low"},
+            )
+            elapsed_time = time.time() - start_time
+            print(f"   ✅ API call completed in {elapsed_time:.2f} seconds")
+        except Exception as api_error:
+            elapsed_time = time.time() - start_time
+            print(f"   ❌ API call failed after {elapsed_time:.2f} seconds: {api_error}")
+            raise api_error
         
         # Extract the response content
-        content = response.choices[0].message.content.strip()
+        content = response.output_text.strip()
         
         # Try to parse as JSON
         try:
@@ -205,11 +228,16 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
             q.visible_if = deps_map[q.qid].get("visible_if")
             q.derive = deps_map[q.qid].get("derive")
 
-    def walk(node: Any, prefix: str = "S1"):
+    def walk(node: Any, prefix: str = "S1", depth: int = 0):
         nonlocal qcounter
+        if depth > 10:  # Prevent infinite recursion
+            print(f"⚠️ Maximum recursion depth reached at {prefix}")
+            return
+            
         if isinstance(node, dict):
             # questions directly on node
             if "questions" in node and isinstance(node["questions"], list):
+                print(f"   📋 Found {len(node['questions'])} questions in {prefix}")
                 for item in node["questions"]:
                     qcounter += 1
                     qid = f"{prefix}.{qcounter}"
@@ -226,25 +254,36 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
             # nested sections
             for k in ["section", "sections", "step_section"]:
                 if k in node and isinstance(node[k], list):
+                    print(f"   📁 Found {len(node[k])} {k} sections in {prefix}")
                     for idx, sub in enumerate(node[k], start=1):
                         nxt_prefix = prefix  # keep same prefix so order rules the flow
-                        walk(sub, nxt_prefix)
+                        walk(sub, nxt_prefix, depth + 1)
         elif isinstance(node, list):
+            print(f"   📄 Processing list with {len(node)} items in {prefix}")
             for sub in node:
-                walk(sub, prefix)
+                walk(sub, prefix, depth + 1)
 
     # Prime the sequence
     walk(step_json, prefix="S1")
 
     # Main loop
-    for q in seq:
+    total_questions = len(seq)
+    print(f"📊 Processing {total_questions} questions...")
+    
+    for i, q in enumerate(seq, 1):
+        print(f"🔄 Processing question {i}/{total_questions}: {q.qid}")
+        print(f"   Question: {q.question[:100]}{'...' if len(q.question) > 100 else ''}")
+        
         # Visibility
         if q.visible_if:
+            print(f"   🔍 Checking visibility rule: {q.visible_if}")
             if not safe_eval(q.visible_if, ctx.answers.copy()):
+                print(f"   ⏭️ Skipping due to visibility rule")
                 continue
 
         # Derivation rule
         if q.derive:
+            print(f"   🧮 Applying derivation rule: {q.derive}")
             try:
                 ans = str(eval(q.derive, {"__builtins__": {}}, {"ans": ctx.answers, "ana": ctx.analyses}))
                 q.actual_answer = ans
@@ -258,13 +297,15 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
                     "expected_answer": q.expected_answer,
                     "expected_analysis": q.expected_analysis
                 }
+                print(f"   ✅ Derived answer: {q.actual_answer}")
                 continue
             except Exception as e:
-                # fallback to LLM if derivation fails
+                print(f"   ⚠️ Derivation failed: {e}, falling back to LLM")
                 pass
 
         # If not a placeholder, just copy through
         if not is_placeholder(q.answer_template):
+            print(f"   📝 Using template answer: {q.answer_template}")
             q.actual_answer = str(q.answer_template)
             q.actual_analysis = str(q.analysis_template or "")
             ctx.answers[q.qid] = q.actual_answer
@@ -276,16 +317,20 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
                 "expected_answer": q.expected_answer,
                 "expected_analysis": q.expected_analysis
             }
+            print(f"   ✅ Template answer: {q.actual_answer}")
             continue
 
         # LLM fill
+        print(f"   🤖 Calling LLM for question {q.qid}...")
         prompt = build_prompt(q, ctx)
         llm = call_llm(prompt)
         raw_answer = str(llm.get("answer","")).strip()
         analysis = str(llm.get("analysis","")).strip()
+        print(f"   📤 LLM response: {raw_answer}")
 
         kind, choices = parse_placeholder_options(q.answer_template)
         if kind == "choice" and choices:
+            print(f"   🎯 Normalizing choice from {raw_answer} to one of {choices}")
             # normalize the categorical value
             if set(map(str.lower, choices)) == {"yes","no","na"}:
                 raw_answer = normalize_yes_no_na(raw_answer)
@@ -298,6 +343,7 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
                     raw_answer = choices[idx]
                 except ValueError:
                     raw_answer = "NA" if "NA" in choices else choices[0]
+            print(f"   ✅ Normalized to: {raw_answer}")
 
         q.actual_answer = raw_answer
         q.actual_analysis = analysis
@@ -314,6 +360,10 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
             "expected_answer": q.expected_answer,
             "expected_analysis": q.expected_analysis
         }
+        
+        print(f"   ✅ Completed question {q.qid}: {q.actual_answer}")
+        print(f"   📈 Progress: {i}/{total_questions} ({i/total_questions*100:.1f}%)")
+        print("-" * 60)
 
     return {
         "sequence": [r for _, r in results.items()],
