@@ -1,31 +1,99 @@
 {
     "step": "Step 2",
-    "step_goal": "Identifying the performance obligation in a contract",
-    "step_description": "The process of identifying performance obligation requires an entity to determine whether it promises to transfer either goods or services that are distinct, or a series of distinct goods and services that meet certain conditions. There promises may not be limited to those explicitly included in written contracts.",
-    "step_sub_description": "Analyzing whether identified promises represent performance obligations:",
+    "step_goal": "Revenue Recognition Checklist",
     "step_section": [
         {
-            "section": "A. Analyzing whether identified promises represent performance obligations",
-            "section_description": "A. Analyzing whether identified promises represent performance obligations: \nGuidance \nA promise is classified as a performance obligation, if the good or service is capable of being distinct distinct (ASC 606-10-25-19 (a)) and distinct in the context of the contract (ASC 606-10-25-19 (b)). (ASC 606-10-15-14)",
-            "subsection": [
+            "name": "Identifying the performance obligation in a contract:",
+            "instructions": "The process of identifying performance obligation requires an entity to determine whether it promises to transfer either goods or services that are distinct, or a series of distinct goods and services that meet certain conditions. There promises may not be limited to those explicitly included in written contracts.",
+            "section": [
                 {
-                    "subsection_description": "Guidance",
+                    "name": "Analyzing whether identified promises represent performance obligations:",
+                    "instructions": "Guidance A promise is classified as a performance obligation, if the good or service is capable of being distinct  distinct (ASC 606-10-25-19 (a)) and distinct in the context of the contract (ASC 606-10-25-19 (b)). (ASC 606-10-25-14).",
+                    
+                },
+                {
+                    "name": "Criterion 1",
+                    "instructions": "Can the customer benefit from the goods or services (e.g. good or service could be used, consumed, sold for an amount that is greater than scrap value) on its own or together with other readily available resources (a readily available resource is a good or service that is sold separately (by the entity or another entity) or a resource that the customer has already obtained from the entity (including goods or services that the entity will have already transferred to the customer under the contract) or from other transactions or events) (ASC 606-10-25-19(a))?",
+ 
+                },
+                {
+                    "name": "Is the Company promise to transfer the good or service separately identifiable from other promises in the contract (ASC 606-10-25-19(b))?? The following factors should be considered with regard to the above question:",
+                    "instructions": "i  Significant integration service: the Company provides a significant service of integrating the good or service with other goods or services promised in the contract into a bundle of goods or services that represents the combined output for which the customer has contracted.\nii Significant modification/customisation: Goods or services significantly modify or customise another good or service promised in the contract.\niii Highly dependent/highly interrelated: Goods or services are highly dependent on, or highly interrelated with, other goods or services promised in the contract",
+ 
+                },
+                {
+                    "name": "The following obligations are classified as performance obligations:",
+                    "instructions": "",
                     "questions": [
                         {
-                            "question": "Guidance",
-                            "answer": "Yes/No/NA",
-                            "expected_answer": "Yes"
+                            "id": "S2_A_1_1",
+                            "question_Promises_in_the_contract": "Support services for below Activities: \n• Unlicensed Inbound Service Call \n• Chat Activities \n• Policy Support Activities \nShared Services ",
+                            "answer_Criterion_1": "{{Yes/No/NA}}",
+                            "answer_Criterion_2": "{{Yes/No/NA}}",
+                            "answer_Performance Obligation_?": "{{Yes/No/NA}}",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer_Criterion_1": "Yes",
+                            "expected_answer_Criterion_2": "Yes",
+                            "expected_answer_Performance Obligation_?": "Yes",
+                            "expected_analysis": "Series of distinct performance obligation as below mentioned criteria is met: \n1. The goods or services are substantially the same. \n2. Each distinct goods or service is a performance obligation satisfies over time. \n3. The same method i.e (input) would be used to measure progress toward satisfaction of each distinct goods or services in the series."
+                        },
+                        {
+                            "id": "S2_A_1_2",
+                            "question_Promises_in_the_contract": "Transition services",
+                            "answer_Criterion_1": "{{Yes/No/NA}}",
+                            "answer_Criterion_2": "{{Yes/No/NA}}",
+                            "answer_Performance Obligation_?": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer_Criterion_1": "No",
+                            "expected_answer_Criterion_2": "No",
+                            "expected_answer_Performance Obligation_?": "No",
+                            "expected_analysis": "Not a distinct service in the contract as it does not transfer any incremental benefit to the Customer on standalone basis. These are treated as input to the overall combined output of the contract."
+                        },
+                        {
+                            "id": "S2_A_1_3",
+                            "question_Promises_in_the_contract": "Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c)) ?",
+                            "answer_Criterion_1": "{{Yes/No/NA}}",
+                            "answer_Criterion_2": "{{Yes/No/NA}}",
+                            "answer_Performance Obligation_?": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer_Criterion_1": "No",
+                            "expected_answer_Criterion_2": "No",
+                            "expected_answer_Performance Obligation_?": "No",
+                            "expected_analysis": "Not a distinct service in the contract as it does not transfer any incremental benefit to the Customer on standalone basis. These are treated as input to the overall combined output of the contract."
+                        },
+                        {
+                            "id": "S2_A_1_4",
+                            "question_Promises_in_the_contract": "Has the contract commercial substance (ASC 606-10-25-1(d)) ?",
+                            "answer_Criterion_1": "{{Yes/No/NA}}",
+                            "answer_Criterion_2": "{{Yes/No/NA}}",
+                            "answer_Performance Obligation_?": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer_Criterion_1": "No",
+                            "expected_answer_Criterion_2": "No",
+                            "expected_answer_Performance Obligation_?": "No",
+                            "expected_analysis": "Not a distinct service in the contract as it does not transfer any incremental benefit to the Customer on standalone basis. These are treated as input to the overall combined output of the contract."
+                        },
+                        
+                    ]
+                },
+                {
+                    "name": "Conclusion",
+                    "instruction": "Based on the answer to the question, determine if the contract exists between the parties",
+                    "questions": [
+                        {
+                            "id": "S2_A_2_1",
+                            "question": "Conclusion",
+                            "answer": "{{text answer}}",
+                            "analysis": "",
+                            "expected_answer": "“Support services for Inbound Call, Chat, Policy support activities & Shared services” are single performance obligation in the contract by applying series guidance. Support services are considered as Stand Ready obligations; a fixed fee is charged to service the unspecified quantities over specified period. Shared Services are considered as a promise to transfer services to the customer based on number of FTEs and the rate applicable per FTE. Transition services / Transformation services / Setup of Technology does not provide any incremental benefit to the Customer. As per Customer, they have entered into the contract for support services and these activities cannot benefit the Customer on standalone basis. Hence, these are considered as setup activities and hence are inputs to the overall combined output of the contract.",
+                            "expected_analysis": ""
                         }
                     ]
-                }
-            ],
-            "questions": [
-                {
-                    "question": "Guidance",
-                    "answer": "Yes/No/NA",
-                    "expected_answer": "Yes"
                 }
             ]
         }
     ]
 }
+
+
