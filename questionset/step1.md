@@ -1,3 +1,5 @@
+Based on attached files, can you fillup the following ASC 606 form, replace the placeholders (identified as curly braces {} )with actual answers. 
+
 # Step 1
 
 ## Step 1: Identifying contract with the customer
@@ -24,19 +26,19 @@ Analysis: {Mention evidences which support your answer}
 
 **Question:** Are each parties' rights regarding the goods or services to be transferred identifiable (ASC 606-10-25-1(b)) ? Yes Scope of services has been identified in  Agreement -  Support services for Unlicensed Inbound service call Support, Chat Support and Policy support
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 **Question:** Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c)) ? Yes Payment terms are defined in  Agreement.
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 **Question:** Has the contract commercial substance (ASC 606-10-25-1(d)) ? Yes MSA & SOW define the pricing, risks and timing of the services, therefore commercial substance of the contract exists
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 **Question:** Is the collection of consideration probable ("likely") (ASC 606-10-25-1(e)) ? Yes Company’s Credit Rating Team performs a comprehensive study of the credit worthiness for new customers at pipeline stage i.e. before contract acceptance and execution stage through the S&P Global ratings. Credit Rating Model (CRAM) is used for review of ratings and overdue status of the existing customers on a monthly basis. ABC follows above established process for assessing the credit ratings of the prospective and existing Customers
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 Conclusion: Contract exists between the parties
 
@@ -54,25 +56,25 @@ Conclusion: Contract exists between the parties
 
 ## Please fill out the following questions if answer is "Yes"
 
-**Question:** Are there any contracts entered into at or near the same time (rebuttable presumption 3 months) with the same customer or related parties of the customer? No
+**Question:** Are there any contracts entered into at or near the same time (rebuttable presumption 3 months) with the same customer or related parties of the customer?
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 **Question:** Is there a combination of contracts necessary (606-10-25-9) ?
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 **Question:** Contracts were negotiated as a package with a single commercial objective (e.g. contract would be loss-making without taking into account the consideration received under another contract)?
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 **Question:** Consideration in one contract depends on price or performance of the other contract (e.g. failure to perform under one contract affect the amount paid under another contract)?
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 **Question:** Goods or services promised in the contracts (or some goods or services promised in each contract) are a single performance obligation in accordance with paragraphs 606-10-25-14 through 25-22 ?
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 If one or more of the above questions are answered with "Yes", the contracts should be combined.
 
@@ -88,26 +90,28 @@ Combination of contract is not applicable as no other contracts are entered at o
 
 **Question:** Is the contract modification approved ?
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 ## Conclusion
 
 **Question:** Does the modification solely add additional goods or services ?
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 **Question:** Are the additional goods or services distinct ?
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 **Question:** Are the remaning goods or services distinct ?
 
-**Answer:** {Enter Response}
+**Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
 **Question:** Does the contract price increase by an amount that reflect standalone selling price for the new goods or services (considering the circumstances of the contract) ?
 
 **Answer:** {Enter Response}
 
 ## Conclusion
+{Overall conclusion}
 
 ## Remarks
+{Overall remarks}
