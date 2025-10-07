@@ -1,0 +1,285 @@
+{
+    "step": "Step 3",
+    "step_goal": "Determining transaction price",
+    "step_section": [
+        {
+            "name": "Determining transaction price",
+            "instructions": "The ‘transaction price’ is the amount of consideration to which an entity expects to be entitled in exchange for transferring goods or services to a customer, excluding the amount collected on behalf of third parties - e.g. some sales taxes. To determine this amount, an entity considers multiple factors. \nAn entity estimates the transaction price at contract inception, including any variable consideration, and updates the estimate each reporting period for any changes in circumstances. When determining the transaction price, an entity assumes that the goods or services will be transferred to the customer based on the terms of the existing contract, and does not take into consideration the possibility of a contract being cancelled, renewed, or modified.\nTransaction price includes:\ni. Variable consideration (and the constraint): The Company estimated the amount of variable consideration to which it expects to be entitled, giving consideration to the risk of revenue reversal in making an estimate. \nii. Non-cash consideration: Non-cash consideration is measured at fair value, if it can be reasonably estimated, if not, an entity uses the stand-alone selling price of the good or service that was promised in exchange for noncash consideration. \niii. Significant financing component: For contracts with a significant financing component, an entity adjusts the promised amount of consideration to reflect the time value of money. \niv. Consideration payable to the customer: An entity needs to determine whether consideration payable to a customer represents a reduction of the transaction price, a payment for a distinct goods or services or a combination of the two.",
+            "section": [
+                {
+                    "name": "A. Cash consideration:",
+                    "instructions": "",
+                    "questions": [
+                        {
+                            "id": "S3_A_1_1",
+                            "question": "Is the consideration or a part of the consideration fixed?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_A_1_2",
+                            "question": "Is the consideration or a part of the consideration variable (e.g. liquidated damages, discounts, standby rates etc.) (ASC 606-10-32-5 to 32-9)?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Variable consideration consists of:",
+                    "instruction": "",
+                    "questions": [
+                        {
+                            "id": "S3_A_2_1",
+                            "question": "Service Credits - Refer Para no from Contract clauses",
+                            "answer": "{{text answer}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Clause 12 of MSA",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_A_2_2",
+                            "question": "ARC/RRC - Refer Para no from Contract clauses",
+                            "answer": "{{text answer}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Clause 4.5 of Schedule 5 to MSA",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_A_2_3",
+                            "question": "Productivity guarantee - Refer Para no from Contract clauses",
+                            "answer": "{{text answer}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Refer Schedule 25 to MSA",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_A_2_4",
+                            "question": "Is there a valid expectation arising from business practices, published policies or specific statements that the consideration is less than the price stated in the contract representing a variable consideration (ASC)?",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_A_2_5",
+                            "question": "Are there other facts and circumstances indicating that the Company intention was to offer a price concession to the customer representing a variable consideration? ",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "If the previous questions were answered 'Yes' please describe the facts and circumstances and specify why the criteria mentioned above are met:",
+                    "instruction": "As per Para 10-32-6 of ASC 606 consideration can vary because of discounts, rebates, refunds, credits, price concessions, incentives, performance bonuses, penalties, or other similar items. Hence Service credits, ARC/RRC, productivity guarantee shall be considered as variable consideration.\nPlease describe the approach to estimate the variable amount for each variable consideration (most likely amount, expected value) and explain why the method used better predicts the consideration to which the Company will be entitled:",
+                    "questions": [
+                        {
+                            "id": "S3_A_3_1",
+                            "question": "Service Credits",
+                            "answer": "{{Expected Value Method/Most Likely Method}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Expected Value Method",
+                            "expected_analysis": "The expected value is the sum of probability-weighted amounts in a range of possible consideration amounts."
+                        },
+                        {
+                            "id": "S3_A_3_2",
+                            "question": "ARC/RRC",
+                            "answer": "{{Expected Value Method/Most Likely Method}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Most Likely Method",
+                            "expected_analysis": "The Most-likely amount is an appropriate estimate of the amount of variable consideration as the contract has only two possible outcomes."
+                        },
+                        {
+                            "id": "S3_A_3_3",
+                            "question": "Productivity guarantee",
+                            "answer": "{{Expected Value Method/Most Likely Method}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Most Likely Method",
+                            "expected_analysis": "The Most-likely amount is an appropriate estimate of the amount of variable consideration as the contract has only two possible outcomes."
+                        },
+                        {
+                            "id": "S3_A_3_4",
+                            "question": "Please explain the reasonableness whether it is highly probable that a significant reversal in the amount of cumulative revenue recognized will not occur (ASC 606-10-32-11. (Please consider the likelihood and the magnitude of a revenue reversal) ",
+                            "answer": "{{text answer}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": "Since the variable considerations are measured monthly and a monthly provision for credit to be passed to the Customer for failure to meet achieve agreed service level is made by the service delivery team which is reviewed and approved by BU Finance Head of respective vertical. Based on the approval of BU Head, CRT Team accrues service credit, if any. This control ensures that a significant reversal in the amount of cumulative revenue recognized will not occur. \n\nARC/ RRC is a variable consideration which will be measured monthly as whether the volume, amount, quantity of Operational services actually consumed or utilised under the relevant Process has gone above 15% of volume baseline. Hence estimation is not required and hence probability of revenue reversal will not occur.\n\nSince producivity guarantee FTEs will be known at the end of each month, estimation of productivity is not required and hence there will be no significant reversal expected to occur."
+                        }
+                        
+                    ]
+                },
+                {
+                    "name": "Please consider the following factors, which could increase the likelihood or the magnitude of a revenue reversal (ASC 606-10-32-12) ",
+                    "instruction": "",
+                    "questions": [
+                        {
+                            "id": "S3_A_4_1",
+                            "question": "Is the amount of consideration highly susceptible to factors outside the Company' influence (e.g. movement of a market or an index like commodity price index, subsequent sales of a good or service of the customer)? ",
+                            "answer": "{{Yes/No}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_A_4_2",
+                            "question": "Does the Company expect that the uncertainty about the amount of consideration is not expected to be resolved for a long period of time? ",
+                            "answer": "{{Yes/No}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_A_4_3",
+                            "question": "Have the Company limited experience or other limited evidence with similar types of contracts resulting in limited predictive value? ",
+                            "answer": "{{Yes/No}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_A_4_4",
+                            "question": "Does the Company have a practice of offering price concessions or changing payment terms of similar contracts in similar circumstances? ",
+                            "answer": "{{Yes/No}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_A_4_5",
+                            "question": "Has the Company a practice of either offering a broad range of price concessions or changing the payment terms and conditions of similar contracts in similar circumstances? ",
+                            "answer": "{{Yes/No}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_A_4_6",
+                            "question": "The transaction price consists of variable consideration(s) which are deemed  probable and need(s) to be included in the transaction price. ",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Conclusion",
+                    "instruction": "Based on the answer to the question, determine if the contract exists between the parties",
+                    "questions": [
+                        {
+                            "id": "S3_A_5_1",
+                            "question": "Conclusion",
+                            "answer": "{{text answer}}",
+                            "analysis": "",
+                            "expected_answer": "Service Credit - Service credits should be recorded as reduction to revenue on monthly basis based on service level default & related percentages stated in the contract. Since the measurement period is monthly for some matrix, estimation of service credits at the inception and applying it monthly would give the same results. Hence, estimation can be foregone and service credit in total, cannot exceed the applicable At Risk Amount as per contract.\nARC/RRC  - The ARC and RRC fees rates would be applicable on the increased FTEs and decreased FTEs respectively. The ARC and RRC FTE rate would be used for recognition of the revenue on a monthly basis instead of the baseline FTE rate as contractually agreed, if applicable.\nProductivity guarantee - The Productivity commitment is in the nature of efficiency gains which are being passed on to client over the period as mentioned in the current contract. This will be recorded as reduction of revenue in the form of reduction in monthly charges via lower headcount. The Company will do a monthly estimate of the efficiency benefits that will be passed on to the customer and any expected shortfall has to be recorded as a reduction to revenue over the measurement period. However, Estimation is not required since the productivity guarantee will be known at the end of each month.",
+                            "expected_analysis": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "B. Non-cash consideration:",
+            "instructions": "",
+            "questions": [
+                {
+                    "id": "S3_B_1_1",
+                    "question": "Does the consideration include a non-cash component? ",
+                    "answer": "{{Yes/No/NA}}",
+                    "analysis": "{{Evidences that supports answer}}",
+                    "expected_answer": "No",
+                    "expected_analysis": ""
+                }
+            ]
+        },
+        {
+            "name": "C. Consideration payable to a customer:",
+            "instructions": "Guidance\nConsideration payable to a customer includes cash amounts that an entity pays, or expects to pay, to the customer (or to other parties that purchase the Company’s goods or services from the customer) and credits or other items (e.g. coupon or voucher) that can be applied against amounts owed to the Company (or to other parties that purchase the Company’s goods or services from the customer).",
+            "questions": [
+                {
+                    "id": "S3_C_1_1",
+                    "question": "Is there any consideration payable to a customer (ASC 606-10-32-25, 32-26 and 32-27)? ",
+                    "answer": "{{Yes/No/NA}}",
+                    "analysis": "{{Evidences that supports answer}}",
+                    "expected_answer": "No",
+                    "expected_analysis": ""
+                },
+                {
+                    "id": "S3_C_1_2",
+                    "question": "Conclusion",
+                    "answer": "{{text answer}}",
+                    "analysis": "",
+                    "expected_answer": "NA",
+                    "expected_analysis": ""
+                }
+            ]
+        },
+        {
+            "name": "D. Significant financing component: ",
+            "instructions": "",
+            "questions": [
+                {
+                    "id": "S3_D_1_1",
+                    "question": "Is the period between the transfer of promised goods and services to a customer and the customer payment less than one year (also relevant in situations with regard to customer payments before transfer of goods and services) (ASC 606-10-32-18)?",
+                    "answer": "{{Yes/No/NA}}",
+                    "analysis": "{{Evidences that supports answer}}",
+                    "expected_answer": "Yes",
+                    "expected_analysis": ""
+                }
+            ],
+            "section": [
+                {
+                    "name": "If one of the following questions are answered with 'No', no indication for a financing component exists (practical expedient)",
+                    "instruction": "",
+                    "questions": [
+                        {
+                            "id": "S3_D_1_2",
+                            "question": "The customer paid for the goods or services in advance, and the timing of the transfer of those goods or services is in the discretion of the customer.",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_D_1_3",
+                            "question": "A substantial amount of the consideration promised by the customer is variable, and the variability is not substantially within the control of the customer or the entity.",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_D_1_4",
+                            "question": "Differences between the promised consideration and the cash selling price arises for other reasons other than the provision of finance to either the customer or the entity.",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_D_1_5",
+                            "question": "Please specify why the criteria mentioned above are met ",
+                            "answer": "{{text answer}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "No financing component. Significant financing component in Upfront Monetization to Customer  is computed in accordance with ASC 835.\nAlthough payment for Transition Services, Transformation Implementation Services and Technology Implementation Services is being spread over 5 years, but the primary purpose of these payment terms is to provide the customer with assurance that the entity will perform its obligations under the contract, rather than provide financing to the customer.",
+                            "expected_analysis": ""
+                        },
+                        {
+                            "id": "S3_D_1_6",
+                            "question": "A significant financing component exists for which the entity needs to account ",
+                            "answer": "{{Yes/No/NA}}",
+                            "analysis": "{{Evidences that supports answer}}",
+                            "expected_answer": "Yes",
+                            "expected_analysis": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
