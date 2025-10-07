@@ -1,3 +1,4 @@
+import datetime
 import json, re, math, os, sys, time
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
@@ -444,7 +445,9 @@ def compare_expected_vs_actual(results: Dict[str, Any]) -> Dict[str, Any]:
 def main():
     """Main function to run the form filling process"""
     # Load step1.json
-    step1_json_path = "../questionset/variant2/step1.json"
+    # step1_json_path = "../questionset/variant2/step1.json"
+    filename = "step2.json"
+    step1_json_path = "../questionset/variant2/" + filename
     
     try:
         with open(step1_json_path, 'r', encoding='utf-8') as f:
@@ -477,7 +480,8 @@ def main():
         filled_json = generate_filled_json(step_1_json, step_result)
         
         # Save filled JSON to file
-        output_file = "step1_filled.json"
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_file = f"{filename}_filled_{timestamp}.json"
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(filled_json, f, indent=2, ensure_ascii=False)
         print(f"✅ Saved filled JSON to {output_file}")
