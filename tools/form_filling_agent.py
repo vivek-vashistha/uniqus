@@ -97,6 +97,7 @@ class QA:
     expected_analysis: Optional[str] = None
     visible_if: Optional[str] = None  # e.g., "S1.A.1 == 'Yes'"
     derive: Optional[str] = None      # small Python expression returning answer (string)
+    instructions: Optional[str] = None  # instructions from JSON file
     # results
     actual_answer: Optional[str] = None
     actual_analysis: Optional[str] = None
@@ -122,6 +123,12 @@ class Context:
 
 def build_prompt(q: QA, ctx: Context) -> str:
     prior = ctx.to_brief_bullets()
+    
+    # Include specific instructions from JSON if available
+    specific_instructions = ""
+    if q.instructions:
+        specific_instructions = f"\nSpecific Instructions for this section:\n{q.instructions}\n"
+    
     return f"""You are filling an ASC 606 form from contracts.
 
 Earlier answers (for context):
@@ -129,9 +136,8 @@ Earlier answers (for context):
 
 Question: {q.question}
 
-Answer format: {q.answer_template}
-
-Instructions:
+Answer format: {q.answer_template}{specific_instructions}
+General Instructions:
 - Follow the answer format exactly as specified above
 - Use "Yes" if the evidence supports the statement or if it's reasonable to infer from the contract
 - Use "No" if the evidence clearly contradicts the statement
@@ -242,13 +248,29 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
             q.visible_if = deps_map[q.qid].get("visible_if")
             q.derive = deps_map[q.qid].get("derive")
 
-    def walk(node: Any, prefix: str = "S1", depth: int = 0):
+    def walk(node: Any, prefix: str = "S1", depth: int = 0, parent_instructions: str = ""):
         nonlocal qcounter
         if depth > 10:  # Prevent infinite recursion
             print(f"⚠️ Maximum recursion depth reached at {prefix}")
             return
             
         if isinstance(node, dict):
+            # Collect instructions from current node
+            current_instructions = node.get("instructions", "").strip()
+            combined_instructions = ""
+            if parent_instructions and current_instructions:
+                combined_instructions = f"{parent_instructions}\n\n{current_instructions}"
+            elif parent_instructions:
+                combined_instructions = parent_instructions
+            elif current_instructions:
+                combined_instructions = current_instructions
+            
+            # Debug: Show instruction accumulation
+            if current_instructions and depth <= 2:
+                print(f"   📋 Section instructions at depth {depth}: {current_instructions[:80]}...")
+                if parent_instructions:
+                    print(f"   📋 Combined with parent: {parent_instructions[:80]}...")
+            
             # questions directly on node
             if "questions" in node and isinstance(node["questions"], list):
                 print(f"   📋 Found {len(node['questions'])} questions in {prefix}")
@@ -262,7 +284,11 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
                         analysis_template=str(item.get("analysis","")).strip(),
                         expected_answer=item.get("expected_answer"),
                         expected_analysis=item.get("expected_analysis"),
+                        instructions=combined_instructions if combined_instructions else None,
                     )
+                    # Debug: Print instructions for first few questions
+                    if qcounter <= 3 and combined_instructions:
+                        print(f"   📝 Instructions for {qid}: {combined_instructions[:100]}...")
                     attach_meta(qa)
                     seq.append(qa)
             # nested sections
@@ -271,11 +297,11 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
                     print(f"   📁 Found {len(node[k])} {k} sections in {prefix}")
                     for idx, sub in enumerate(node[k], start=1):
                         nxt_prefix = prefix  # keep same prefix so order rules the flow
-                        walk(sub, nxt_prefix, depth + 1)
+                        walk(sub, nxt_prefix, depth + 1, combined_instructions)
         elif isinstance(node, list):
             print(f"   📄 Processing list with {len(node)} items in {prefix}")
             for sub in node:
-                walk(sub, prefix, depth + 1)
+                walk(sub, prefix, depth + 1, parent_instructions)
 
     # Prime the sequence
     walk(step_json, prefix="S1")

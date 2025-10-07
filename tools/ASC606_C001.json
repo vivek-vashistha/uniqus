@@ -1,0 +1,274 @@
+{
+  "step1": {
+    "agreement_exists": {
+      "answer": "Yes",
+      "rationale": "There is a binding Master Defined Project Services Agreement (MSA) executed between the parties, with services described and set forth in work orders (WOs) to be executed from time to time. The agreement explicitly states that parties may enter into WOs using a defined template or other documented forms signed by the parties.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "Section I",
+          "quote": "\"Vendor and XYZs are hereby entering into a binding written agreement pursuant to which... The Services shall be described and set forth in work orders (each a 'WO')... The Parties agree that certain services have been provided by Vendor to XYZs pursuant to the Master Defined Project Services Agreement...\""
+        },
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "Section I (c)",
+          "quote": "\"If additional Services are to be provided... such additional Services shall be described and agreed upon in a separate WO. Each such separate WO shall be deemed... to be a WO hereunder and shall incorporate by express or implied reference this Agreement...\""
+        }
+      ]
+    },
+    "approved_committed": {
+      "answer": "Yes",
+      "rationale": "The contract is approved and the parties are committed as evidenced by clear mutual execution, enforceability, and binding obligations. The agreement states both parties 'are hereby entering into a binding written agreement' describing required services, deliverables, and the execution of work orders with written documentation signed by the parties, incorporated by reference. Additionally, both Vendor and XYZs represent and warrant authority and binding legal effect for execution and performance of the agreement.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "Page 1",
+          "quote": "Vendor and XYZs are hereby entering into a binding written agreement pursuant to which Vendor shall... deliver the Project Deliverables (as hereinafter defined) and services requested by XYZs (collectively, the 'Services'). The Services shall be described and set forth in work orders (each a 'WO') which may from time to time be executed by the Parties utilizing the WO template attached hereto... or other written documentation signed by the Parties... and incorporated herein by this reference."
+        },
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "Page 7",
+          "quote": "All action on the part of Vendor, its officers, directors and stockholders necessary for the authorization, execution, and delivery of this Agreement has been taken. The performance of all obligations of Vendor hereunder constitute valid and legally binding obligations of Vendor, enforceable against Vendor in accordance with the respective terms hereof."
+        },
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "Page 7",
+          "quote": "All action on the part of XYZs, its officers, directors and stockholders necessary for the authorization, execution and delivery of this Agreement has been taken. The performance of all obligations of XYZs hereunder... constitute valid and legally binding obligations... enforceable... in accordance with the respective terms hereof."
+        }
+      ]
+    },
+    "rights_identified": {
+      "answer": "Yes",
+      "rationale": "The parties’ rights and services to be transferred are identifiable, as services and deliverables are described and set forth in work orders (WOs) or other executed documents that specify each project’s services, deliverables, and acceptance criteria. The contract repeatedly addresses the way individual services and the responsibilities of the parties are articulated and agreed upon in writing, allowing the rights and obligations under each WO to be clearly identifiable.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "page 1-2",
+          "quote": "The Services shall be described and set forth in work orders (each a 'WO')... Each such separate WO shall be deemed for all purposes of this Agreement to be a WO hereunder and shall incorporate by express or implied reference this Agreement... All of the rights and obligations of XYZs and Vendor... as set out in this Agreement shall apply respectively to the parties signing the applicable WO."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "page 19",
+          "quote": "Services stated herein are subject to the payment of fees as per Exhibit A attached hereto and incorporated herein by this reference."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "page 6",
+          "quote": "In the table below, the columns headed ‘Description’ and ‘Activity’ specify: (i) the activities forming part of each Services; and (ii) for each sub-process, the key activities and tasks to be performed by each Party."
+        }
+      ]
+    },
+    "payment_terms_identified": {
+      "answer": "Yes",
+      "rationale": "The payment terms are clearly identifiable. Invoices are to be submitted following receipt of a purchase order, must be detailed and include all required information, and are to be paid by XYZs within thirty (30) days of receipt, provided the invoice is correct and not in dispute. Overdue sums accrue interest, and all invoices must be submitted via a specified email. Fixed service charges are billed monthly; FTE rate card services are invoiced monthly at annual rates; and all invoices for the Services must be submitted through the Coupa Supplier Portal.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "section (f) Invoices",
+          "quote": "XYZs shall dispatch payment of an invoice to Vendor within thirty (30) days after the date of receipt of that invoice, provided that the invoice is correct in all material respects ... Invoices and payments shall be denominated in U.S. Dollars. All invoices shall be submitted via email to: Ariba.Invoices@XYZsinsurance.com."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "page 24",
+          "quote": "Invoices issued for the Services in this Work Order must be submitted through the Coupa Supplier Portal."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "page 27 (Tab 2A – FIXED CHARGES)",
+          "quote": "Table 2 - Monthly Invoice value"
+        }
+      ]
+    },
+    "commercial_substance": {
+      "answer": "Yes",
+      "rationale": "The contract includes multiple mechanisms that affect future cash flows, such as adjustments to fees based on changes in actual yearly volume, performance-based service credits, and equitable renegotiation of fees due to business events (e.g., divestitures, volume deviations, or product/technology changes). These elements demonstrate that the contract has commercial substance as it causes changes to expected cash flows.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 9",
+          "quote": "The parties shall meet to negotiate in good faith an equitable adjustment to Fees... The implementation of any agreed adjustments to the Fees shall be made in accordance with the Change Control Procedure."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 42",
+          "quote": "The 'At Risk Amount' represents the maximum monthly amount of Service Credits for which the Vendor may be liable...which shall not exceed 10% of the invoice amount."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 19",
+          "quote": "payment and invoicing of Fees under this Work Order shall be as per clause 4 of the Agreement. hereby agrees issue a purchase order prior to the date of commencement of Services under this Work Order."
+        }
+      ]
+    },
+    "collectibility_probable": {
+      "answer": "Unknown",
+      "rationale": "The provided documents detail contract fees, payment terms, milestone billing, and consequences for non-performance, but do not provide the required collectability assessment or information on the creditworthiness or payment history of the customer as required under ASC 606-10-25-1(e). Therefore, it cannot be determined from the available evidence whether collection of consideration is probable.",
+      "citations": []
+    },
+    "multiple_contracts_near_time": {
+      "answer": "Yes",
+      "rationale": "The agreement references that services are provided through work orders (WOs) which may 'from time to time be executed by the Parties utilizing the WO template attached hereto as Exhibit A or other written documentation signed by the Parties or their Affiliates,' suggesting that multiple contracts or WOs with the same or related parties may be executed at or near the same time. The agreement also provides for additional services to be described and agreed upon in separate WOs, all governed by the same master agreement.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "Section I(a)",
+          "quote": "The Services shall be described and set forth in work orders (each a 'WO') which may from time to time be executed by the Parties... (the Services provided for in each WO ... are referred to herein as a 'Project', and all of the Services provided for in all WOs or other documentation entered into hereunder are referred to herein, collectively, as the 'Projects')."
+        },
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "Section I(c)",
+          "quote": "If additional Services are to be provided ... such additional Services shall be described and agreed upon in a separate WO. Each such separate WO shall be deemed for all purposes of this Agreement to be a WO hereunder..."
+        }
+      ]
+    },
+    "negotiated_as_package": {
+      "answer": "Unknown",
+      "rationale": "The retrieved documents detail specific agreement terms, invoicing, deliverables, governance structures, and independence of service levels, but do not provide explicit information as to whether multiple contracts were negotiated as a package with a single commercial objective. The available text does not confirm or deny package negotiation intent.",
+      "citations": []
+    },
+    "combine_contracts": {
+      "answer": "Unknown",
+      "rationale": "There is no evidence in the retrieved documents that addresses the ASC 606 criteria for when contracts should be combined for accounting purposes. The documents primarily describe work orders, rights and obligations under master agreements, forecasting and audit procedures, and definitions but do not reference contract combination guidance or relevant facts such as negotiation, pricing interdependencies, or single commercial objectives.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "various",
+          "quote": "Each such separate WO shall be deemed for all purposes of this Agreement to be a WO hereunder and shall incorporate by express or implied reference this Agreement ... If there is any conflict ... the provisions of the WO shall prevail."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "various",
+          "quote": "The calculation of Fees is based on an assumption of chat concurrency of 2.2 and AHTs ... Yearly Volume Forecast process and adjustments..."
+        }
+      ]
+    },
+    "conclusion_contract_exists": {
+      "answer": "Yes",
+      "rationale": "The documents evidence that (1) the contract is approved and signed by authorized representatives, (2) each party’s rights and payment terms are defined (see annual and monthly charges, signing bonus, and SOW-milestone triggers), (3) the contract has commercial substance given the significant payments and service arrangements, and (4) collectibility is not in question—Vendor warranties, lawful operation, and binding agreements are established. Obligations and remedies are provided for acceptance and default. No evidence countering contract existence per ASC 606-10-25-1(a–e) was found.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "signature page, sections 3-4",
+          "quote": "executed this Agreement by and through their respective duly authorized representatives as of the Effective Date...authorization, execution, and delivery of this Agreement has been taken. The performance of all obligations...constitute valid and legally binding obligations...enforceable against Vendor in accordance with the respective terms hereof."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "34-43",
+          "quote": "Charges Summary...Signing Bonus As defined in SOW...Transition Charge Details...Service Level Default...Service Credit...Vendor must credit all Service Credits...within thirty (30) calendar days."
+        },
+        {
+          "doc": "Contract 1 file 3 2.pdf",
+          "page": "section 8-9",
+          "quote": "If any Project Deliverable does not meet the requirements of this Agreement...XYZs may request that Vendor remedy...Vendor shall compensate XYZs in full for any and all reasonable losses incurred...Each Party shall be fully liable for all damages it causes, whether a claim for damages with respect thereto is made in contract or tort..."
+        }
+      ]
+    }
+  },
+  "step2": {
+    "rows": [],
+    "meta": {
+      "has_setup_only": "Unknown",
+      "has_material_rights": "Unknown",
+      "series_treated_as_one": "Unknown"
+    },
+    "rag_note": {
+      "answer": "Yes",
+      "rationale": "Promised goods/services include: (1) Fixed service delivery (PSO, Phone, Chat), (2) Rate card-based services (Agency Services, WFM, Quality, Reporting), (3) Technology charges, (4) Transition and Transformation services. Each of these appears to be provided for a separate function or output (e.g., distinct communication channels, support roles, standalone technology enablement, or project-based transition/transformation). The separation in fee schedules and detailed scoping by line item supports that each could be considered distinct as they serve different functions and can be separately identified in the contract.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Annexure to Exhibit A, Tab 2 and Tab 3",
+          "quote": "Fixed service charges include the scope pertaining to PSO, Phone and Chat ... Rate card Based Services ... Technology charges ... Transition and Transformation charges are specified..."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 13-14",
+          "quote": "processes – phone, chat and PSO ... Agency Services ... WFM ... Quality ... Reporting ... technology charges ... Transition and Transformation charges"
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 23",
+          "quote": "The Annexure to Exhibit A, has details of the Fees component in individual Tab as specified below: a. Fixed Service Fees ... b. FTE Rate card ... c. Technology charges ... d. Transition and Transformation charges"
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 24",
+          "quote": "* Fixed service charges include the scope pertaining to PSO, Phone and Chat"
+        }
+      ]
+    }
+  },
+  "step3": {
+    "fixed_consideration_examples": [],
+    "variable_consideration_examples": [],
+    "non_cash": "Unknown",
+    "significant_financing_component": "Unknown",
+    "consideration_payable_to_customer": "Unknown",
+    "total_transaction_price_hint_values": "",
+    "rag_note": {
+      "answer": "Yes",
+      "rationale": "The transaction price includes fixed service charges and rate card based services as fixed consideration. There are variable components relating to COLA (cost of living adjustments) and overtime premiums for FTEs. There is a significant financing component as some fees and adjustments apply annually with escalation. Consideration payable to the customer is evidenced by a signing bonus paid by the vendor to the customer to offset one-time costs. There is no evidence of non-cash consideration.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "23-25",
+          "quote": "Fixed Service Fees -The annual Fees ... shall be fixed ... inclusive of the annual Cost of Living Index Adjustment (“COLA”) of 4% starting year 2 ... signing bonus in the amount of $8,500,000 ... to offset one-time costs ... overtime ... a premium ... shall be applied ... fees ... invoiced on the monthly basis ... the annual FTE rates will be adjusted for a COLA of 4% every year."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "28",
+          "quote": "Total Fixed Service Charges ... Monthly Invoice value ... Particulars Service line ... Fixed Service Charges"
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "24",
+          "quote": "Travel ... will be pre-approved and charged at actuals ... DTI grant ... will be passed through by Vendor to ... at actuals ... signing bonus in the amount of $8,500,000"
+        }
+      ]
+    }
+  },
+  "step4": {
+    "rows": [],
+    "note": "0 distinct POs detected; add SSPs and totals to complete allocation.",
+    "rag_note": {
+      "answer": "Unknown",
+      "rationale": "The documents detail the components of the transaction price and identify various performance obligations (Fixed Fees, FTE Rate Card Services, Technology Charges, Transition & Transformation, Signing Bonus) and relevant milestones and billing (e.g., monthly, per milestone). However, there is no explicit disclosure of the standalone selling price (SSP) for each performance obligation, nor is any specific method for allocating the transaction price using SSP stated. It is also unclear what assumptions, if any, are used for determining SSP. This data is required by ASC 606 to allocate transaction price based on SSP.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 23",
+          "quote": "\"Fixed Service Fees – For the scope of Services mentioned...FTE Rate card...Technology charges...Transition and Transformation charges...Signing Bonus\""
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 23",
+          "quote": "\"Deliverables and the acceptance criteria for the above milestones to be agreed during the due diligence phase\""
+        }
+      ]
+    }
+  },
+  "step5": {
+    "rows": [],
+    "rag_note": {
+      "answer": "Unknown",
+      "rationale": "The retrieved documents detail transition phases, deliverables, milestones, and reporting structures, including milestone-based acceptance and tollgates for Transition Services. However, there is no explicit statement regarding whether revenue is recognized over time or at a point in time for each performance obligation, nor is there a direct mapping of ASC 606 revenue recognition methods (e.g., input/output method for over-time recognition). While milestone acceptance is documented as a key trigger for progress and potentially for revenue recognition, the documents do not confirm the revenue recognition policy or method applied (e.g., over time vs. point in time), nor do they make the linkage to ASC 606 requirements.",
+      "citations": [
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 53",
+          "quote": "When Vendor has completed a Transition Milestone, Vendor will submit a written notice... that it has satisfied the applicable Milestone Acceptance Criteria."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 59",
+          "quote": "Transition Milestones... acceptance criteria for such Transition Milestones... will be firmed up during Due Diligence."
+        },
+        {
+          "doc": "Contract 1 file 2 2.pdf",
+          "page": "Page 62",
+          "quote": "Transition milestones as agreed by both Parties and the planned dates of completion... *These dates will be finalized post Process discovery."
+        }
+      ]
+    }
+  }
+}

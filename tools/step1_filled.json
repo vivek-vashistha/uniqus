@@ -14,7 +14,7 @@
               "id": "S1_A_1_1",
               "question": "Is the contract approved and the parties are committed to their obligation ((ASC 606-10-25-1(a) ) ?",
               "answer": "Yes",
-              "analysis": "“IN WITNESS WHEREOF, the undersigned have executed this Agreement by and through their respective duly authorized representatives as of the Effective Date.”  | “Authorization; Binding Obligation… The performance of all obligations of Vendor hereunder constitute valid and legally binding obligations of Vendor, enforceable against Vendor in accordance with the respective terms hereof.”  | “Authorization: Binding Obligation. All action on the part of XYZs… has been taken. The performance of all obligations of XYZs hereunder constitute valid and legally binding obligations of XYZs, enforceable against XYZs in accordance with the respective terms hereof.”  | DocuSign completion records showing execution by authorized signers (e.g., “Signed: 5/1/2017 3:49:56 PM”).",
+              "analysis": "\"All action on the part of Vendor, its officers, directors and stockholders necessary for the authorization, execution, and delivery of this Agreement has been taken. The performance of all obligations of Vendor hereunder constitute valid and legally binding obligations of Vendor, enforceable against Vendor in accordance with the respective terms hereof.\"  | \"All action on the part of XYZs, its officers, directors and stockholders necessary for the authorization, execution, and delivery of this Agreement has been taken. The performance of all obligations of XYZs hereunder constitute valid and legally binding obligations of XYZs, enforceable against XYZs in accordance with the respective terms hereof.\"  | \"Signer Events... Signed: 4/27/2017 2:17:08 PM... Signed: 5/1/2017 3:49:56 PM... Signed: 5/1/2017 5:24:57 PM\" (DocuSign completion)",
               "expected_answer": "Yes",
               "expected_analysis": "Agreement is signed by both the parties to the contract."
             },
@@ -22,7 +22,7 @@
               "id": "S1_A_1_2",
               "question": "Are each parties' rights regarding the goods or services to be transferred identifiable (ASC 606-10-25-1(b)) ?",
               "answer": "Yes",
-              "analysis": "“The Services shall be described and set forth in work orders (each a “WO”)… and incorporated herein by this reference… All the rights and obligations of XYZs and Vendor… as set out in this Agreement shall apply respectively to the parties signing the applicable WO.” \n\n“XYZs shall… evaluate any Project Deliverables prepared by Vendor… in accordance with this Agreement and a WO. If any Project Deliverable does not meet the requirements… XYZs may request that Vendor remedy such default free of charge… [and] shall, in its sole discretion, have the right (a) to keep the Project Deliverable and to deduct… (b) …withdraw… [with refund] (c) to employ a third party… (d) request Vendor to continue to remedy… and (e)… Vendor shall compensate XYZs in full for any and all reasonable losses…”",
+              "analysis": "\"Vendor will perform the following services (the “Transition Services”) in connection with the transfer of responsibility for the Services from to Vendor, in a lift and shift manner (the “Transition”): (1) Vendor will implement and stabilize the Services... (2) Vendor will perform the transfer of the Services to Vendor... (3) Vendor will perform program management associated with the above activities.\" \n\n\"Acceptance Criteria. The Transition Milestones are as set out in Section 7 (“Transition Milestones”). The Parties will agree on acceptance criteria for such Transition Milestones (the “Milestone Acceptance Criteria”)...\" \n\n\"Acceptance Process. When Vendor has completed a Transition Milestone, Vendor will submit a written notice... will use commercially reasonable efforts to review a Transition Milestone for acceptance and send written notice to Vendor stating that [it] accepts... or that the Transition Milestone is not yet ready for acceptance (including the specific areas of non-compliance)... Thereafter, Vendor shall promptly... remediate issues and deficiencies... If, after such remediation period, the Transition Milestone has still not been successfully completed, such Transition Milestone shall be deemed to have not been met.\" \n\n\"The fees (hereinafter the 'Fees') for the Project Deliverables will be invoiced to XYZs as set forth in the applicable WO executed by the Parties hereto.\"",
               "expected_answer": "Yes",
               "expected_analysis": "Scope of services has been identified in  Agreement -  Support services for Unlicensed Inbound service call Support, Chat Support and Policy support"
             },
@@ -30,7 +30,7 @@
               "id": "S1_A_1_3",
               "question": "Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c)) ?",
               "answer": "Yes",
-              "analysis": "\"XYZs shall dispatch payment of an invoice to Vendor within thirty (30) days after the date of receipt of that invoice, provided that the invoice is correct in all material respects … and not in dispute. Vendor shall be entitled to charge interest on all sums overdue … at a monthly rate of 0.5% … Invoices and payments shall be denominated in U.S. Dollars.\"  | \"The fees (hereinafter the 'Fees') for the Project Deliverables will be invoiced to XYZs as set forth in the applicable WO executed by the Parties hereto.\"  | \"Invoices issued for the Services in this Work Order must be submitted through the Coupa Supplier Portal.\"  | \"XYZs may dispute the correctness of an invoice within six (6) months … and may withhold payment of any Fees on an invoice that it disputes in good faith while the Parties work to resolve any such dispute.\"",
+              "analysis": "\"Fixed Service Fees -The annual Fees for the scope of Services specified in the tab 2.a Fixed Fees in the Annexure to this Exhibit shall be fixed and shall be billed to as per the table 2 Monthly Invoice value of the tab 2.a Fixed Fees.\" \n\"E. FTE Rate Card – The annual Fees for the Services specified in the tab 2.b FTE Rate card in the Annexure to this Exhibit, shall be invoiced on the monthly basis.\" \n\"H. Transition and Transformation Charges - The tab 3. Transition and Transformation in the Annexure to this Exhibit A, specifies charges payable on following milestone.\" followed by milestones with months \"Sept’24\" and \"Oct’24\"; and \"shall pay $3,250,000 for Transformation Services in Nov’24\" \n\"Invoices issued for the Services in this Work Order must be submitted through the Coupa Supplier Portal.\"",
               "expected_answer": "Yes",
               "expected_analysis": "Payment terms are defined in  Agreement."
             },
@@ -38,7 +38,7 @@
               "id": "S1_A_1_4",
               "question": "Has the contract commercial substance (ASC 606-10-25-1(d)) ?",
               "answer": "Yes",
-              "analysis": "\"(b) Fees.  The fees (hereinafter the \"Fees\") for the Project Deliverables will be invoiced to XYZs as set forth in the applicable WO executed by the Parties hereto.\" \n\"XYZs shall dispatch payment of an invoice to Vendor within thirty (30) days after the date of receipt of that invoice, provided that the invoice is correct in all material respects (in particular that Fees have only been charged for Project Deliverables that have effectively been provided) and not in dispute.\" \n\"Invoices issued for the Services in this Work Order must be submitted through the Coupa Supplier Portal.\" \n\"Total Fixed Service Charges*(A) 17,842,758$           26,348,400$           21,895,567$           21,851,940$           21,982,693$           109,921,358$\"",
+              "analysis": "\"Fees. The fees (hereinafter the 'Fees') for the Project Deliverables will be invoiced to XYZs as set forth in the applicable WO executed by the Parties hereto.\" \n\"Fixed Service Fees -The annual Fees for the scope of Services specified in the tab 2.a Fixed Fees in the Annexure to this Exhibit shall be fixed and shall be billed to as per the table 2 Monthly Invoice value of the tab 2.a Fixed Fees.\" \n\"Total Fixed Service Charges*(A) 17,842,758$ ... 21,982,693$ 109,921,358$\" \n\"Total Transition charges 5,250,000$ ... Total Transformation charges 2,800,000$\" \n\"Signing Bonus (The tab 4. Deal Bonus in the Annexure to this Exhibit A) - Vendor will pay a signing bonus in the amount of $8,500,000 in the month of December 2024...\"",
               "expected_answer": "Yes",
               "expected_analysis": "MSA & SOW define the pricing, risks and timing of the services, therefore commercial substance of the contract exists"
             },
@@ -46,7 +46,7 @@
               "id": "S1_A_1_5",
               "question": "Is the collection of consideration probable (\"likely\") (ASC 606-10-25-1(e)) ?",
               "answer": "Yes",
-              "analysis": "\"XYZs shall dispatch payment of an invoice to Vendor within thirty (30) days after the date of receipt of that invoice, provided that the invoice is correct in all material respects ... and not in dispute. Vendor shall be entitled to charge interest on all sums overdue from XYZs at a monthly rate of 0.5%...\"  \"XYZs shall not withhold payment on any undisputed Fees set forth on an invoice containing disputed Fees.\"  \"For avoidance of doubts, failure by XYZs or its Affiliates to pay any fees that are due and payable and not subject to an unresolved dispute shall be considered a material breach.\"",
+              "analysis": "\"9. TOTAL FEES AND PAYMENT SCHEDULE, EXCLUDING ALL ESTIMATED TAXES - The payment and invoicing of Fees under this Work Order shall be as per clause 4 of the Agreement.  hereby agrees issue a purchase order prior to the date of commencement of Services under this Work Order. Services stated herein are subject to the payment of fees as per Exhibit A attached hereto and incorporated herein by this reference.\" \n\n\"If the Work Order is terminated by ’ for convenience as per Clause 11(b)(2) of the Agreement, or by Vendor for cause (non -payment) as per Clause 11(b)(5), shall pay the following termination fees (“Early Termination Payment”): a. Payment for all the Services rendered up to and including the effective date of termination; and b. Termination Fees (as identified in the Annexure to Exhibit A).\" \n\n\"C. Fixed Service Fees -The annual Fees for the scope of Services specified in the tab 2.a Fixed Fees in the Annexure to this Exhibit shall be fixed and shall be billed to as per the table 2 Monthly Invoice value of the tab 2.a Fixed Fees.\"",
               "expected_answer": "Yes",
               "expected_analysis": "Company's Credit Rating Team performs a comprehensive study of the credit worthiness for new customers at pipeline stage i.e. before contract acceptance and execution stage through the S&P Global ratings. Credit Rating Model (CRAM) is used for review of ratings and overdue status of the existing customers on a monthly basis. ABC follows above established process for assessing the credit ratings of the prospective and existing Customers"
             }
@@ -54,7 +54,7 @@
         },
         {
           "name": "Conclusion",
-          "instruction": "Based on the answer to the question, determine if the contract exists between the parties",
+          "instruction": "Based on the answer to the question, comment on if the contract exists between the parties",
           "questions": [
             {
               "id": "S1_A_2_1",
@@ -79,8 +79,8 @@
             {
               "id": "S1_B_1_1",
               "question": "Are there any contracts entered into at or near the same time (rebuttable presumption 3 months) with the same customer or related parties of the customer? (ASC 606-10-25-9)",
-              "answer": "NA",
-              "analysis": "Not found",
+              "answer": "No",
+              "analysis": "Not found in contract documents",
               "expected_answer": "No",
               "expected_analysis": ""
             }
@@ -94,15 +94,15 @@
               "id": "S1_B_2_1",
               "question": "Contracts were negotiated as a package with a single commercial objective (e.g. contract would be loss-making without taking into account the consideration received under another contract)?",
               "answer": "NA",
-              "analysis": "Not found",
+              "analysis": "Not found in contract documents",
               "expected_answer": "NA",
               "expected_analysis": ""
             },
             {
               "id": "S1_B_2_2",
               "question": "Consideration in one contract depends on price or performance of the other contract (e.g. failure to perform under one contract affect the amount paid under another contract)?",
-              "answer": "No",
-              "analysis": "\"The Service Levels should be designed so that achieving a Service Levels is not dependent on achieving any other Service Levels.\"  | \"The “At Risk Amount” represents the maximum monthly amount of Service Credits for which the Vendor may be liable in respect of a Service Level Default for a specific services under a Work Order, which shall not exceed 10% of the invoice amount.\"",
+              "answer": "NA",
+              "analysis": "Not found in contract documents",
               "expected_answer": "NA",
               "expected_analysis": ""
             },
@@ -110,7 +110,7 @@
               "id": "S1_B_2_3",
               "question": "Goods or services promised in the contracts (or some goods or services promised in each contract) are a single performance obligation in accordance with paragraphs 606-10-25-14 through 25-22 ?",
               "answer": "No",
-              "analysis": "\"The Services shall be described and set forth in work orders (each a \"WO\")...\"  | \"Following the signing of any WO, XYZs shall issue to Vendor a purchase order (each, a \"Purchase Order\") specifying the applicable quantities, Fees, and delivery specifications with respect to the Project Deliverables.\"  | \"Unless specifically provided otherwise in an WO, XYZs shall... evaluate any Project Deliverables... If any Project Deliverable does not meet the requirements... XYZs shall... have the right... to withdraw from this Agreement or a WO entirely or only in respect to the defaulting parts of the Project Deliverable...\"  | \"'Project Deliverable(s)' means any tangible or intangible product(s), deliverables and work results that Vendor delivers to XYZs as part of a Project or the Services... which may include... information, reports, specifications, software... and any other products, deliverables and work results...\"",
+              "analysis": "\"* Fixed service charges include the scope pertaining to PSO, Phone and Chat\"  | \"Transition Charge Details ... Milestone 1 As defined in SOW ... Milestone 2 As defined in SOW ... Total Transition charges\" and separate \"Transformation Charge Details ... Milestone 1 ... Milestone 2 ... Milestone 3 ... Total Transformation charges\"",
               "expected_answer": "NA",
               "expected_analysis": ""
             }
@@ -124,16 +124,16 @@
               "id": "S1_B_3_1",
               "question": "Conclusion",
               "answer": "NA",
-              "analysis": "Not found",
+              "analysis": "Not found in contract documents",
               "expected_answer": "No contracts are combined as none of the above criteria are met.",
               "expected_analysis": "No contracts are combined as none of the above criteria are met."
             },
             {
               "id": "S1_B_3_2",
               "question": "Remarks",
-              "answer": "{{Payment net 30 from receipt of correct, undisputed invoice; services defined via WOs with POs issued; ASP/VMS may process invoices with up to 3% fees deducted; BPO vendor access to agreement/docs authorized; acceptance within 30 days with remediation and additional remedies; invoice disputes allowed within 6 months; invoices must list applicable taxes and XYZs not responsible for certain taxes; expenses reimbursable only with prior written authorization and per Travel Policy; Service Levels to avoid interdependencies; AHT/SLA baselines via Change Control before service credits apply.}}",
-              "analysis": "\"XYZs shall dispatch payment of an invoice to Vendor within thirty (30) days after the date of receipt of that invoice, provided that the invoice is correct in all material respects ... and not in dispute.\" \n\"The Services shall be described and set forth in work orders (each a \\\"WO\\\") which may from time to time be executed by the Parties ...\" \n\"Following the signing of any WO, XYZs shall issue to Vendor a purchase order (each, a \\\"Purchase Order\\\") specifying the applicable quantities, Fees, and delivery specifications ...\" \n\"The Parties understand that XYZs has elected to utilize the services of an Administrative Services Provider (\\\"ASP\\\") ... Vendor agrees to cooperate fully with any ASP designated by XYZs and to fund the ASP and VMS fees, which shall not exceed three percent (3%) of Vendor's total monthly invoice. Vendor agrees that the ASP and VMS fees may be deducted from total monthly invoice fees otherwise to be paid.\" \n\"Vendor hereby authorizes XYZs to provide any such BPO Vendor access to this Agreement and any work orders ... as well as to any products, deliverables and services delivered hereunder ...\" \n\"Unless specifically provided otherwise in an WO, XYZs shall, within a reasonable period of time (which will not exceed thirty (30) days) examine, test, review or otherwise evaluate any Project Deliverables ... If, after re-delivery ... XYZs shall, in its sole discretion, have the right (a) to keep the Project Deliverable and to deduct ... (b) ... withdraw ... (c) to employ a third party to correct the default ... (d) request Vendor to continue to remedy ... (e) ... compensate XYZs in full for any and all reasonable losses ...\" \n\"XYZs may dispute the correctness of an invoice within six (6) months from the date of receipt of the relevant invoice and may withhold payment of any Fees on an invoice that it disputes in good faith while the Parties work to resolve any such dispute.\" \n\"Unless otherwise agreed, invoices shall include and list all applicable taxes proposed to be charged to XYZs as separate items. XYZs shall not be responsible for (i) any taxes not so separately listed ... (ii) the remittance of taxes to applicable tax authorities; or (iii) ad valorem, franchise, privilege, value-added or occupational taxes or any taxes or other governmental payments based on the income, employees, payroll, property or capital of Vendor.\" \n\"Vendor shall not be entitled to reimbursement for any expenses without the prior written authorization of XYZs.\" \n\"Travel and travel-related expenses shall only be reimbursable by XYZs as a result of a specific written request by XYZs and may be billed to XYZs only at actual cost, in conformity with XYZs' Travel Policy ...\" \n\"The Service Levels should be designed so that achieving a Service Levels is not dependent on achieving any other Service Levels.\" \n\"AHT’s for all activities need to be baselined and mutually agreed through a Change Control Procedure prior to any Service Credits being applicable.\"",
-              "expected_answer": "No",
+              "answer": "{{Fees/invoicing per Exhibit A; Exhibit A consolidates all fee components (fixed, FTE rate card, technology, transition/transformation); fixed service charges cover PSO/Phone/Chat; transition and transformation charges are milestone-based with $3.25M transformation payment in Nov’24; acceptance criteria for these milestones to be agreed during due diligence; invoices via Coupa; ASP/VMS fees not deducted from vendor invoices; COLA 4% from Year 2; 5-year term with early termination fees per Annexure.}}",
+              "analysis": "\"herein are subject to the payment of fees as per Exhibit A attached hereto and incorporated herein by this reference.\"  | \"This Exhibit outlines the entirety of the Fees (Fixed Service Fees, FTE Rate Card based Fees) investments made by Vendor and associated termination charges\"  | \"* Fixed service charges include the scope pertaining to PSO, Phone and Chat\"  | \"The tab 3. Transition and Transformation in the Annexure to this Exhibit A, specifies charges payable on following milestone... shall pay $3,250,000 for Transformation Services in Nov’24\"  | \"*Deliverables and the acceptance criteria for the above milestones to be agreed during the due diligence phase.\"  | \"Invoices issued for the Services in this Work Order must be submitted through the Coupa Supplier Portal.\"  | \"agrees that Vendor will not be required to fund the ASP and VMS fees... and will not make any such deductions from monthly invoice fees... clause 4(a) of the Agreement shall not apply to this Work Order and is expressly overridden\"  | \"The Fees shared in the Tab 2.a Fixed charges are inclusive of the annual Cost of Living Index Adjustment (“COLA”) of 4% starting year 2\"  | \"The term of this Work Order will commence on the Start Date and will continue for a period of five (5) years... Termination Fees (as identified in the Annexure to Exhibit A).\"",
+              "expected_answer": "",
               "expected_analysis": "No remarks"
             }
           ]
@@ -147,7 +147,7 @@
         {
           "id": "S1_C_1",
           "question": "Remarks",
-          "answer": "{{Payment net 30 from receipt of correct, undisputed invoice; services defined via WOs with POs issued; ASP/VMS may process invoices with up to 3% fees deducted; BPO vendor access to agreement/docs authorized; acceptance within 30 days with remediation and additional remedies; invoice disputes allowed within 6 months; invoices must list applicable taxes and XYZs not responsible for certain taxes; expenses reimbursable only with prior written authorization and per Travel Policy; Service Levels to avoid interdependencies; AHT/SLA baselines via Change Control before service credits apply.}}",
+          "answer": "{{Fees/invoicing per Exhibit A; Exhibit A consolidates all fee components (fixed, FTE rate card, technology, transition/transformation); fixed service charges cover PSO/Phone/Chat; transition and transformation charges are milestone-based with $3.25M transformation payment in Nov’24; acceptance criteria for these milestones to be agreed during due diligence; invoices via Coupa; ASP/VMS fees not deducted from vendor invoices; COLA 4% from Year 2; 5-year term with early termination fees per Annexure.}}",
           "analysis": "",
           "expected_answer": "N/A",
           "expected_analysis": ""
