@@ -1,3 +1,5 @@
+Based on attached document fill up following. Replace the placeholder marked with curly-braces { }, with your answer:
+
 # Step 4
 
 Step 4: Allocate the transaction price to the performance obligations in the contract
@@ -16,24 +18,23 @@ Step 4: Allocate the transaction price to the performance obligations in the con
 
 1
 
-**Question:** Allocation of transaction price required? No
+**Question:** Allocation of transaction price required? 
 
-**Answer:** {Enter Response}
+**Answer:** { Answer in Yes/No alongwith rationale }
 
-Since there is only 1 performance obligation, allocation of transaction price is not required
 
-Allocation of Transaction price
+**Allocation of Transaction price**
 
 Performance obligation Method used Standalone Selling price Allocation Allocated Transaction price
 
 Support services for below Activities: • Unlicensed Inbound Service Call • Chat Activties • Policy Support Activities  Shared Services
 
-Allocation of variable consideration
+**Allocation of variable consideration**
 
-**Question:** Is there an allocation of a variable consideration ? (ASC 606-10-32-39 to 32-41)? No
+**Question:** Is there an allocation of a variable consideration ? (ASC 606-10-32-39 to 32-41)?
 
-**Answer:** {Enter Response}
+**Answer:** { Answer in Yes/No alongwith rationale }
 
-Not required to be allocated as only 1 performance obligation has been identified in the contract.
+
 
 ---
