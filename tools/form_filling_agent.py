@@ -57,7 +57,12 @@ def normalize_yes_no_na(x: str) -> str:
 
 def is_placeholder(value: str) -> bool:
     # Check for both {{...}} format and simple Yes/No/NA format
-    return bool(PLACEHOLDER_RE.search(value or "")) or (value and value.strip() in ["Yes/No/NA", "Yes/No", "Yes/No/NA/Other"])
+    if not value:
+        return False
+    value = value.strip()
+    return (bool(PLACEHOLDER_RE.search(value)) or 
+            value in ["Yes/No/NA", "Yes/No", "Yes/No/NA/Other"] or
+            "/" in value and any(choice in value for choice in ["Yes", "No", "NA"]))
 
 # ---------- Optional dependency & derivation support ----------
 
@@ -115,16 +120,6 @@ class Context:
 # ---------- LLM prompting ----------
 
 def build_prompt(q: QA, ctx: Context) -> str:
-    kind, choices = parse_placeholder_options(q.answer_template)
-    allowed = ""
-    format_req = (
-        'Return strict JSON: {"answer": "<value>", "analysis": "<evidence>"} '
-        'with no extra text.'
-    )
-    if kind == "choice" and choices:
-        allowed = f"Choose one of: {', '.join(choices)}"
-    else:
-        allowed = "Free-text answer is allowed."
     prior = ctx.to_brief_bullets()
     return f"""You are filling an ASC 606 form from contracts.
 
@@ -133,13 +128,18 @@ Earlier answers (for context):
 
 Question: {q.question}
 
-Constraints:
-- {allowed}
-- If not determinable from the provided evidence, use "NA".
-- The "analysis" must quote the exact supporting text (or say "Not found").
-- IMPORTANT: For choice questions, return ONLY ONE value (e.g., "Yes", "No", or "NA"), not multiple values.
+Answer format: {q.answer_template}
 
-{format_req}
+Instructions:
+- Follow the answer format exactly as specified above
+- Use "Yes" if the evidence supports the statement or if it's reasonable to infer from the contract
+- Use "No" if the evidence clearly contradicts the statement
+- Use "NA" only if the question is completely irrelevant to this contract or no evidence exists at all
+- For the "analysis" field: Quote the exact contract text that supports your answer. Look for specific clauses, terms, or provisions that directly relate to the question. If no relevant contract text exists, say "Not found in contract documents"
+- Be more confident in your answers - if the contract contains relevant information, use "Yes" or "No" rather than defaulting to "NA"
+- Focus on what the contract actually says, not on general business practices or company policies
+
+Return strict JSON: {{"answer": "<value>", "analysis": "<evidence>"}} with no extra text.
 """
 
 def call_llm(prompt: str) -> Dict[str, Any]:
@@ -188,6 +188,7 @@ def call_llm(prompt: str) -> Dict[str, Any]:
         
         # Extract the response content
         content = response.output_text.strip()
+        print(f"   📄 Full LLM response: {content}")
         
         # Try to parse as JSON
         try:
@@ -315,47 +316,13 @@ def fill_form_step(step_json: Dict[str, Any], deps_map: Optional[Dict[str, Dict[
                 print(f"   ⚠️ Derivation failed: {e}, falling back to LLM")
                 pass
 
-        # If not a placeholder, just copy through
-        if not is_placeholder(q.answer_template):
-            print(f"   📝 Using template answer: {q.answer_template}")
-            q.actual_answer = str(q.answer_template)
-            q.actual_analysis = str(q.analysis_template or "")
-            ctx.answers[q.qid] = q.actual_answer
-            ctx.analyses[q.qid] = q.actual_analysis
-            results[q.qid] = {
-                "question": q.question,
-                "answer": q.actual_answer,
-                "analysis": q.actual_analysis,
-                "expected_answer": q.expected_answer,
-                "expected_analysis": q.expected_analysis
-            }
-            print(f"   ✅ Template answer: {q.actual_answer}")
-            continue
-
-        # LLM fill
+        # Always use LLM for all questions - let LLM understand the template format
         print(f"   🤖 Calling LLM for question {q.qid}...")
         prompt = build_prompt(q, ctx)
         llm = call_llm(prompt)
         raw_answer = str(llm.get("answer","")).strip()
         analysis = str(llm.get("analysis","")).strip()
         print(f"   📤 LLM response: {raw_answer}")
-
-        kind, choices = parse_placeholder_options(q.answer_template)
-        if kind == "choice" and choices:
-            print(f"   🎯 Normalizing choice from {raw_answer} to one of {choices}")
-            # normalize the categorical value
-            if set(map(str.lower, choices)) == {"yes","no","na"}:
-                raw_answer = normalize_yes_no_na(raw_answer)
-            # force into allowed set
-            if raw_answer not in choices:
-                # best-effort snap
-                lowered = [c.lower() for c in choices]
-                try:
-                    idx = lowered.index(raw_answer.lower())
-                    raw_answer = choices[idx]
-                except ValueError:
-                    raw_answer = "NA" if "NA" in choices else choices[0]
-            print(f"   ✅ Normalized to: {raw_answer}")
 
         q.actual_answer = raw_answer
         q.actual_analysis = analysis
@@ -389,40 +356,69 @@ def generate_filled_json(original_json: Dict[str, Any], results: Dict[str, Any])
     """
     Generate a filled JSON with all placeholders replaced by LLM responses
     """
-    def fill_placeholders_recursive(node: Any, qid_map: Dict[str, Dict[str, str]]) -> Any:
+    # Debug: Check the structure of results
+    print(f"🔍 Debug: Results structure - {type(results)}")
+    print(f"🔍 Debug: Results keys - {list(results.keys()) if isinstance(results, dict) else 'Not a dict'}")
+    
+    # Check if results has 'sequence' key
+    if 'sequence' in results:
+        print(f"🔍 Debug: Found 'sequence' with {len(results['sequence'])} items")
+        for i, item in enumerate(results['sequence'][:2]):  # Show first 2
+            print(f"  Item {i}: {list(item.keys()) if isinstance(item, dict) else type(item)}")
+    
+    # Create a mapping from question text to filled values
+    question_to_result = {}
+    
+    # Try different ways to access the results
+    if 'sequence' in results:
+        for item in results['sequence']:
+            if isinstance(item, dict) and "question" in item and "answer" in item:
+                question_to_result[item["question"]] = {
+                    "answer": item["answer"],
+                    "analysis": item.get("analysis", "")
+                }
+    
+    print(f"🔍 Debug: Found {len(question_to_result)} questions with results")
+    for q, r in list(question_to_result.items())[:3]:  # Show first 3
+        print(f"  - '{q[:50]}...' -> '{r['answer']}'")
+    
+    def fill_placeholders_recursive(node: Any) -> Any:
         if isinstance(node, dict):
             filled_node = {}
             for key, value in node.items():
                 if key == "answer" and isinstance(value, str):
-                    # Check if this is a placeholder that was filled
-                    if value in qid_map:
-                        filled_node[key] = qid_map[value]["answer"]
+                    # Check if this is a placeholder that should be replaced
+                    if "{{" in value or value in ["Yes/No/NA", "Yes/No", "text answer", "any remarks", "Evidences that supports answer"]:
+                        # Find matching question and replace
+                        question_text = node.get("question", "")
+                        if question_text in question_to_result:
+                            print(f"🔄 Replacing '{value}' with '{question_to_result[question_text]['answer']}' for question: {question_text[:50]}...")
+                            filled_node[key] = question_to_result[question_text]["answer"]
+                        else:
+                            print(f"⚠️ No match found for question: {question_text[:50]}...")
+                            filled_node[key] = value  # Keep original if no match
                     else:
                         filled_node[key] = value
                 elif key == "analysis" and isinstance(value, str):
-                    # Check if this is a placeholder that was filled
-                    if value in qid_map:
-                        filled_node[key] = qid_map[value]["analysis"]
+                    # Check if this is a placeholder that should be replaced
+                    if "{{" in value or value in ["Evidences that supports answer"]:
+                        # Find matching question and replace
+                        question_text = node.get("question", "")
+                        if question_text in question_to_result:
+                            filled_node[key] = question_to_result[question_text]["analysis"]
+                        else:
+                            filled_node[key] = value  # Keep original if no match
                     else:
                         filled_node[key] = value
                 else:
-                    filled_node[key] = fill_placeholders_recursive(value, qid_map)
+                    filled_node[key] = fill_placeholders_recursive(value)
             return filled_node
         elif isinstance(node, list):
-            return [fill_placeholders_recursive(item, qid_map) for item in node]
+            return [fill_placeholders_recursive(item) for item in node]
         else:
             return node
     
-    # Create a mapping from original placeholders to filled values
-    qid_map = {}
-    for qid, result in results.items():
-        if "answer" in result and "analysis" in result:
-            qid_map[qid] = {
-                "answer": result["answer"],
-                "analysis": result["analysis"]
-            }
-    
-    return fill_placeholders_recursive(original_json, qid_map)
+    return fill_placeholders_recursive(original_json)
 
 # ---------- Metrics: expected vs actual ----------
 
@@ -477,6 +473,7 @@ def main():
         
         # Generate filled JSON
         print("\n📄 Generating filled JSON...")
+        print(f"🔍 Results available: {len(step_result.get('sequence', []))} questions processed")
         filled_json = generate_filled_json(step_1_json, step_result)
         
         # Save filled JSON to file
@@ -484,6 +481,11 @@ def main():
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(filled_json, f, indent=2, ensure_ascii=False)
         print(f"✅ Saved filled JSON to {output_file}")
+        
+        # Show a sample of what was filled
+        print("\n🔍 Sample of filled results:")
+        for i, result in enumerate(step_result.get('sequence', [])[:3]):
+            print(f"  {i+1}. {result.get('question', '')[:50]}... -> {result.get('answer', '')}")
         
         # Compare expected vs actual results
         report = compare_expected_vs_actual(step_result)

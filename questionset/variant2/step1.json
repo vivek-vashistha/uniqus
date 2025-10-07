@@ -54,12 +54,12 @@
                 },
                 {
                     "name": "Conclusion",
-                    "instruction": "Based on the answer to the question, determine if the contract exists between the parties",
+                    "instruction": "Based on the answer to the question, comment on if the contract exists between the parties",
                     "questions": [
                         {
                             "id": "S1_A_2_1",
                             "question": "Conclusion",
-                            "answer": "{{text answer}}",
+                            "answer": "{{text answer in one line}}",
                             "analysis": "",
                             "expected_answer": "Contract exists between the parties",
                             "expected_analysis": ""
@@ -95,24 +95,24 @@
                             "question": "Contracts were negotiated as a package with a single commercial objective (e.g. contract would be loss-making without taking into account the consideration received under another contract)?",
                             "answer": "{{Yes/No/NA}}",
                             "analysis": "{{Evidences that supports answer}}",
-                            "expected_answer": "No",
-                            "expected_analysis": "No combination of contracts is necessary"
+                            "expected_answer": "NA",
+                            "expected_analysis": ""
                         },
                         {
                             "id": "S1_B_2_2",
                             "question": "Consideration in one contract depends on price or performance of the other contract (e.g. failure to perform under one contract affect the amount paid under another contract)?",
                             "answer": "{{Yes/No/NA}}",
                             "analysis": "{{Evidences that supports answer}}",
-                            "expected_answer": "No",
-                            "expected_analysis": "No consideration in one contract depends on price or performance of the other contract"
+                            "expected_answer": "NA",
+                            "expected_analysis": ""
                         },
                         {
                             "id": "S1_B_2_3",
                             "question": "Goods or services promised in the contracts (or some goods or services promised in each contract) are a single performance obligation in accordance with paragraphs 606-10-25-14 through 25-22 ?",
                             "answer": "{{Yes/No/NA}}",
                             "analysis": "{{Evidences that supports answer}}",
-                            "expected_answer": "No",
-                            "expected_analysis": "No goods or services promised in the contracts (or some goods or services promised in each contract) are a single performance obligation"
+                            "expected_answer": "NA",
+                            "expected_analysis": ""
                         }
                     ]
                 },
@@ -123,17 +123,17 @@
                         {
                             "id": "S1_B_3_1",
                             "question": "Conclusion",
-                            "answer": "{{Yes/No/NA}}",
+                            "answer": "{{text answer}}",
                             "analysis": "{{Evidences that supports answer}}",
-                            "expected_answer": "No",
-                            "expected_analysis": "No contracts should be combined"
+                            "expected_answer": "No contracts are combined as none of the above criteria are met.",
+                            "expected_analysis": "No contracts are combined as none of the above criteria are met."
                         },
                         {
                             "id": "S1_B_3_2",
                             "question": "Remarks",
-                            "answer": "{{Yes/No/NA}}",
+                            "answer": "{{text answer}}",
                             "analysis": "{{Evidences that supports answer}}",
-                            "expected_answer": "No",
+                            "expected_answer": "",
                             "expected_analysis": "No remarks"
                         }
                     ]
