@@ -18,29 +18,29 @@ iv. It is approved and the parties are committed to their obligations
 
 Description Yes/No Analysis
 
-**Question:** Is the contract approved and the parties are committed to their obligation ((ASC 606-10-25-1(a) ) ? Yes Agreement is signed by both the parties to the contract.
+**Question:** Is the contract approved and the parties are committed to their obligation ((ASC 606-10-25-1(a) ) ? 
 
 **Answer:** 
 Yes/No: {Enter answer in either Yes or No}
 Analysis: {Mention evidences which support your answer}
 
-**Question:** Are each parties' rights regarding the goods or services to be transferred identifiable (ASC 606-10-25-1(b)) ? Yes Scope of services has been identified in  Agreement -  Support services for Unlicensed Inbound service call Support, Chat Support and Policy support
+**Question:** Are each parties' rights regarding the goods or services to be transferred identifiable (ASC 606-10-25-1(b)) ? 
 
 **Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
-**Question:** Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c)) ? Yes Payment terms are defined in  Agreement.
+**Question:** Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c)) ? 
 
 **Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
-**Question:** Has the contract commercial substance (ASC 606-10-25-1(d)) ? Yes MSA & SOW define the pricing, risks and timing of the services, therefore commercial substance of the contract exists
+**Question:** Has the contract commercial substance (ASC 606-10-25-1(d)) ? 
 
 **Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
-**Question:** Is the collection of consideration probable ("likely") (ASC 606-10-25-1(e)) ? Yes Company’s Credit Rating Team performs a comprehensive study of the credit worthiness for new customers at pipeline stage i.e. before contract acceptance and execution stage through the S&P Global ratings. Credit Rating Model (CRAM) is used for review of ratings and overdue status of the existing customers on a monthly basis. ABC follows above established process for assessing the credit ratings of the prospective and existing Customers
+**Question:** Is the collection of consideration probable ("likely") (ASC 606-10-25-1(e)) ? 
 
 **Answer:** {Answer in Yes/No/Not Applicable/Unknown, along with rationale}
 
-Conclusion: Contract exists between the parties
+Conclusion: {Contract exists between the parties or not based on the above 5 question}
 
 ## B. Combination of contracts
 
