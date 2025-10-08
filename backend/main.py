@@ -953,6 +953,47 @@ def run_markdown_analysis_stream(project_id: str, output_dir: Optional[str] = No
         logger.error(f"Error starting analysis stream: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to start analysis stream: {str(e)}")
 
+# ------------------------
+# Chat Streaming Endpoints (SSE)
+# ------------------------
+
+def _stream_text_as_sse(text: str, delay_seconds: float = 0.02):
+    """Yield SSE token events for the provided text, then a done event."""
+    try:
+        chunk_size = 30
+        for i in range(0, len(text), chunk_size):
+            chunk = text[i:i+chunk_size]
+            yield _sse_event("token", chunk)
+            if delay_seconds:
+                time.sleep(delay_seconds)
+        yield _sse_event("done", "ok")
+    except Exception as e:
+        yield _sse_event("error", f"stream failed: {str(e)}")
+
+@app.get("/projects/{project_id}/chat/stream")
+def chat_with_project_stream(project_id: str, message: str):
+    """Stream chat response for a project as SSE tokens."""
+    try:
+        logger.info(f"Chat stream (project) started for {project_id}")
+        answer = markdown_analyzer.chat_with_vector_store(project_id, message)
+        return StreamingResponse(_stream_text_as_sse(answer), media_type="text/event-stream")
+    except Exception as e:
+        logger.error(f"Chat stream error (project): {e}")
+        raise HTTPException(status_code=500, detail=f"Chat stream failed: {str(e)}")
+
+@app.get("/projects/{project_id}/steps/{step}/chat/stream")
+def chat_with_step_stream(project_id: str, step: str, message: str, output_dir: Optional[str] = None):
+    """Stream chat response for a specific step as SSE tokens."""
+    try:
+        if not output_dir:
+            output_dir = os.path.join(OUTPUT_BASE_DIR, project_id)
+        logger.info(f"Chat stream (step {step}) started for {project_id}")
+        answer = markdown_analyzer.chat_with_step(project_id, step, message, output_dir)
+        return StreamingResponse(_stream_text_as_sse(answer), media_type="text/event-stream")
+    except Exception as e:
+        logger.error(f"Chat stream error (step): {e}")
+        raise HTTPException(status_code=500, detail=f"Step chat stream failed: {str(e)}")
+
 @app.get("/projects/{project_id}/steps")
 async def get_project_steps(project_id: str, output_dir: Optional[str] = None):
     """Get all analysis steps for a project"""

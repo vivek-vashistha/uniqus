@@ -10,8 +10,7 @@ import {
   AlertCircle,
   Loader,
   X,
-  CornerDownLeft,
-  Send, ArrowUpRight, ArrowUpCircle, CornerRightUp, LucideSendHorizonal
+  LucideSendHorizonal
 } from 'lucide-react';
 import axios from 'axios';
 
@@ -206,39 +205,61 @@ const MarkdownAnalyzer = () => {
     setChatMessage('');
 
     try {
-      let response;
-      if (chatType === 'step' && activeStep) {
-        response = await axios.post(
-          `${API_BASE_URL}/projects/${selectedProject}/steps/${activeStep}/chat`,
-          { message: userMessage }
-        );
-      } else {
-        response = await axios.post(
-          `${API_BASE_URL}/projects/${selectedProject}/chat`,
-          { message: userMessage }
-        );
-      }
-
-      const newMessage = {
+      // Immediately render user message and a thinking placeholder
+      const userMsg = {
         id: Date.now(),
         type: 'user',
         content: userMessage,
         timestamp: new Date()
       };
-
-      const botResponse = {
+      const placeholderMsg = {
         id: Date.now() + 1,
         type: 'bot',
-        content: response.data.response,
-        timestamp: new Date()
+        content: 'Thinking...',
+        timestamp: new Date(),
+        thinking: true
       };
+      setChatHistory(prev => [...prev, userMsg, placeholderMsg]);
 
-      setChatHistory(prev => [...prev, newMessage, botResponse]);
+      // Stream response via SSE
+      const url = (chatType === 'step' && activeStep)
+        ? `${API_BASE_URL}/projects/${selectedProject}/steps/${activeStep}/chat/stream?message=${encodeURIComponent(userMessage)}`
+        : `${API_BASE_URL}/projects/${selectedProject}/chat/stream?message=${encodeURIComponent(userMessage)}`;
+
+      const es = new EventSource(url);
+      let accumulated = '';
+
+      es.addEventListener('token', (e) => {
+        accumulated += e.data;
+        setChatHistory(prev => prev.map(m => (
+          m.thinking ? { ...m, content: accumulated } : m
+        )));
+      });
+
+      es.addEventListener('done', () => {
+        setChatHistory(prev => prev.map(m => (
+          m.thinking ? { ...m, content: accumulated, thinking: false } : m
+        )));
+        try { es.close(); } catch {}
+        setChatLoading(false);
+      });
+
+      es.addEventListener('error', () => {
+        setChatHistory(prev => prev.map(m => (
+          m.thinking ? { ...m, content: 'Error: failed to get response', thinking: false } : m
+        )));
+        try { es.close(); } catch {}
+        setChatLoading(false);
+      });
     } catch (error) {
       console.error('Chat error:', error);
       toast.error('Failed to send message');
+      // Turn placeholder into error message if present
+      setChatHistory(prev => prev.map(m => (
+        m.thinking ? { ...m, content: 'Error: failed to get response', thinking: false } : m
+      )));
     } finally {
-      setChatLoading(false);
+      // loading state is cleared on stream done/error
     }
   };
 
@@ -479,7 +500,11 @@ const MarkdownAnalyzer = () => {
                           : 'bg-white border text-gray-900'
                       }`}
                     >
-                      {message.content}
+                      {message.thinking ? (
+                        <span className="inline-flex items-center"><Loader className="h-4 w-4 animate-spin mr-2" /> Thinking...</span>
+                      ) : (
+                        message.content
+                      )}
                     </div>
                     <p className="text-xs text-gray-500 mt-1">
                       {message.timestamp.toLocaleTimeString()}
