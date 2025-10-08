@@ -10,6 +10,7 @@ import DocumentReview from './components/DocumentReview';
 import EvidenceBinder from './components/EvidenceBinder';
 import Analytics from './components/Analytics';
 import ProjectManager from './components/SessionManager';
+import MarkdownAnalyzer from './components/MarkdownAnalyzer';
 
 // Styles
 import './App.css';
@@ -27,6 +28,7 @@ function App() {
             <Route path="/evidence/:binderId" element={<EvidenceBinder />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/projects" element={<ProjectManager />} />
+            <Route path="/markdown-analyzer" element={<MarkdownAnalyzer />} />
           </Routes>
         </main>
         

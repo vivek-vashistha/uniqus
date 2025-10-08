@@ -14,44 +14,46 @@ const DocumentUpload = () => {
   const onDrop = useCallback(async (acceptedFiles) => {
     setUploading(true);
     
-    for (const file of acceptedFiles) {
-      try {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('project_name', projectName || '');
-        formData.append('reuse_existing', 'true');
-        
-        const response = await axios.post('http://localhost:8000/upload', formData, {
+    try {
+      // Create project ID from project name or generate one
+      const projectId = projectName 
+        ? projectName.toLowerCase().replace(/[^a-z0-9]/g, '_')
+        : `project_${Date.now()}`;
+      
+      // Upload files to the new markdown analyzer endpoint
+      const formData = new FormData();
+      Array.from(acceptedFiles).forEach(file => {
+        formData.append('files', file);
+      });
+      
+      const response = await axios.post(
+        `http://localhost:8000/projects/${projectId}/ingest`,
+        formData,
+        {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
-        });
-        
-        const fileInfo = {
-          id: response.data.document_id,
-          name: file.name,
-          status: response.data.cached ? 'cached' : 'uploaded',
-          timestamp: new Date().toISOString(),
-          projectId: response.data.project_id,
-          fileHash: response.data.file_hash,
-          cached: response.data.cached
-        };
-        
-        setUploadedFiles(prev => [...prev, fileInfo]);
-        
-        if (response.data.cached) {
-          toast.info(`${file.name} was already analyzed (cached)`);
-        } else {
-          toast.success(`${file.name} uploaded successfully`);
         }
-        
-        // Navigate to review page
-        navigate(`/review/${response.data.document_id}`);
-        
-      } catch (error) {
-        console.error('Upload error:', error);
-        toast.error(`Failed to upload ${file.name}`);
-      }
+      );
+      
+      const fileInfo = {
+        id: projectId,
+        name: `${acceptedFiles.length} files`,
+        status: 'uploaded',
+        timestamp: new Date().toISOString(),
+        projectId: projectId,
+        fileCount: acceptedFiles.length
+      };
+      
+      setUploadedFiles(prev => [...prev, fileInfo]);
+      toast.success(`Successfully uploaded ${acceptedFiles.length} files to project: ${projectName || projectId}`);
+      
+      // Navigate to markdown analyzer
+      navigate('/markdown-analyzer');
+      
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast.error(`Failed to upload files: ${error.response?.data?.detail || error.message}`);
     }
     
     setUploading(false);
@@ -165,10 +167,10 @@ const DocumentUpload = () => {
                       {file.status === 'cached' ? 'Cached' : file.status === 'uploaded' ? 'New' : 'Error'}
                     </span>
                     <button
-                      onClick={() => navigate(`/review/${file.id}`)}
+                      onClick={() => navigate('/markdown-analyzer')}
                       className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                     >
-                      Review
+                      Analyze
                     </button>
                   </div>
                 </div>

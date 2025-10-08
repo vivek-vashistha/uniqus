@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FileText, BarChart3, Upload, Eye, FolderOpen } from 'lucide-react';
+import { FileText, BarChart3, Upload, Eye, FolderOpen, BookOpen } from 'lucide-react';
 
 const Header = () => {
   const location = useLocation();
@@ -8,6 +8,7 @@ const Header = () => {
   const navItems = [
     { path: '/', label: 'Upload Documents', icon: Upload },
     { path: '/projects', label: 'Projects', icon: FolderOpen },
+    { path: '/markdown-analyzer', label: 'Markdown Analyzer', icon: BookOpen },
     { path: '/analytics', label: 'Analytics', icon: BarChart3 },
   ];
 

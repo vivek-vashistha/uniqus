@@ -16,6 +16,7 @@ import logging
 from dotenv import load_dotenv
 from openai import OpenAI
 from backend.services.cache_manager import CacheManager
+from backend.services.markdown_analyzer import MarkdownAnalyzer
 
 # Load environment variables
 load_dotenv()
@@ -34,8 +35,37 @@ if not API_KEY:
 
 client = OpenAI(api_key=API_KEY)
 
-# Initialize cache manager
+# Initialize cache manager and markdown analyzer
 cache_manager = CacheManager()
+markdown_analyzer = MarkdownAnalyzer(client)
+
+# Initialize existing projects from vector store map
+def initialize_existing_projects():
+    """Initialize existing projects from .vector_store_map.json"""
+    try:
+        vector_map_path = ".vector_store_map.json"
+        if os.path.exists(vector_map_path):
+            with open(vector_map_path, "r", encoding="utf-8") as f:
+                vector_map = json.load(f)
+            
+            for project_id, vector_store_id in vector_map.items():
+                # Check if project already exists in cache
+                existing_project = cache_manager.get_project_by_id(project_id)
+                if not existing_project:
+                    # Create project entry in cache
+                    project_name = project_id.replace("_", " ").title()
+                    project = cache_manager.get_or_create_project(
+                        project_name, 
+                        [], 
+                        vector_store_id
+                    )
+                    logger.info(f"Initialized existing project: {project_name} ({project_id})")
+                        
+    except Exception as e:
+        logger.error(f"Error initializing existing projects: {e}")
+
+# Initialize existing projects on startup
+initialize_existing_projects()
 
 app = FastAPI(
     title="Contract→606 Intelligence API",
@@ -763,6 +793,209 @@ async def cleanup_cache(max_age_hours: int = 168):
         "status": "cleaned",
         "message": f"Cleaned up cache entries older than {max_age_hours} hours"
     }
+
+# ------------------------
+# Markdown-based Analysis Endpoints
+# ------------------------
+
+@app.post("/projects/{project_id}/ingest")
+async def ingest_project_files(
+    project_id: str,
+    files: List[UploadFile] = File(...)
+):
+    """Ingest contract files for a project using markdown approach"""
+    try:
+        # Ensure vector store exists
+        vector_store_id = markdown_analyzer.ensure_vector_store(project_id)
+        
+        # Save uploaded files temporarily
+        temp_files = []
+        for file in files:
+            content = await file.read()
+            temp_path = f"temp_{file.filename}"
+            with open(temp_path, "wb") as f:
+                f.write(content)
+            temp_files.append(temp_path)
+        
+        # Add files to vector store
+        markdown_analyzer.add_files_to_store(vector_store_id, temp_files)
+        
+        # Clean up temp files
+        for temp_file in temp_files:
+            try:
+                os.remove(temp_file)
+            except:
+                pass
+        
+        return {
+            "status": "ingested",
+            "project_id": project_id,
+            "vector_store_id": vector_store_id,
+            "file_count": len(files),
+            "message": f"Successfully ingested {len(files)} files"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error ingesting files: {e}")
+        raise HTTPException(status_code=500, detail=f"Ingestion failed: {str(e)}")
+
+@app.post("/projects/{project_id}/analyze")
+async def run_markdown_analysis(
+    project_id: str,
+    output_dir: Optional[str] = None
+):
+    """Run ASC 606 analysis using markdown templates"""
+    try:
+        if not output_dir:
+            output_dir = f"output/{project_id}"
+        
+        # Run the analysis
+        results = markdown_analyzer.run_analysis(project_id, output_dir)
+        
+        return {
+            "status": "completed",
+            "project_id": project_id,
+            "output_dir": output_dir,
+            "results": results,
+            "message": "Analysis completed successfully"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error running analysis: {e}")
+        raise HTTPException(status_code=500, detail=f"Analysis failed: {str(e)}")
+
+@app.get("/projects/{project_id}/steps")
+async def get_project_steps(project_id: str, output_dir: Optional[str] = None):
+    """Get all analysis steps for a project"""
+    try:
+        if not output_dir:
+            output_dir = f"output/{project_id}"
+        
+        steps = {}
+        for step_num in range(1, 6):
+            step_name = f"step{step_num}"
+            content = markdown_analyzer.get_step_content(project_id, step_name, output_dir)
+            if content:
+                steps[step_name] = {
+                    "content": content,
+                    "length": len(content),
+                    "exists": True
+                }
+            else:
+                steps[step_name] = {
+                    "content": None,
+                    "length": 0,
+                    "exists": False
+                }
+        
+        return {
+            "project_id": project_id,
+            "output_dir": output_dir,
+            "steps": steps
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting project steps: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get steps: {str(e)}")
+
+@app.get("/projects/{project_id}/steps/{step}")
+async def get_step_content(
+    project_id: str, 
+    step: str, 
+    output_dir: Optional[str] = None
+):
+    """Get content of a specific step"""
+    try:
+        if not output_dir:
+            output_dir = f"output/{project_id}"
+        
+        content = markdown_analyzer.get_step_content(project_id, step, output_dir)
+        if not content:
+            raise HTTPException(status_code=404, detail="Step content not found")
+        
+        return {
+            "project_id": project_id,
+            "step": step,
+            "content": content,
+            "length": len(content)
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting step content: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get step content: {str(e)}")
+
+@app.put("/projects/{project_id}/steps/{step}")
+async def update_step_content(
+    project_id: str,
+    step: str,
+    content: str,
+    output_dir: Optional[str] = None
+):
+    """Update content of a specific step"""
+    try:
+        if not output_dir:
+            output_dir = f"output/{project_id}"
+        
+        success = markdown_analyzer.update_step_content(project_id, step, content, output_dir)
+        if not success:
+            raise HTTPException(status_code=500, detail="Failed to update step content")
+        
+        return {
+            "status": "updated",
+            "project_id": project_id,
+            "step": step,
+            "message": "Step content updated successfully"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error updating step content: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to update step content: {str(e)}")
+
+@app.post("/projects/{project_id}/chat")
+async def chat_with_project(
+    project_id: str,
+    message: str
+):
+    """Chat with the project's vector store"""
+    try:
+        response = markdown_analyzer.chat_with_vector_store(project_id, message)
+        
+        return {
+            "project_id": project_id,
+            "message": message,
+            "response": response,
+            "timestamp": datetime.now().isoformat()
+        }
+        
+    except Exception as e:
+        logger.error(f"Error in project chat: {e}")
+        raise HTTPException(status_code=500, detail=f"Chat failed: {str(e)}")
+
+@app.post("/projects/{project_id}/steps/{step}/chat")
+async def chat_with_step(
+    project_id: str,
+    step: str,
+    message: str,
+    output_dir: Optional[str] = None
+):
+    """Chat about a specific step's content"""
+    try:
+        if not output_dir:
+            output_dir = f"output/{project_id}"
+        
+        response = markdown_analyzer.chat_with_step(project_id, step, message, output_dir)
+        
+        return {
+            "project_id": project_id,
+            "step": step,
+            "message": message,
+            "response": response,
+            "timestamp": datetime.now().isoformat()
+        }
+        
+    except Exception as e:
+        logger.error(f"Error in step chat: {e}")
+        raise HTTPException(status_code=500, detail=f"Step chat failed: {str(e)}")
 
 if __name__ == "__main__":
     import uvicorn
