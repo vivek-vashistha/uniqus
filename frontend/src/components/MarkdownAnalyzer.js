@@ -10,12 +10,13 @@ import {
   AlertCircle,
   Loader,
   X,
-  LucideSendHorizonal
+  LucideSendHorizonal,
+  Eye,
+  Download
 } from 'lucide-react';
 import axios from 'axios';
 
 import { marked } from 'marked';
-import ReactMarkdown from 'react-markdown';
 
 // Get API base URL from environment variables
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
@@ -32,7 +33,7 @@ marked.setOptions({
 const MarkdownAnalyzer = () => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState('');
-  const [uploading, setUploading] = useState(false);
+  const [selectedProjectDetails, setSelectedProjectDetails] = useState(null);
   const [analyzing, setAnalyzing] = useState(false);
   const [steps, setSteps] = useState({});
   const [activeStep, setActiveStep] = useState('step1');
@@ -43,9 +44,10 @@ const MarkdownAnalyzer = () => {
   const [chatType, setChatType] = useState('general'); // 'general' or 'step'
   const [chatLoading, setChatLoading] = useState(false);
   const [analysisLogs, setAnalysisLogs] = useState([]);
-  const [stepStatuses, setStepStatuses] = useState({});
   const eventSourceRef = useRef(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const fetchProjects = async () => {
     try {
@@ -54,6 +56,16 @@ const MarkdownAnalyzer = () => {
     } catch (error) {
       console.error('Error fetching projects:', error);
       toast.error('Failed to load projects');
+    }
+  };
+
+  const fetchProjectDetails = async (projectId) => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/projects/${projectId}`);
+      setSelectedProjectDetails(response.data);
+    } catch (error) {
+      console.error('Error fetching project details:', error);
+      toast.error('Failed to load project details');
     }
   };
 
@@ -89,38 +101,26 @@ const MarkdownAnalyzer = () => {
 
   useEffect(() => {
     if (selectedProject) {
+      fetchProjectDetails(selectedProject);
       fetchProjectSteps();
     }
   }, [selectedProject, fetchProjectSteps]);
 
-  const handleFileUpload = async (files) => {
-    if (!selectedProject) {
-      toast.error('Please select a project first');
-      return;
-    }
-
-    setUploading(true);
-    const formData = new FormData();
-    Array.from(files).forEach(file => {
-      formData.append('files', file);
-    });
-
-    try {
-      await axios.post(
-        `${API_BASE_URL}/projects/${selectedProject}/ingest`,
-        formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      );
-      
-      toast.success(`Successfully uploaded ${files.length} files`);
-      fetchProjectSteps(); // Refresh steps
-    } catch (error) {
-      console.error('Upload error:', error);
-      toast.error('Failed to upload files');
-    } finally {
-      setUploading(false);
-    }
+  const handleProjectChange = (projectId) => {
+    setSelectedProject(projectId);
+    setSelectedProjectDetails(null);
   };
+
+  const openPdfModal = (file) => {
+    setSelectedFile(file);
+    setIsPdfModalOpen(true);
+  };
+
+  const closePdfModal = () => {
+    setIsPdfModalOpen(false);
+    setSelectedFile(null);
+  };
+
 
   const runAnalysis = () => {
     if (!selectedProject) {
@@ -131,7 +131,6 @@ const MarkdownAnalyzer = () => {
     try {
       setAnalyzing(true);
       setAnalysisLogs([]);
-      setStepStatuses({});
       if (eventSourceRef.current) {
         try { eventSourceRef.current.close(); } catch {}
       }
@@ -146,14 +145,6 @@ const MarkdownAnalyzer = () => {
 
       es.addEventListener('step', (e) => {
         setAnalysisLogs((prev) => [...prev, e.data]);
-        const text = (e.data || '').toString();
-        if (text.startsWith('START ')) {
-          const step = text.replace('START ', '').trim();
-          setStepStatuses((prev) => ({ ...prev, [step]: 'running' }));
-        } else if (text.startsWith('DONE ')) {
-          const step = text.replace('DONE ', '').trim();
-          setStepStatuses((prev) => ({ ...prev, [step]: 'done' }));
-        }
       });
 
       es.addEventListener('error', (e) => {
@@ -296,7 +287,7 @@ const MarkdownAnalyzer = () => {
           </label>
           <select
             value={selectedProject}
-            onChange={(e) => setSelectedProject(e.target.value)}
+            onChange={(e) => handleProjectChange(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Choose a project...</option>
@@ -307,6 +298,28 @@ const MarkdownAnalyzer = () => {
             ))}
           </select>
         </div>
+
+        {/* File Badges */}
+        {selectedProjectDetails && selectedProjectDetails.files && selectedProjectDetails.files.length > 0 && (
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Uploaded Files
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {selectedProjectDetails.files.map((file) => (
+                <button
+                  key={file.file_id}
+                  onClick={() => openPdfModal(file)}
+                  className="inline-flex items-center space-x-2 px-3 py-2 bg-blue-100 text-blue-800 rounded-full text-sm hover:bg-blue-200 transition-colors"
+                >
+                  <FileText className="h-4 w-4" />
+                  <span className="truncate max-w-32">{file.filename}</span>
+                  <Eye className="h-3 w-3" />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Analysis Button */}
         {selectedProject && (
@@ -540,6 +553,49 @@ const MarkdownAnalyzer = () => {
             </div>
           </div>
       </div>
+
+      {/* PDF Modal */}
+      {isPdfModalOpen && selectedFile && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] flex flex-col">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 border-b">
+              <h3 className="text-lg font-medium text-gray-900 truncate">
+                {selectedFile.filename}
+              </h3>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = `${API_BASE_URL}/files/${selectedFile.file_id}/download`;
+                    link.download = selectedFile.filename;
+                    link.click();
+                  }}
+                  className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-md"
+                  title="Download"
+                >
+                  <Download className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={closePdfModal}
+                  className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-md"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* PDF Viewer */}
+            <div className="flex-1 p-4">
+              <iframe
+                src={`${API_BASE_URL}/files/${selectedFile.file_id}/view`}
+                className="w-full h-full border-0 rounded"
+                title={selectedFile.filename}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

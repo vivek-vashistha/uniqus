@@ -816,14 +816,31 @@ async def ingest_project_files(
         # Ensure vector store exists
         vector_store_id = markdown_analyzer.ensure_vector_store(project_id)
         
-        # Save uploaded files temporarily
+        # Save uploaded files temporarily and permanently
         temp_files = []
+        file_metadata_list = []
+        
         for file in files:
             content = await file.read()
+            
+            # Generate unique file ID
+            file_id = str(uuid.uuid4())
+            
+            # Save temporarily for vector store processing
             temp_path = f"temp_{file.filename}"
             with open(temp_path, "wb") as f:
                 f.write(content)
             temp_files.append(temp_path)
+            
+            # Save permanently for file viewing/downloading
+            permanent_path = os.path.join(UPLOADS_DIR, f"{file_id}_{file.filename}")
+            with open(permanent_path, "wb") as f:
+                f.write(content)
+            
+            # Cache file metadata
+            file_hash = cache_manager.calculate_file_hash(content)
+            file_metadata = cache_manager.cache_file(file_id, file.filename, content, vector_store_id)
+            file_metadata_list.append(file_metadata)
         
         # Add files to vector store
         markdown_analyzer.add_files_to_store(vector_store_id, temp_files)
@@ -840,6 +857,16 @@ async def ingest_project_files(
             "project_id": project_id,
             "vector_store_id": vector_store_id,
             "file_count": len(files),
+            "files": [
+                {
+                    "file_id": f.file_id,
+                    "filename": f.filename,
+                    "file_hash": f.file_hash,
+                    "file_size": f.file_size,
+                    "upload_timestamp": f.upload_timestamp.isoformat()
+                }
+                for f in file_metadata_list
+            ],
             "message": f"Successfully ingested {len(files)} files"
         }
         
@@ -1266,6 +1293,76 @@ def _get_step_title(step_num: int) -> str:
         5: "Recognize revenue when (or as) each performance obligation is satisfied"
     }
     return titles.get(step_num, f"Step {step_num}")
+
+# ------------------------
+# File Storage Endpoints
+# ------------------------
+
+# Create uploads directory if it doesn't exist
+UPLOADS_DIR = "uploads"
+os.makedirs(UPLOADS_DIR, exist_ok=True)
+
+@app.get("/files/{file_id}/view")
+async def view_file(file_id: str):
+    """View a file (PDF) in browser"""
+    try:
+        # Find file in cache
+        file_metadata = None
+        for file_hash, file_info in cache_manager.files_db.items():
+            if file_info.file_id == file_id:
+                file_metadata = file_info
+                break
+        
+        if not file_metadata:
+            raise HTTPException(status_code=404, detail="File not found")
+        
+        # Check if file exists in uploads directory
+        file_path = os.path.join(UPLOADS_DIR, f"{file_id}_{file_metadata.filename}")
+        
+        if not os.path.exists(file_path):
+            raise HTTPException(status_code=404, detail="File not found on disk")
+        
+        # Return file with appropriate content type
+        return FileResponse(
+            file_path,
+            media_type="application/pdf",
+            filename=file_metadata.filename
+        )
+        
+    except Exception as e:
+        logger.error(f"Error viewing file {file_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to view file: {str(e)}")
+
+@app.get("/files/{file_id}/download")
+async def download_file(file_id: str):
+    """Download a file"""
+    try:
+        # Find file in cache
+        file_metadata = None
+        for file_hash, file_info in cache_manager.files_db.items():
+            if file_info.file_id == file_id:
+                file_metadata = file_info
+                break
+        
+        if not file_metadata:
+            raise HTTPException(status_code=404, detail="File not found")
+        
+        # Check if file exists in uploads directory
+        file_path = os.path.join(UPLOADS_DIR, f"{file_id}_{file_metadata.filename}")
+        
+        if not os.path.exists(file_path):
+            raise HTTPException(status_code=404, detail="File not found on disk")
+        
+        # Return file for download
+        return FileResponse(
+            file_path,
+            media_type="application/octet-stream",
+            filename=file_metadata.filename
+        )
+        
+    except Exception as e:
+        logger.error(f"Error downloading file {file_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to download file: {str(e)}")
 
 if __name__ == "__main__":
     import uvicorn

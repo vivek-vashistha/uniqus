@@ -255,7 +255,7 @@ logs
 *.log
 
 # Project specific
-uploads/
-cache/
-exports/
+# uploads/
+# cache/
+# exports/
 *-service-account.json

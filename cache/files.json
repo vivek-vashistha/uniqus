@@ -1,0 +1,18 @@
+{
+  "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c": {
+    "file_id": "file-3orxocJssqsn4jKAzVgDPA",
+    "filename": "Contract 1 file 2 2.pdf",
+    "file_hash": "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c",
+    "file_size": 1957464,
+    "upload_timestamp": "2025-10-03T20:30:33.394149",
+    "vector_store_id": "vs_68df8503c23c81918348822c701145ec"
+  },
+  "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8": {
+    "file_id": "file-UW7gXaZoTjjaiiT5mnNJov",
+    "filename": "Contract 1 file 3 2.pdf",
+    "file_hash": "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8",
+    "file_size": 533649,
+    "upload_timestamp": "2025-10-03T20:35:13.218036",
+    "vector_store_id": "vs_68df8503c23c81918348822c701145ec"
+  }
+}

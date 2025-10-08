@@ -81,10 +81,11 @@ class CacheManager:
             if os.path.exists(projects_cache_path):
                 with open(projects_cache_path, 'r') as f:
                     projects_data = json.load(f)
-                    for project_id, project_data in projects_data.items():
+                    for project_key, project_data in projects_data.items():
                         project_data['created_timestamp'] = datetime.fromisoformat(project_data['created_timestamp'])
                         project_data['last_updated'] = datetime.fromisoformat(project_data['last_updated'])
-                        self.projects_db[project_id] = Project(**project_data)
+                        # Use the project_id as the key, not the generated key
+                        self.projects_db[project_data['project_id']] = Project(**project_data)
             
             # Load analysis cache
             analyses_cache_path = f"{self.cache_dir}/analyses.json"

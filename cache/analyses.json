@@ -1,0 +1,282 @@
+{
+  "contract_approved_-6321495418895575981": {
+    "question_id": "contract_approved",
+    "question_text": "Is the contract approved and are the parties committed to their obligations (ASC 606-10-25-1(a))?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "The Master Defined Project Services Agreement states it is a binding written agreement made effective as of 5/15/2017 between the parties, indicating approval (\"are hereby entering into a binding written agreement\") and includes DocuSign envelope IDs evidencing execution . The agreement further provides that the term commences as of the Effective Date, supporting that it is in effect . In addition, the Vendor represents that all actions necessary for authorization, execution, and delivery have been taken and that the obligations are valid and legally binding and enforceable, demonstrating commitment by the parties to perform their obligations .",
+      "description": "Is the contract approved and are the parties committed to their obligations (ASC 606-10-25-1(a))?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:30:50.387699",
+    "file_hashes": [
+      "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c"
+    ]
+  },
+  "payment_terms_identifiable_-6321495418895575981": {
+    "question_id": "payment_terms_identifiable",
+    "question_text": "Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c))?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Yes. The agreement specifies invoicing and payment mechanics: payment is dispatched within 30 days of receipt of a correct, undisputed invoice, with overdue amounts accruing interest at 0.5% per month and payments denominated in U.S. dollars . The work order further requires invoices to be submitted through the Coupa Supplier Portal and states that payments are to be made directly to the Vendor without ASP/VMS involvement or deductions . Exhibit A clarifies that certain fees are invoiced monthly under the specified schedules . These provisions make the payment terms identifiable for ASC 606-10-25-1(c).",
+      "description": "Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c))?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:31:17.959919",
+    "file_hashes": [
+      "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c"
+    ]
+  },
+  "commercial_substance_-6321495418895575981": {
+    "question_id": "commercial_substance",
+    "question_text": "Has the contract commercial substance (ASC 606-10-25-1(d))?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Yes. The agreement specifies substantive monetary consideration and payment terms that are expected to change the amount and timing of cash flows, including detailed fixed fees, FTE rate card billings, technology charges, and milestone-based transition and transformation payments, as well as a significant signing bonus payable and service credit adjustments. The schedules set out monthly invoice values and annual charges (e.g., fixed fees, FTE and tech charges), milestone payments for transition/transformation, and a signing bonus, and the invoicing provisions include payment timing, dispute rights, and interest on late payments, all of which indicate that the contract will affect the entity\u2019s future cash flows. See fees and billing schedules and signing bonus in Exhibit A (), transition and transformation charges with milestones (), monthly invoice value tables (), invoicing, payment, dispute and interest terms (), and the service credit mechanism tied to performance ().",
+      "description": "Has the contract commercial substance (ASC 606-10-25-1(d))?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:31:43.975752",
+    "file_hashes": [
+      "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c"
+    ]
+  },
+  "customer_acceptance_-6321495418895575981": {
+    "question_id": "customer_acceptance",
+    "question_text": "Is there customer acceptance present and what is its nature?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "The contract includes explicit customer acceptance provisions. For Transition Services, acceptance is milestone-based: the parties agree on Milestone Acceptance Criteria; upon the vendor\u2019s completion notice, the customer reviews within 10 days and either accepts or identifies non-compliance for remediation, after which unmet milestones are deemed not met (Transition Services Acceptance) . The transition plan also embeds User Acceptance Testing (UAT) as a formal deliverable and milestone (e.g., 'IT Connectivity set up & UAT' and 'User Acceptance Testing for production completed') . Separately, for Project Deliverables, the customer has up to 30 days to examine/test and request remediation; if issues persist after re-delivery, the customer may retain with price reduction, withdraw for a refund, engage a third party at vendor\u2019s expense, require continued remediation, and seek damages, evidencing a structured acceptance and rejection framework .",
+      "description": "Is there customer acceptance present and what is its nature?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:32:05.292335",
+    "file_hashes": [
+      "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c"
+    ]
+  },
+  "termination_penalties_-6321495418895575981": {
+    "question_id": "termination_penalties",
+    "question_text": "Are there termination penalties or early termination payments?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Yes. The Master/Agreement requires that any Work Order terminated without cause include an Early Termination Payment to fairly compensate the vendor for unamortized, agreed transition or implementation costs specifically incurred and not previously reimbursed, as further determined in the applicable Work Order . The Work Order also specifies an Early Termination Payment consisting of (a) payment for all services rendered up to the effective termination date and (b) Termination Fees identified in the Annexure to Exhibit A; it also provides a formula for partial termination charges based on a ramp-down percentage .",
+      "description": "Are there termination penalties or early termination payments?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:32:22.753389",
+    "file_hashes": [
+      "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c"
+    ]
+  },
+  "refund_credits_-6321495418895575981": {
+    "question_id": "refund_credits",
+    "question_text": "Are there refund or credit provisions for failed acceptance?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Yes. The acceptance clause provides remedies if a deliverable fails acceptance after remediation: the customer may (a) keep the deliverable and deduct an appropriate and reasonable amount from amounts otherwise paid/payable to reflect reduced value, and/or (b) withdraw from the agreement or specific work and the vendor must fully refund fees already paid (including down payments, prepayments, or partial payments) relating to the reduction in value. These constitute credit/deduction and refund provisions tied to failed acceptance .",
+      "description": "Are there refund or credit provisions for failed acceptance?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:32:40.053481",
+    "file_hashes": [
+      "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c"
+    ]
+  },
+  "variable_consideration_-6321495418895575981": {
+    "question_id": "variable_consideration",
+    "question_text": "Is there variable consideration that needs to be constrained?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Yes. The contract includes multiple contingent price elements that create variability in the consideration: (1) SLA-based service credits with a capped At Risk Amount and an earnback mechanism, which depend on future performance outcomes and can reduce/offset invoices (service credits and earnback: ; ). (2) Volume-driven adjustments, including true-ups against the Yearly Volume Forecast and change-control based fee adjustments when volumes deviate from baselines (). (3) Overtime premiums of 1.5x for hours outside standard service hours, which vary with actual usage (). (4) A signing bonus payable by the Vendor to the customer, which affects the net transaction consideration (). Because these items make the transaction price contingent on future events, they represent variable consideration that would need to be estimated and constrained.",
+      "description": "Is there variable consideration that needs to be constrained?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:33:14.950617",
+    "file_hashes": [
+      "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c"
+    ]
+  },
+  "performance_obligations_-6321495418895575981": {
+    "question_id": "performance_obligations",
+    "question_text": "What are the distinct performance obligations?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Based on the contract documents, the promised goods and services that constitute distinct performance obligations include: (1) Transition Services delivered in accordance with the Transition Plan (phased Engage/Architect/Build/Learn/Execute) with specified activities and deliverables such as transition planning, knowledge transfer, infrastructure setup, testing, go\u2011live, and stabilization  ; (2) Ongoing service delivery/operations with defined SLAs and service credits covering contact center volumes across channels (chat, phone, PSO, text) with reporting and governance requirements  ; and (3) Project-specific deliverables provided under individual Work Orders (WO) pursuant to the Master Defined Project Services Agreement, where the vendor creates and delivers defined Project Deliverables per each WO  . Supporting components embedded in the scope\u2014such as training and accreditation, SOP creation/updates, quality audits and reporting\u2014are explicitly required as part of the services and deliverables noted above  .",
+      "description": "What are the distinct performance obligations?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:34:14.022026",
+    "file_hashes": [
+      "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c"
+    ]
+  },
+  "over_time_indicators_-6321495418895575981": {
+    "question_id": "over_time_indicators",
+    "question_text": "Are there indicators that revenue should be recognized over time?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "The Work Order sets out ongoing customer support services (PSO, Phone, Chat) delivered throughout a multi\u2011year term with fixed monthly service charges and rate\u2011card services, indicating a continuous transfer of services to the customer over time (see Annexure to Exhibit A, Fixed Service Charges and Rate Card Based Services) . Technology charges are also billed monthly across the contract term, reinforcing a month\u2011by\u2011month pattern of service delivery and benefit consumption  . In addition, service levels and service credits are measured and applied by month and capped as a percentage of the monthly invoice, which is consistent with performance and benefit realization as services are provided during each period . The contract also specifies that invoices for services under this Work Order must be submitted through the Coupa Supplier Portal, further evidencing routine, periodic billing aligned with ongoing performance . While certain transition/transformation items are tied to milestones, the primary scope reflects recurring services delivered and consumed over time .",
+      "description": "Are there indicators that revenue should be recognized over time?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:34:44.717797",
+    "file_hashes": [
+      "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c"
+    ]
+  },
+  "contract_modifications_-6321495418895575981": {
+    "question_id": "contract_modifications",
+    "question_text": "Are there contract modifications or amendments?",
+    "analysis_result": {
+      "yes_no": "No",
+      "analysis": "The documents provide for a Change Control Procedure and include a blank Change Order template (Exhibit D) indicating how amendments would be documented, and they require amendments to be in writing and signed. However, there are no executed change orders or signed amendments included in the provided materials. See the Change Control Procedure and requirement for mutual signature (), the blank Change Order form (), the clause that changes to the Work Order will be processed via a Change Order (), and the agreement amendment clause requiring a written instrument signed by authorized officers ().",
+      "description": "Are there contract modifications or amendments?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:35:10.700216",
+    "file_hashes": [
+      "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c"
+    ]
+  },
+  "contract_approved_-4640749332431190765": {
+    "question_id": "contract_approved",
+    "question_text": "Is the contract approved and are the parties committed to their obligations (ASC 606-10-25-1(a))?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Both parties represent that all actions necessary for authorization, execution, and delivery have been taken and that the Agreement constitutes their valid and legally binding obligations, enforceable in accordance with its terms, evidencing approval and commitment (Vendor: Authorization; Binding Obligation; XYZs: Authorization; Binding Obligation)  . The Agreement reflects execution via DocuSign (presence of DocuSign Envelope IDs), supporting that the contract has been approved in writing/electronically . Further, the Agreement restricts termination without cause while any Work Order remains in effect, indicating mutual commitment to perform during active orders . The Work Order framework also requires issuance of a purchase order prior to service commencement, consistent with formal approval and intent to proceed .",
+      "description": "Is the contract approved and are the parties committed to their obligations (ASC 606-10-25-1(a))?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:35:44.926822",
+    "file_hashes": [
+      "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8"
+    ]
+  },
+  "payment_terms_identifiable_-4640749332431190765": {
+    "question_id": "payment_terms_identifiable",
+    "question_text": "Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c))?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Yes. The contract specifies invoicing and payment mechanics and timing: invoices are issued against purchase orders and paid within 30 days of receipt, with interest on overdue amounts, and submission instructions are provided (including the required email/system), which identifies the payment terms (). It also states that invoices must be submitted through the Coupa Supplier Portal and that payment is to be made directly to the Vendor without deductions, further evidencing identifiable payment terms (). Additionally, the Work Order ties payment and invoicing of fees to the Agreement\u2019s clause 4 and includes detailed monthly invoice value schedules for fixed/rate-card services and technology charges, which identify the cadence and amounts to be invoiced (; ; ). These provisions together demonstrate that the payment terms for the services can be identified under ASC 606-10-25-1(c).",
+      "description": "Can the payment terms for the goods and services be identified (ASC 606-10-25-1(c))?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:36:10.379471",
+    "file_hashes": [
+      "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8"
+    ]
+  },
+  "commercial_substance_-4640749332431190765": {
+    "question_id": "commercial_substance",
+    "question_text": "Has the contract commercial substance (ASC 606-10-25-1(d))?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Yes. The contract specifies substantive promised services and deliverables, including creation and delivery of Project Deliverables under work orders, indicating real performance obligations (e.g., obligations to create and deliver Project Deliverables with defined standards and acceptance criteria) . It includes defined consideration that will change the entity\u2019s cash flows: fixed service charges by service line over multiple years , detailed rate-card based services with monthly invoice values and FTE levels , and significant transition and transformation milestone payments scheduled over the term . The arrangement also features service level credits affecting consideration upon performance shortfalls, further evidencing real economic effects on future cash flows . Additionally, the presence of a signing bonus and termination fee structures reflects negotiated economic terms that impact expected cash flows . Collectively, these terms indicate the contract will change the risk, timing, and amount of future cash flows, supporting commercial substance under ASC 606-10-25-1(d).",
+      "description": "Has the contract commercial substance (ASC 606-10-25-1(d))?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:36:39.662276",
+    "file_hashes": [
+      "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8"
+    ]
+  },
+  "customer_acceptance_-4640749332431190765": {
+    "question_id": "customer_acceptance",
+    "question_text": "Is there customer acceptance present and what is its nature?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Customer acceptance is present. For Transition Services, acceptance is milestone-based: the parties agree milestone acceptance criteria, the vendor provides written notice upon completion, and the customer has a set review period (generally 10 days) to accept or identify non-compliance; the vendor must remediate within four weeks, and milestones not successfully completed after remediation are deemed not met (Exhibit E, Transition Services Acceptance) . The Transition Plan also includes User Acceptance Testing for production and toll-gate sign\u2011offs as deliverables, indicating formal customer UAT completion as part of acceptance . Separately, the master agreement provides an acceptance process for project deliverables: the customer has up to 30 days to examine/test deliverables, can require remediation and re-delivery, and retains rights (including rejection or price adjustment) if requirements are not met .",
+      "description": "Is there customer acceptance present and what is its nature?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:36:59.625896",
+    "file_hashes": [
+      "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8"
+    ]
+  },
+  "termination_penalties_-4640749332431190765": {
+    "question_id": "termination_penalties",
+    "question_text": "Are there termination penalties or early termination payments?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "The Agreement requires an Early Termination Payment for Work Orders terminated without cause, defined to fairly compensate the vendor for unamortized, agreed transition/implementation costs specifically incurred under the applicable Work Order . The Work Order further specifies that if terminated for convenience (or by Vendor for non-payment), the customer must pay for services rendered through the termination date plus termination fees identified in the Annexure to Exhibit A as the Early Termination Payment; it also provides a formula for partial termination charges . The Annexure includes a dedicated Tab for Termination Fees, evidencing the presence of specified termination charges .",
+      "description": "Are there termination penalties or early termination payments?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:37:20.806477",
+    "file_hashes": [
+      "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8"
+    ]
+  },
+  "refund_credits_-4640749332431190765": {
+    "question_id": "refund_credits",
+    "question_text": "Are there refund or credit provisions for failed acceptance?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Yes. Under the Acceptance of Deliverables clause, if a deliverable still fails to meet requirements after remediation, the customer may either (a) keep the deliverable and deduct an appropriate and reasonable amount from amounts paid or payable (a credit-like reduction), or (b) withdraw from the agreement (in whole or in part) and the vendor must fully refund the related fees, including any down payments, prepayments, or partial payments already made relating to the reduction in value .",
+      "description": "Are there refund or credit provisions for failed acceptance?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:37:39.881291",
+    "file_hashes": [
+      "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8"
+    ]
+  },
+  "variable_consideration_-4640749332431190765": {
+    "question_id": "variable_consideration",
+    "question_text": "Is there variable consideration that needs to be constrained?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "The contract includes several forms of variability that affect the transaction price and therefore constitute variable consideration: (1) Service credits tied to SLA defaults, with an At Risk Amount capped at 10% of the invoice and accrual across multiple defaults, and an earnback mechanism (service credits and accrual: ; earnback/crediting: ). (2) Volume-driven adjustments, including waivers of certain SLAs when actual volume exceeds the adjusted forecast and governance/true-up against the Yearly Volume Forecast (; ). (3) Overtime premiums and fixed-based charges to be agreed for non-permanent volume spikes via Change Control (). (4) Contingent milestone-based transition/transformation charges and a signing bonus (). (5) Pass-through of a DTI grant if criteria are met (). These provisions indicate the consideration can increase or decrease based on performance, volume, milestones, or credits, which under ASC 606 is variable consideration requiring an assessment of constraint to avoid significant revenue reversal.",
+      "description": "Is there variable consideration that needs to be constrained?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:38:23.609981",
+    "file_hashes": [
+      "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8"
+    ]
+  },
+  "performance_obligations_-4640749332431190765": {
+    "question_id": "performance_obligations",
+    "question_text": "What are the distinct performance obligations?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "Based on the contract, the following promised services are identifiable as distinct performance obligations: (1) Transition Services in accordance with the Transition Plan, including managing and delivering the Transition activities and related deliverables, conducting tollgate reviews, and keeping the customer informed through defined reporting cadences (2.6(C), (H), (I))  . (2) Establishment of a Transition project management office/Transition Team to manage Transition Services (2.6(B)) . (3) Knowledge transfer services, including creation and execution of a detailed knowledge transfer plan, progress tracking, certification of Vendor resources, and related KT deliverables (2.6(G); phase deliverables under Architect/Learn)   . (4) IT setup and readiness, including infrastructure setup, VPN and systems configuration, connectivity/performance testing, user access creation, and UAT readiness (Build phase) . (5) User Acceptance Testing for production and IT performance testing/tuning (Learn/Execute phases) . (6) Go\u2011live/cutover and volume ramp\u2011up in line with the agreed ramp\u2011up plan (Execute phase) . (7) Performance management and stabilization, including performance management plans/reporting, BAU governance framework, and service stabilization plan (Build/Learn/Execute phases)  . (8) Ongoing governance, communications, and weekly written/oral reporting during Transition (Section 3.1) . (9) Delivery of defined Project Deliverables under applicable Work Orders (MSA: creation and delivery of Project Deliverables)  . (10) Transition Assistance Services, if triggered upon termination as specified, including agreeing terms for transfer/continued availability of tools (Work Order \u00a714(d)) . These items are expressly described as services/deliverables the Vendor must provide and therefore represent the contract\u2019s distinct performance obligations as written.",
+      "description": "Identify the distinct performance obligations promised in the agreement based on the stated services and deliverables"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:39:09.590092",
+    "file_hashes": [
+      "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8"
+    ]
+  },
+  "over_time_indicators_-4640749332431190765": {
+    "question_id": "over_time_indicators",
+    "question_text": "Are there indicators that revenue should be recognized over time?",
+    "analysis_result": {
+      "yes_no": "Yes",
+      "analysis": "The contract contemplates ongoing service delivery (e.g., phone, chat, PSO) with fixed service fees billed monthly and FTE services invoiced monthly for services rendered, and it sets service level obligations throughout the term\u2014features that indicate the customer receives and consumes the benefits as the services are performed over the contract period. The annexures also show technology charges and other fees scheduled over months/years, reinforcing a continuous transfer of services rather than a point-in-time transfer (Fixed Service Fees billed monthly; FTE invoiced monthly; Technology charges over the term; Service Level Matrix)    .",
+      "description": "Are there indicators that revenue should be recognized over time?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:39:45.847474",
+    "file_hashes": [
+      "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8"
+    ]
+  },
+  "contract_modifications_-4640749332431190765": {
+    "question_id": "contract_modifications",
+    "question_text": "Are there contract modifications or amendments?",
+    "analysis_result": {
+      "yes_no": "No",
+      "analysis": "The provided documents include procedures and templates for modifications (e.g., a Change Control Procedure stating a change is only effective upon mutual agreement and signature, and an Exhibit D Change Order form), but there is no evidence of any executed and signed change order or amendment in the materials reviewed. The Work Order specifies that any changes must be processed via a Change Order (Exhibit D) per the Change Control Procedure, and that a change is effective only upon mutual agreement and signature   . The master agreement also requires amendments to be in writing and signed by authorized officers, but no such signed amendment is included in the files .",
+      "description": "Are there contract modifications or amendments?"
+    },
+    "confidence": 0.85,
+    "created_timestamp": "2025-10-03T20:40:10.225017",
+    "file_hashes": [
+      "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8"
+    ]
+  }
+}

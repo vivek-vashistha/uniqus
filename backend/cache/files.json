@@ -1,0 +1,178 @@
+{
+  "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8": {
+    "file_id": "d097a607-8df2-4d8d-b747-ebe1e57c4000",
+    "filename": "Contract 1 file 3 2.pdf",
+    "file_hash": "decf9abf8fd8c0968cc6237734ec2f84813daae8ae8faf8b2ded53da8df269f8",
+    "file_size": 533649,
+    "upload_timestamp": "2025-10-08T18:23:54.890029",
+    "vector_store_id": "vs_68e4dc29e1fc8191b680ebe3c2ea42f2"
+  },
+  "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c": {
+    "file_id": "4935d1e3-dd62-4a74-a36e-708f58e2030f",
+    "filename": "Contract 1 file 2 2.pdf",
+    "file_hash": "7211dc7271f8c075b5e394397e2afddb1c3b54f6edfb263233bdda7e9e18c99c",
+    "file_size": 1957464,
+    "upload_timestamp": "2025-10-08T18:23:54.892849",
+    "vector_store_id": "vs_68e4dc29e1fc8191b680ebe3c2ea42f2"
+  },
+  "4d4c2c26a2ae6fbb44a8bab8fce6e59d9944fa6d5b1a8ec0a65a8e04e3340daf": {
+    "file_id": "6fb7938b-7680-4ca8-a1f8-e61bb0935068",
+    "filename": "Contract 2_File1.pdf",
+    "file_hash": "4d4c2c26a2ae6fbb44a8bab8fce6e59d9944fa6d5b1a8ec0a65a8e04e3340daf",
+    "file_size": 4830282,
+    "upload_timestamp": "2025-10-08T18:23:54.897507",
+    "vector_store_id": "vs_68e509ab9f248191a396c20a4a148128"
+  },
+  "12c6dfb1a577173184b6c0bef755804be824ee6e6513f5ab7ca406fb8c2aac79": {
+    "file_id": "76c61c5c-eafc-4814-8683-44ac3d39dfdc",
+    "filename": "Contract 3 5th file_2.pdf",
+    "file_hash": "12c6dfb1a577173184b6c0bef755804be824ee6e6513f5ab7ca406fb8c2aac79",
+    "file_size": 199002,
+    "upload_timestamp": "2025-10-08T18:23:54.898438",
+    "vector_store_id": "vs_68e5e6ed8d78819181af081de78c5158"
+  },
+  "96d3dfe8fd0183f44bdc5f54c3b9ffee65a626e9e186f0174f0a72c4483a0fd8": {
+    "file_id": "f9dbed32-1ff1-4b41-bb54-d4af1c47453f",
+    "filename": "Contract 3 4th file_2.pdf",
+    "file_hash": "96d3dfe8fd0183f44bdc5f54c3b9ffee65a626e9e186f0174f0a72c4483a0fd8",
+    "file_size": 271022,
+    "upload_timestamp": "2025-10-08T18:23:54.902293",
+    "vector_store_id": "vs_68e5e6ed8d78819181af081de78c5158"
+  },
+  "4c2c6dd7dbeb679f1150400349f2e180dd203ef3b5f4d8b4ed2b4a02d8f7174e": {
+    "file_id": "6a82d34c-fa0a-4e20-ab4d-318caac0406d",
+    "filename": "Contract 3 2nd file_1.pdf",
+    "file_hash": "4c2c6dd7dbeb679f1150400349f2e180dd203ef3b5f4d8b4ed2b4a02d8f7174e",
+    "file_size": 465594,
+    "upload_timestamp": "2025-10-08T18:23:54.903464",
+    "vector_store_id": "vs_68e5e6ed8d78819181af081de78c5158"
+  },
+  "b96c9ca91a55558a551337e91aac1426be09d253168f160db636c4c2dce4980a": {
+    "file_id": "30be15e0-6b3d-49f9-b3d2-e7eb70041c6c",
+    "filename": "Contract 3 3rd file_2.pdf",
+    "file_hash": "b96c9ca91a55558a551337e91aac1426be09d253168f160db636c4c2dce4980a",
+    "file_size": 151318,
+    "upload_timestamp": "2025-10-08T18:23:54.904720",
+    "vector_store_id": "vs_68e5e6ed8d78819181af081de78c5158"
+  },
+  "b2dcac5dfd0b55856d34156cf31b8d4fd8fbf8b6eb61ff424e5ef64fa0078b20": {
+    "file_id": "4fa0dfe6-e475-4d0d-b914-15b21396ea8c",
+    "filename": "Contract 4_File 2_2.pdf",
+    "file_hash": "b2dcac5dfd0b55856d34156cf31b8d4fd8fbf8b6eb61ff424e5ef64fa0078b20",
+    "file_size": 394729,
+    "upload_timestamp": "2025-10-08T18:23:54.905668",
+    "vector_store_id": "vs_68e5e76b221c8191a0b706f5a23b796f"
+  },
+  "b620e302ecc7c60d907e218e40c69ba543d4c953d0d92bb48d1c2f62208e366b": {
+    "file_id": "1f613485-562f-4673-bfbc-74def9ca6a99",
+    "filename": "Contract 4_File 3_2.pdf",
+    "file_hash": "b620e302ecc7c60d907e218e40c69ba543d4c953d0d92bb48d1c2f62208e366b",
+    "file_size": 12812537,
+    "upload_timestamp": "2025-10-08T18:23:54.918055",
+    "vector_store_id": "vs_68e5e76b221c8191a0b706f5a23b796f"
+  },
+  "be907bc481ad0e0db1c926cb3bab3ec9b9a41d191d6d9d6094d800cab6a298a5": {
+    "file_id": "86080a56-aa76-4d65-92ed-92af068713f9",
+    "filename": "Contract 5 2nd File_2.pdf",
+    "file_hash": "be907bc481ad0e0db1c926cb3bab3ec9b9a41d191d6d9d6094d800cab6a298a5",
+    "file_size": 992029,
+    "upload_timestamp": "2025-10-08T18:23:54.924153",
+    "vector_store_id": "vs_68e50a4b5ef08191ac93379db9a54cff"
+  },
+  "4b1424af43a8a57cbe41f89f84766e08f207ab0877a8765df040aac2ef9d2e46": {
+    "file_id": "28a75901-d2b4-407e-a963-5a8b306e375f",
+    "filename": "Contract 6_File4_4.pdf",
+    "file_hash": "4b1424af43a8a57cbe41f89f84766e08f207ab0877a8765df040aac2ef9d2e46",
+    "file_size": 2203827,
+    "upload_timestamp": "2025-10-08T18:23:54.926864",
+    "vector_store_id": "vs_68e5e7eee4d4819189f335103bdb527a"
+  },
+  "ad405e7a1a8bdf7ca1105e4b41d5b480503cf573ffaf8493080629456ab2ed9b": {
+    "file_id": "af2bea12-bf2d-4e64-b162-495f9dd55a77",
+    "filename": "Contract 6_File2_2.pdf",
+    "file_hash": "ad405e7a1a8bdf7ca1105e4b41d5b480503cf573ffaf8493080629456ab2ed9b",
+    "file_size": 198822,
+    "upload_timestamp": "2025-10-08T18:23:54.928552",
+    "vector_store_id": "vs_68e5e7eee4d4819189f335103bdb527a"
+  },
+  "14eefeb403c7b1376b62834e565110d69295bbab52684bbc22d68a83f58702c6": {
+    "file_id": "35fd57ea-6363-44cd-8bb0-8cde8011e542",
+    "filename": "Contract 6_File3_2.pdf",
+    "file_hash": "14eefeb403c7b1376b62834e565110d69295bbab52684bbc22d68a83f58702c6",
+    "file_size": 631067,
+    "upload_timestamp": "2025-10-08T18:23:54.929972",
+    "vector_store_id": "vs_68e5e7eee4d4819189f335103bdb527a"
+  },
+  "d1ba3a1560a50c4dfe643ceaf86aa64b25ea166abfbe261b298848d51c6b8b6e": {
+    "file_id": "e9f8221f-e4b2-41e1-a0c4-f0d3291f1ce9",
+    "filename": "Contract 7_File4_4.pdf",
+    "file_hash": "d1ba3a1560a50c4dfe643ceaf86aa64b25ea166abfbe261b298848d51c6b8b6e",
+    "file_size": 521342,
+    "upload_timestamp": "2025-10-08T18:23:54.931158",
+    "vector_store_id": "vs_68e5e833e3ec819184206e3a2efceb27"
+  },
+  "654013e25447610ca85f67ac11fe2df027643f34f05c6fcb8adbb1a46ee6f8f4": {
+    "file_id": "82cfecc1-5f7b-4390-a45b-b1729f813502",
+    "filename": "Contract 7_File2_2.pdf",
+    "file_hash": "654013e25447610ca85f67ac11fe2df027643f34f05c6fcb8adbb1a46ee6f8f4",
+    "file_size": 213489,
+    "upload_timestamp": "2025-10-08T18:23:54.933509",
+    "vector_store_id": "vs_68e5e833e3ec819184206e3a2efceb27"
+  },
+  "02a2145e58cc50dde55c94a7cbf3c8ea76c2c8c73a5536c4f5c7fd03f99fea3d": {
+    "file_id": "766c9c53-dab2-4fc5-9078-f8932b1bdb4e",
+    "filename": "Contract 7_File3_3.pdf",
+    "file_hash": "02a2145e58cc50dde55c94a7cbf3c8ea76c2c8c73a5536c4f5c7fd03f99fea3d",
+    "file_size": 126224,
+    "upload_timestamp": "2025-10-08T18:23:54.936333",
+    "vector_store_id": "vs_68e5e833e3ec819184206e3a2efceb27"
+  },
+  "dc0dd68cb5b75e0e53f163c13f29564dcd293f628e40f1f8577469676373d2e3": {
+    "file_id": "a90b49f4-5ee9-4b2d-a22c-ef2a167661a6",
+    "filename": "Contract 8_File3_2.pdf",
+    "file_hash": "dc0dd68cb5b75e0e53f163c13f29564dcd293f628e40f1f8577469676373d2e3",
+    "file_size": 697176,
+    "upload_timestamp": "2025-10-08T18:23:54.937848",
+    "vector_store_id": "vs_68e5e893e9308191a495b99ee4a9bc05"
+  },
+  "015e5b2f0ed29dc15e01b373a0248a8f276882ad9d405e8651a499074688dd99": {
+    "file_id": "c9afd587-5eae-4c64-b872-b6000e660103",
+    "filename": "Contract 8_File2_2.pdf",
+    "file_hash": "015e5b2f0ed29dc15e01b373a0248a8f276882ad9d405e8651a499074688dd99",
+    "file_size": 6885554,
+    "upload_timestamp": "2025-10-08T18:23:54.944675",
+    "vector_store_id": "vs_68e5e893e9308191a495b99ee4a9bc05"
+  },
+  "b3587bb9b5fe082b8db4119c8cc2cc2cdf280205fc792cd3baf37f2da934e79b": {
+    "file_id": "c7842fbe-010c-4c24-84c7-688ec1aebb81",
+    "filename": "Contract 9_File3_2.pdf",
+    "file_hash": "b3587bb9b5fe082b8db4119c8cc2cc2cdf280205fc792cd3baf37f2da934e79b",
+    "file_size": 695517,
+    "upload_timestamp": "2025-10-08T18:23:54.945908",
+    "vector_store_id": "vs_68e5e8cd1d0c8191974d94698eb1bd52"
+  },
+  "39905a190c5191c4dbe91e5d5a02ca78fc33e4669bf326289df3d2e79216571f": {
+    "file_id": "1178ad2d-f91b-4cae-b105-1c1af70a6191",
+    "filename": "Contract 9_File2_2.pdf",
+    "file_hash": "39905a190c5191c4dbe91e5d5a02ca78fc33e4669bf326289df3d2e79216571f",
+    "file_size": 4637712,
+    "upload_timestamp": "2025-10-08T18:23:54.953800",
+    "vector_store_id": "vs_68e5e8cd1d0c8191974d94698eb1bd52"
+  },
+  "fd9804828880959e60806539a16b490aa581fe28c1429a4f46b8f8fc4054c3d9": {
+    "file_id": "97a9dbce-715c-4534-abdd-5a4ffcc4dae4",
+    "filename": "Contract 10_File2_2.pdf",
+    "file_hash": "fd9804828880959e60806539a16b490aa581fe28c1429a4f46b8f8fc4054c3d9",
+    "file_size": 1194561,
+    "upload_timestamp": "2025-10-08T18:23:54.957824",
+    "vector_store_id": "vs_68e5e90c7dc081918d239c506cc54417"
+  },
+  "af19aa72e248859353610e89616c912a50777578b98635e23ab750fb1cd1d79f": {
+    "file_id": "169859f2-0ff3-43a4-8c44-4745fb354624",
+    "filename": "Contract 10_File3_2.pdf",
+    "file_hash": "af19aa72e248859353610e89616c912a50777578b98635e23ab750fb1cd1d79f",
+    "file_size": 308922,
+    "upload_timestamp": "2025-10-08T18:23:54.959048",
+    "vector_store_id": "vs_68e5e90c7dc081918d239c506cc54417"
+  }
+}
