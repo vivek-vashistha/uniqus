@@ -1322,11 +1322,26 @@ async def view_file(file_id: str):
         if not os.path.exists(file_path):
             raise HTTPException(status_code=404, detail="File not found on disk")
         
-        # Return file with appropriate content type
-        return FileResponse(
-            file_path,
-            media_type="application/pdf",
-            filename=file_metadata.filename
+        # Return file with appropriate content type for inline viewing
+        from fastapi.responses import Response
+        import mimetypes
+        
+        # Determine content type
+        content_type, _ = mimetypes.guess_type(file_metadata.filename)
+        if not content_type:
+            content_type = "application/pdf"
+        
+        # Read file content
+        with open(file_path, "rb") as f:
+            file_content = f.read()
+        
+        # Return with inline disposition for viewing
+        return Response(
+            content=file_content,
+            media_type=content_type,
+            headers={
+                "Content-Disposition": f"inline; filename=\"{file_metadata.filename}\""
+            }
         )
         
     except Exception as e:

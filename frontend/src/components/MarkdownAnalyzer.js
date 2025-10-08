@@ -556,10 +556,10 @@ const MarkdownAnalyzer = () => {
 
       {/* PDF Modal */}
       {isPdfModalOpen && selectedFile && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl h-[95vh] flex flex-col">
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-4 border-b">
+            <div className="flex items-center justify-between p-4 border-b flex-shrink-0">
               <h3 className="text-lg font-medium text-gray-900 truncate">
                 {selectedFile.filename}
               </h3>
@@ -586,11 +586,12 @@ const MarkdownAnalyzer = () => {
             </div>
 
             {/* PDF Viewer */}
-            <div className="flex-1 p-4">
+            <div className="flex-1 p-4 min-h-0">
               <iframe
                 src={`${API_BASE_URL}/files/${selectedFile.file_id}/view`}
                 className="w-full h-full border-0 rounded"
                 title={selectedFile.filename}
+                style={{ minHeight: '600px' }}
               />
             </div>
           </div>
