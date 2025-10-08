@@ -8,7 +8,8 @@ import {
   MessageCircle,
   CheckCircle,
   AlertCircle,
-  Loader
+  Loader,
+  X
 } from 'lucide-react';
 import axios from 'axios';
 // import { marked } from 'marked';
@@ -39,6 +40,7 @@ const MarkdownAnalyzer = () => {
   const [analysisLogs, setAnalysisLogs] = useState([]);
   const [stepStatuses, setStepStatuses] = useState({});
   const eventSourceRef = useRef(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const fetchProjects = async () => {
     try {
@@ -312,7 +314,7 @@ const MarkdownAnalyzer = () => {
       {selectedProject && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Steps Panel */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <div className="bg-white rounded-lg shadow-sm border p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Analysis Steps</h2>
               
@@ -404,59 +406,62 @@ const MarkdownAnalyzer = () => {
               </div>
             </div>
           </div>
+        </div>
+      )}
 
-          {/* Chat Panel */}
-          <div className="bg-white rounded-lg shadow-sm border p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Chat Assistant</h2>
-            
-            {/* Chat Type Selector */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Chat Type
-              </label>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => setChatType('general')}
-                  className={`px-3 py-1 rounded-md text-sm ${
-                    chatType === 'general'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
+      {/* Floating Chat Button */}
+      <button
+        type="button"
+        onClick={() => setIsChatOpen((prev) => !prev)}
+        className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg p-4 flex items-center justify-center"
+        aria-label="Open Chat Assistant"
+      >
+        <MessageCircle className="h-6 w-6" />
+      </button>
+
+      {/* Chat Popup (anchored above the button) */}
+      {isChatOpen && (
+        <div className="fixed z-50 bottom-24 right-6 w-[90%] max-w-md">
+          <div className="bg-white rounded-lg shadow-xl border">
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b">
+              <div>
+                <h3 className="text-sm font-medium text-gray-700">Chat Assistant</h3>
+                {chatType === 'step' && (
+                  <p className="text-xs text-gray-500">Chat about {activeStep} content</p>
+                )}
+              </div>
+              <div className="flex items-center space-x-2">
+                <select
+                  value={chatType}
+                  onChange={(e) => setChatType(e.target.value)}
+                  className="text-sm border rounded px-2 py-1 text-gray-700"
                 >
-                  General
-                </button>
+                  <option value="general">General</option>
+                  <option value="step">Step-specific</option>
+                </select>
                 <button
-                  onClick={() => setChatType('step')}
-                  className={`px-3 py-1 rounded-md text-sm ${
-                    chatType === 'step'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
+                  className="p-1 rounded hover:bg-gray-100"
+                  onClick={() => setIsChatOpen(false)}
+                  aria-label="Close"
                 >
-                  Step-specific
+                  <X className="h-4 w-4 text-gray-600" />
                 </button>
               </div>
-              {chatType === 'step' && (
-                <p className="text-xs text-gray-500 mt-1">
-                  Chat about {activeStep} content
-                </p>
-              )}
             </div>
 
             {/* Chat History */}
-            <div className="h-64 overflow-y-auto mb-4 border rounded-lg p-3 bg-gray-50">
+            <div className="h-72 overflow-y-auto px-4 py-3 bg-gray-50">
               {chatHistory.length === 0 ? (
                 <p className="text-gray-500 text-sm">Start a conversation...</p>
               ) : (
                 chatHistory.map((message) => (
                   <div
                     key={message.id}
-                    className={`mb-3 ${
-                      message.type === 'user' ? 'text-right' : 'text-left'
-                    }`}
+                    className={`mb-3 ${message.type === 'user' ? 'text-right' : 'text-left'}`}
                   >
                     <div
-                      className={`inline-block max-w-xs p-2 rounded-lg text-sm ${
+                      className={`inline-block max-w-[80%] p-2 rounded-lg text-sm ${
                         message.type === 'user'
                           ? 'bg-blue-600 text-white'
                           : 'bg-white border text-gray-900'
@@ -473,7 +478,7 @@ const MarkdownAnalyzer = () => {
             </div>
 
             {/* Chat Input */}
-            <div className="flex space-x-2">
+            <div className="px-4 py-3 border-t flex items-center space-x-2">
               <input
                 type="text"
                 value={chatMessage}
