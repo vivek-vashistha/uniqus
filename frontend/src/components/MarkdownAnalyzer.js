@@ -419,9 +419,15 @@ const MarkdownAnalyzer = () => {
         <MessageCircle className="h-6 w-6" />
       </button>
 
-      {/* Chat Popup (anchored above the button) */}
-      {isChatOpen && (
-        <div className="fixed z-50 bottom-24 right-6 w-[90%] max-w-md">
+      {/* Chat Popup (anchored above the button) with smooth open/close animation */}
+      <div
+        className={`fixed z-50 bottom-24 right-6 w-[90%] max-w-md transform origin-bottom-right transition-all duration-700 ease-in-out will-change-transform will-change-opacity ${
+          isChatOpen
+            ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 scale-95 translate-y-2 pointer-events-none'
+        }`}
+        aria-hidden={!isChatOpen}
+      >
           <div className="bg-white rounded-lg shadow-xl border">
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b">
@@ -451,7 +457,7 @@ const MarkdownAnalyzer = () => {
             </div>
 
             {/* Chat History */}
-            <div className="h-72 overflow-y-auto px-4 py-3 bg-gray-50">
+            <div className="h-[26rem] overflow-y-auto px-4 py-3 bg-gray-50">
               {chatHistory.length === 0 ? (
                 <p className="text-gray-500 text-sm">Start a conversation...</p>
               ) : (
@@ -501,8 +507,7 @@ const MarkdownAnalyzer = () => {
               </button>
             </div>
           </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

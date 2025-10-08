@@ -3,7 +3,7 @@ FastAPI Backend for Contract→606 Intelligence & Autofill
 Implements the POC plan for ASC-606 compliance automation
 """
 
-from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
+from fastapi import FastAPI, File, UploadFile, HTTPException, Depends, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, FileResponse, StreamingResponse
 from pydantic import BaseModel
@@ -1043,7 +1043,7 @@ async def update_step_content(
 @app.post("/projects/{project_id}/chat")
 async def chat_with_project(
     project_id: str,
-    message: str
+    message: str = Body(..., embed=True)
 ):
     """Chat with the project's vector store"""
     try:
@@ -1064,7 +1064,7 @@ async def chat_with_project(
 async def chat_with_step(
     project_id: str,
     step: str,
-    message: str,
+    message: str = Body(..., embed=True),
     output_dir: Optional[str] = None
 ):
     """Chat about a specific step's content"""
