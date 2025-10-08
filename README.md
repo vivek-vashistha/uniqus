@@ -1,21 +1,77 @@
-# OpenAI Vector Store CLI Tool
+# Contract→606 Intelligence & Autofill
 
-A comprehensive command-line interface for managing OpenAI vector stores and performing QnA operations on document collections. This tool is specifically designed for contract review and ASC 606 compliance analysis.
+A comprehensive full-stack application for ASC-606 compliance automation with AI-powered contract analysis. Features both a modern web interface and command-line tools for document processing, clause analysis, and evidence generation.
 
 ## Features
 
-- **Document Upload**: Upload documents to OpenAI vector stores with support for multiple file formats
-- **QnA Operations**: Ask questions about uploaded documents with structured responses
+### 🎯 Core Capabilities
+- **AI-Powered Analysis**: GPT-4 powered contract analysis with ASC-606 compliance focus
+- **Document Processing**: Upload and process PDF, Word, Excel, and other document formats
+- **Clause Detection**: Automatic identification of contract clauses and terms
+- **Evidence Generation**: Create auditable evidence binders with highlighted clauses
+- **Human-in-the-Loop**: Expert review and override capabilities
+- **Export Ready**: Generate CSV, JSON, and PDF outputs for portal integration
+
+### 🌐 Web Interface
+- **Modern React Frontend**: Intuitive drag-and-drop document upload
+- **Real-time Analysis**: Live ASC-606 question analysis with confidence scoring
+- **Review Console**: Side-by-side clause review and override interface
+- **Analytics Dashboard**: Track processing metrics and success rates
+- **Evidence Binder**: Generated evidence with highlighted clauses and citations
+
+### 🖥️ Command Line Interface
+- **Document Upload**: Upload documents to OpenAI vector stores
+- **QnA Operations**: Ask questions about uploaded documents
 - **Vector Store Management**: Create, list, and clear vector stores
-- **Logging**: Comprehensive logging of all operations
-- **Flexible Configuration**: Environment-based configuration with fallback options
+- **Batch Processing**: Process multiple documents efficiently
+
+## Architecture
+
+### 🏗️ System Overview
+
+The application consists of three main components:
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   React Frontend│    │  FastAPI Backend│    │  OpenAI Vector  │
+│   (Port 3000)   │◄──►│   (Port 8000)   │◄──►│     Store       │
+│                 │    │                 │    │                 │
+│ • Document Upload│    │ • Document Proc.│    │ • Document Index│
+│ • Review Console│    │ • Clause Engine │    │ • Semantic Search│
+│ • Analytics     │    │ • LLM Analysis  │    │ • File Search   │
+│ • Evidence Binder│   │ • API Endpoints │    │                 │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+```
+
+### 🔧 Backend (FastAPI)
+- **Document Processing**: PDF/Word ingestion with OCR and section detection
+- **Clause Engine**: ASC-606 focused clause taxonomy and detection
+- **Analysis Engine**: AI-powered question answering with confidence scoring
+- **Review Interface**: Human-in-the-loop validation and override
+- **Export System**: Evidence binder generation and portal-ready exports
+- **Vector Store Integration**: OpenAI vector store management and querying
+
+### 🎨 Frontend (React)
+- **Document Upload**: Drag-and-drop interface for contract documents
+- **Review Console**: Side-by-side clause review and override interface
+- **Evidence Binder**: Generated evidence with highlighted clauses
+- **Analytics Dashboard**: Processing metrics and success criteria tracking
+- **Template Manager**: ASC-606 question template management
+- **Session Manager**: Project and session management
+
+### 🤖 AI Integration
+- **OpenAI GPT-4**: Advanced language model for contract analysis
+- **Vector Store**: Semantic search and document retrieval
+- **File Search**: Context-aware document analysis
+- **Confidence Scoring**: Reliability indicators for each analysis
 
 ## Installation
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- OpenAI API key with access to GPT-4 and vector store features
+- **Python 3.8+** for backend services
+- **Node.js 16+** for frontend development
+- **OpenAI API key** with access to GPT-4 and vector store features
 
 ### Quick Setup
 
@@ -37,17 +93,31 @@ python setup.py
    cd uniqus
    ```
 
-2. **Install dependencies**
+2. **Backend Setup**
    ```bash
+   # Create virtual environment
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   
+   # Install Python dependencies
    pip install -r requirements.txt
    ```
 
-3. **Create environment file**
+3. **Frontend Setup**
    ```bash
+   # Install Node.js dependencies
+   cd frontend
+   npm install
+   cd ..
+   ```
+
+4. **Environment Configuration**
+   ```bash
+   # Create environment file
    cp env.example .env
    ```
 
-4. **Configure environment variables**
+5. **Configure environment variables**
    Edit `.env` file with your OpenAI API key:
    ```env
    DIRECT_OPENAI_API_KEY=your_openai_api_key_here
@@ -56,6 +126,24 @@ python setup.py
    ```
 
 ## Quick Start
+
+### 🌐 Web Interface (Recommended)
+
+1. **Start the Backend Server**
+   ```bash
+   ./start_backend.sh
+   ```
+   The backend will be available at `http://localhost:8000`
+
+2. **Start the Frontend Development Server**
+   ```bash
+   ./start_frontend.sh
+   ```
+   The frontend will be available at `http://localhost:3000`
+
+3. **Open your browser** and navigate to `http://localhost:3000`
+
+### 🖥️ Command Line Interface
 
 After setup, you can test the CLI with the demo script:
 
@@ -66,6 +154,20 @@ python demo.py
 This will show you all available commands and their help information.
 
 ## Usage
+
+The application provides two interfaces: a modern web interface and a command-line interface.
+
+### 🌐 Web Interface Usage
+
+The web interface provides an intuitive way to manage contracts and ASC-606 compliance:
+
+1. **Document Upload**: Drag and drop contract documents onto the upload area
+2. **Automatic Analysis**: The system automatically analyzes documents for ASC-606 compliance
+3. **Review Console**: Review AI-generated answers and provide expert overrides
+4. **Evidence Binder**: Generate auditable evidence with highlighted clauses
+5. **Analytics Dashboard**: Track processing metrics and success rates
+
+### 🖥️ Command Line Interface
 
 The CLI tool provides four main commands: `upload`, `qna`, `clear`, and `list`.
 
@@ -166,24 +268,135 @@ All operations are logged to `upload_log.txt` with timestamps and details:
 
 ```
 uniqus/
-├── cli.py                    # Main CLI application
-├── requirements.txt          # Python dependencies
-├── README.md                 # This file
-├── .env                      # Environment configuration
-├── upload_log.txt           # Operation logs
+├── backend/                  # FastAPI Backend
+│   ├── main.py              # Main FastAPI application
+│   ├── services/            # Backend services
+│   │   ├── cache_manager.py # Cache management
+│   │   ├── clause_engine.py # Clause detection engine
+│   │   ├── document_processor.py # Document processing
+│   │   └── markdown_analyzer.py # Markdown analysis
+│   ├── cache/               # Cache storage
+│   ├── output/              # Generated outputs
+│   └── uploads/             # Uploaded documents
+├── frontend/                 # React Frontend
+│   ├── src/
+│   │   ├── components/      # React components
+│   │   │   ├── DocumentUpload.js
+│   │   │   ├── DocumentReview.js
+│   │   │   ├── EvidenceBinder.js
+│   │   │   ├── Analytics.js
+│   │   │   ├── SessionManager.js
+│   │   │   ├── MarkdownAnalyzer.js
+│   │   │   └── TemplateManager.js
+│   │   ├── App.js           # Main React app
+│   │   └── index.js         # React entry point
+│   ├── public/              # Static assets
+│   └── package.json         # Node.js dependencies
 ├── data/                     # Sample documents
-│   ├── Contract 1/
-│   │   ├── Contract 1 file 2 2.pdf
-│   │   └── Contract 1 file 3 2.pdf
-│   └── revenue-from-contracts-with-customers-updated-220124.pdf
-└── tools/                    # Legacy tools (deprecated)
-    ├── clear_vector_store.py
-    └── upload_file_to_vector_store.py
+│   ├── Contracts/           # Contract samples
+│   └── ASC-606-Doc/         # ASC-606 documentation
+├── questionset/             # ASC-606 question templates
+├── tools/                    # Legacy tools (deprecated)
+├── cli.py                    # Command-line interface
+├── requirements.txt          # Python dependencies
+├── start_backend.sh          # Backend startup script
+├── start_frontend.sh         # Frontend startup script
+└── README.md                 # This file
+```
+
+## API Documentation
+
+The backend provides a comprehensive REST API for document processing and ASC-606 analysis. The API documentation is automatically generated and available at `http://localhost:8000/docs` when the backend is running.
+
+### 🔗 Key Endpoints
+
+#### Document Management
+- `POST /upload` - Upload documents for analysis
+- `GET /documents` - List all documents
+- `GET /documents/{document_id}` - Get document details
+- `POST /documents/{document_id}/review` - Submit reviewer overrides
+- `POST /documents/{document_id}/reanalyze` - Re-analyze specific questions
+
+#### Project Management
+- `GET /projects` - List all projects
+- `GET /projects/{project_id}` - Get project details
+- `POST /projects/{project_id}/add-file` - Add file to project
+- `POST /projects/{project_id}/ingest` - Ingest project files
+- `POST /projects/{project_id}/analyze` - Analyze project
+
+#### Analysis & Chat
+- `GET /projects/{project_id}/analyze/stream` - Stream analysis results
+- `GET /projects/{project_id}/chat/stream` - Stream chat responses
+- `POST /projects/{project_id}/chat` - Send chat message
+- `GET /projects/{project_id}/steps` - Get analysis steps
+
+#### Evidence & Export
+- `POST /documents/{document_id}/evidence-binder` - Generate evidence binder
+- `GET /evidence-binders/{binder_id}` - Get evidence binder
+- `GET /download/{binder_id}/{format}` - Download evidence in various formats
+
+#### Templates & Configuration
+- `GET /templates` - List all templates
+- `GET /templates/{step}` - Get specific template
+- `PUT /templates/{step}` - Update template
+- `POST /templates/{step}/reset` - Reset template to default
+
+#### System
+- `GET /health` - Health check
+- `GET /analytics` - System analytics
+- `GET /cache/stats` - Cache statistics
+- `POST /cache/cleanup` - Clean up cache
+
+### 📊 Response Formats
+
+All API responses follow a consistent format:
+
+```json
+{
+  "success": true,
+  "data": { ... },
+  "message": "Operation completed successfully"
+}
+```
+
+Error responses:
+```json
+{
+  "success": false,
+  "error": "Error message",
+  "details": { ... }
+}
 ```
 
 ## Examples
 
-### Complete Workflow
+### 🌐 Web Interface Workflow
+
+1. **Start the application:**
+   ```bash
+   # Terminal 1: Start backend
+   ./start_backend.sh
+   
+   # Terminal 2: Start frontend
+   ./start_frontend.sh
+   ```
+
+2. **Upload documents:**
+   - Open `http://localhost:3000` in your browser
+   - Drag and drop contract documents onto the upload area
+   - Documents are automatically processed and analyzed
+
+3. **Review analysis:**
+   - Navigate to the Review Console
+   - Review AI-generated ASC-606 answers
+   - Provide expert overrides where needed
+
+4. **Generate evidence:**
+   - Click "Generate Evidence Binder"
+   - Download PDF, CSV, or JSON formats
+   - Share with stakeholders
+
+### 🖥️ CLI Workflow
 
 1. **Upload documents:**
    ```bash
@@ -230,25 +443,55 @@ python cli.py qna "Goods or services promised in the contracts (or some goods or
 
 ### Common Issues
 
+#### Backend Issues
+
 1. **API Key Missing**
    ```
    ❌ DIRECT_OPENAI_API_KEY is missing in .env
    ```
    **Solution:** Add your OpenAI API key to the `.env` file.
 
-2. **Vector Store ID Missing**
+2. **Backend Won't Start**
+   ```
+   ❌ ModuleNotFoundError: No module named 'fastapi'
+   ```
+   **Solution:** Install dependencies: `pip install -r requirements.txt`
+
+3. **Port Already in Use**
+   ```
+   ❌ Address already in use: 8000
+   ```
+   **Solution:** Kill existing process or use different port: `uvicorn backend.main:app --port 8001`
+
+#### Frontend Issues
+
+4. **Frontend Won't Start**
+   ```
+   ❌ Module not found: Can't resolve 'react'
+   ```
+   **Solution:** Install dependencies: `cd frontend && npm install`
+
+5. **Port Already in Use**
+   ```
+   ❌ Port 3000 is already in use
+   ```
+   **Solution:** Kill existing process or use different port: `PORT=3001 npm start`
+
+#### CLI Issues
+
+6. **Vector Store ID Missing**
    ```
    ❌ VECTOR_STORE_ID missing in .env
    ```
    **Solution:** Either set VECTOR_STORE_ID in `.env` or use `--vector-store-id` flag.
 
-3. **No Files Found**
+7. **No Files Found**
    ```
    ⚠️ No files found in 'folder' with extensions {'.pdf', '.txt', '.md', '.docx', '.csv', '.pptx'}
    ```
    **Solution:** Ensure your folder contains supported file types.
 
-4. **Upload Failures**
+8. **Upload Failures**
    ```
    ❌ Failed for file.pdf: [error message]
    ```
@@ -256,6 +499,12 @@ python cli.py qna "Goods or services promised in the contracts (or some goods or
 
 ### Getting Help
 
+#### Web Interface
+- **API Documentation**: Visit `http://localhost:8000/docs` for interactive API documentation
+- **Health Check**: Visit `http://localhost:8000/health` to verify backend status
+- **Analytics**: Visit `http://localhost:8000/analytics` for system metrics
+
+#### Command Line Interface
 Run the CLI with `--help` for detailed usage information:
 
 ```bash
@@ -264,6 +513,16 @@ python cli.py upload --help
 python cli.py qna --help
 python cli.py clear --help
 python cli.py list --help
+```
+
+#### Debug Mode
+```bash
+# Enable debug logging for backend
+export LOG_LEVEL=DEBUG
+./start_backend.sh
+
+# Enable debug logging for frontend
+REACT_APP_DEBUG=true npm start
 ```
 
 ## License
