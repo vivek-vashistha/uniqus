@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // eslint-disable-next-line
-import { FileText, BarChart3, Upload, FolderOpen, BookOpen } from 'lucide-react';
+import { FileText, BarChart3, Upload, FolderOpen, BookOpen, Settings } from 'lucide-react';
 
 const Header = () => {
   const location = useLocation();
@@ -10,6 +10,7 @@ const Header = () => {
     { path: '/', label: 'Upload Documents', icon: Upload },
     // { path: '/projects', label: 'Projects', icon: FolderOpen },
     { path: '/markdown-analyzer', label: 'ASC 606 Form Filing', icon: BookOpen },
+    { path: '/templates', label: 'Template Manager', icon: Settings },
     // { path: '/analytics', label: 'Analytics', icon: BarChart3 },
   ];
 

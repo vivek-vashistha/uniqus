@@ -1086,6 +1086,146 @@ async def chat_with_step(
         logger.error(f"Error in step chat: {e}")
         raise HTTPException(status_code=500, detail=f"Step chat failed: {str(e)}")
 
+# ------------------------
+# Template Management Endpoints
+# ------------------------
+
+@app.get("/templates")
+async def get_all_templates():
+    """Get all available ASC 606 templates"""
+    try:
+        templates = {}
+        template_dir = os.path.join(os.path.dirname(__file__), "..", "questionset")
+        
+        for step_num in range(1, 6):
+            step_name = f"step{step_num}"
+            template_file = os.path.join(template_dir, f"{step_name}.md")
+            
+            if os.path.exists(template_file):
+                with open(template_file, "r", encoding="utf-8") as f:
+                    content = f.read()
+                
+                templates[step_name] = {
+                    "step": step_name,
+                    "title": f"Step {step_num}: {_get_step_title(step_num)}",
+                    "content": content,
+                    "length": len(content),
+                    "last_modified": os.path.getmtime(template_file)
+                }
+            else:
+                templates[step_name] = {
+                    "step": step_name,
+                    "title": f"Step {step_num}: {_get_step_title(step_num)}",
+                    "content": None,
+                    "length": 0,
+                    "last_modified": None,
+                    "error": "Template file not found"
+                }
+        
+        return {
+            "templates": templates,
+            "total_templates": len(templates)
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting templates: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get templates: {str(e)}")
+
+@app.get("/templates/{step}")
+async def get_template(step: str):
+    """Get a specific template by step name (step1, step2, etc.)"""
+    try:
+        template_dir = os.path.join(os.path.dirname(__file__), "..", "questionset")
+        template_file = os.path.join(template_dir, f"{step}.md")
+        
+        if not os.path.exists(template_file):
+            raise HTTPException(status_code=404, detail=f"Template {step} not found")
+        
+        with open(template_file, "r", encoding="utf-8") as f:
+            content = f.read()
+        
+        step_num = int(step.replace("step", ""))
+        
+        return {
+            "step": step,
+            "title": f"Step {step_num}: {_get_step_title(step_num)}",
+            "content": content,
+            "length": len(content),
+            "last_modified": os.path.getmtime(template_file)
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting template {step}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get template: {str(e)}")
+
+@app.put("/templates/{step}")
+async def update_template(
+    step: str,
+    content: str = Body(..., embed=True)
+):
+    """Update a specific template"""
+    try:
+        template_dir = os.path.join(os.path.dirname(__file__), "..", "questionset")
+        template_file = os.path.join(template_dir, f"{step}.md")
+        
+        # Create backup of original file
+        backup_file = f"{template_file}.backup"
+        if os.path.exists(template_file):
+            import shutil
+            shutil.copy2(template_file, backup_file)
+        
+        # Write new content
+        with open(template_file, "w", encoding="utf-8") as f:
+            f.write(content)
+        
+        return {
+            "status": "updated",
+            "step": step,
+            "message": f"Template {step} updated successfully",
+            "backup_created": os.path.exists(backup_file),
+            "backup_file": backup_file if os.path.exists(backup_file) else None
+        }
+        
+    except Exception as e:
+        logger.error(f"Error updating template {step}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to update template: {str(e)}")
+
+@app.post("/templates/{step}/reset")
+async def reset_template(step: str):
+    """Reset template to original version from backup"""
+    try:
+        template_dir = os.path.join(os.path.dirname(__file__), "..", "questionset")
+        template_file = os.path.join(template_dir, f"{step}.md")
+        backup_file = f"{template_file}.backup"
+        
+        if not os.path.exists(backup_file):
+            raise HTTPException(status_code=404, detail="No backup found for this template")
+        
+        # Restore from backup
+        import shutil
+        shutil.copy2(backup_file, template_file)
+        
+        return {
+            "status": "reset",
+            "step": step,
+            "message": f"Template {step} reset to original version"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error resetting template {step}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to reset template: {str(e)}")
+
+def _get_step_title(step_num: int) -> str:
+    """Get the title for a step number"""
+    titles = {
+        1: "Identifying contract with the customer",
+        2: "Identifying the performance obligation in a contract", 
+        3: "Determining transaction price",
+        4: "Allocate the transaction price to the performance obligations",
+        5: "Recognize revenue when (or as) each performance obligation is satisfied"
+    }
+    return titles.get(step_num, f"Step {step_num}")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
