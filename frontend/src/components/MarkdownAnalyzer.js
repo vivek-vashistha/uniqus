@@ -279,29 +279,6 @@ const MarkdownAnalyzer = () => {
           </select>
         </div>
 
-        {/* File Upload */}
-        {selectedProject && (
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Upload Contract Files
-            </label>
-            <input
-              type="file"
-              multiple
-              accept=".pdf,.docx,.doc,.txt"
-              onChange={(e) => handleFileUpload(e.target.files)}
-              disabled={uploading}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            {uploading && (
-              <div className="flex items-center mt-2 text-blue-600">
-                <Loader className="h-4 w-4 animate-spin mr-2" />
-                <span>Uploading files...</span>
-              </div>
-            )}
-          </div>
-        )}
-
         {/* Analysis Button */}
         {selectedProject && (
           <button
