@@ -119,17 +119,29 @@ def load_markdown_template(step: str) -> str:
     raise FileNotFoundError(f"Template not found in any of: {possible_paths}")
 
 def build_context_for_step(step: int, output_dir: str) -> str:
-    """Build context by including previous step outputs"""
+    """Build context by including previous step outputs
+
+    Picks the latest file for each previous step using the pattern
+    "step{n}_filled*.md" to accommodate timestamped and contract-tagged names.
+    """
     context_parts = []
-    
+
+    base_dir = Path(output_dir)
+
     for i in range(1, step):
-        step_output_path = os.path.join(output_dir, f"step{i}_filled.md")
-        if os.path.exists(step_output_path):
-            with open(step_output_path, "r", encoding="utf-8") as f:
+        # Find the most recent file matching step{i}_filled*.md
+        candidates = list(base_dir.glob(f"step{i}_filled*.md"))
+        if not candidates:
+            continue
+        latest = max(candidates, key=lambda p: p.stat().st_mtime)
+        try:
+            with open(latest, "r", encoding="utf-8") as f:
                 content = f.read().strip()
-                if content:  # Only include non-empty results
+                if content:
                     context_parts.append(f"## Step {i} Results:\n{content}")
-    
+        except Exception:
+            continue
+
     return "\n\n".join(context_parts)
 
 def ask_rag_with_template(client: "OpenAI", model: str, vector_store_id: str, 
@@ -243,17 +255,21 @@ def run_analyze(args):
             if not filled_content or len(filled_content.strip()) < 100:
                 print(f"   ⚠️  Warning: Response seems too short ({len(filled_content)} chars)")
             
-            # Save filled content
-            output_file = output_dir / f"{step_name}_filled.md"
+            # Save filled content with contract_id and timestamp
+            ts = time.strftime("%Y%m%d_%H%M%S")
+            filename = f"{step_name}_filled_{args.contract_id}_{ts}.md"
+            output_file = output_dir / filename
             with open(output_file, "w", encoding="utf-8") as f:
                 f.write(filled_content)
-            
+
             print(f"   ✅ Saved {output_file} ({len(filled_content)} characters)")
             
         except Exception as e:
             print(f"   ❌ Error processing {step_name}: {str(e)}")
-            # Create empty file to maintain sequence
-            output_file = output_dir / f"{step_name}_filled.md"
+            # Create error file (also timestamped)
+            ts = time.strftime("%Y%m%d_%H%M%S")
+            filename = f"{step_name}_filled_{args.contract_id}_{ts}.md"
+            output_file = output_dir / filename
             with open(output_file, "w", encoding="utf-8") as f:
                 f.write(f"# Error in {step_name}\n\nError: {str(e)}")
             continue
@@ -262,14 +278,18 @@ def run_analyze(args):
         time.sleep(2)
     
     print(f"\n🎉 Analysis complete! Output saved to: {output_dir}")
-    print("\n📋 Generated files:")
+    print("\n📋 Latest files per step:")
     for step_num in range(1, 6):
-        step_file = output_dir / f"step{step_num}_filled.md"
-        if step_file.exists():
-            size = step_file.stat().st_size
-            print(f"  ✅ step{step_num}_filled.md ({size} bytes)")
-        else:
-            print(f"  ❌ step{step_num}_filled.md (missing)")
+        candidates = list(output_dir.glob(f"step{step_num}_filled*.md"))
+        if not candidates:
+            print(f"  ❌ step{step_num}_filled*.md (missing)")
+            continue
+        latest = max(candidates, key=lambda p: p.stat().st_mtime)
+        try:
+            size = latest.stat().st_size
+        except Exception:
+            size = 0
+        print(f"  ✅ {latest.name} ({size} bytes)")
 
 # ------------------------
 # CLI
@@ -285,7 +305,9 @@ def main():
 
     ap_analyze = sub.add_parser("analyze", help="Run Step 1..5 analysis using markdown templates")
     ap_analyze.add_argument("--contract_id", required=True, help="Contract ID used during ingest")
-    ap_analyze.add_argument("--output_dir", default="./output", help="Directory to save filled markdown files")
+    # Default to repo-root /data/output regardless of current working directory
+    default_output_dir = str((Path(__file__).resolve().parent.parent / "data" / "output").resolve())
+    ap_analyze.add_argument("--output_dir", default=default_output_dir, help="Directory to save filled markdown files (default: repo-root/data/output)")
     ap_analyze.add_argument("--model", default="gpt-5", help="OpenAI model for Responses API")
     ap_analyze.set_defaults(func=run_analyze)
 
