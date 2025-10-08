@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+// eslint-disable-next-line
 import { FileText, BarChart3, Upload, FolderOpen, BookOpen } from 'lucide-react';
 
 const Header = () => {
@@ -7,9 +8,9 @@ const Header = () => {
   
   const navItems = [
     { path: '/', label: 'Upload Documents', icon: Upload },
-    { path: '/projects', label: 'Projects', icon: FolderOpen },
-    { path: '/markdown-analyzer', label: 'Markdown Analyzer', icon: BookOpen },
-    { path: '/analytics', label: 'Analytics', icon: BarChart3 },
+    // { path: '/projects', label: 'Projects', icon: FolderOpen },
+    { path: '/markdown-analyzer', label: 'ASC 606 Form Filing', icon: BookOpen },
+    // { path: '/analytics', label: 'Analytics', icon: BarChart3 },
   ];
 
   return (

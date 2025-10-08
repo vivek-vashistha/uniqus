@@ -11,14 +11,17 @@ import {
   Loader
 } from 'lucide-react';
 import axios from 'axios';
-import { marked } from 'marked';
+// import { marked } from 'marked';
+import ReactMarkdown from 'react-markdown';
 
 // Configure marked for GitHub Flavored Markdown
-marked.setOptions({
-  gfm: true,
-  breaks: true,
-  tables: true
-});
+// marked.setOptions({
+//   gfm: true,
+//   breaks: true,
+//   tables: true
+// });
+// Note: For GFM (tables, task lists), consider installing `remark-gfm`
+// and passing it to ReactMarkdown. Keeping it minimal to avoid extra deps.
 
 const MarkdownAnalyzer = () => {
   const [projects, setProjects] = useState([]);
@@ -265,7 +268,7 @@ const MarkdownAnalyzer = () => {
             ) : (
               <Play className="h-4 w-4" />
             )}
-            <span>{analyzing ? 'Analyzing...' : 'Run Analysis'}</span>
+            <span>{analyzing ? 'Filling...' : 'Fill ASC 606 Form'}</span>
           </button>
         )}
       </div>
@@ -343,12 +346,16 @@ const MarkdownAnalyzer = () => {
                         placeholder="Enter markdown content..."
                       />
                     ) : (
-                      <div 
-                        className="prose max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700"
-                        dangerouslySetInnerHTML={{
-                          __html: marked(stepContent[activeStep] || 'No content available')
-                        }}
-                      />
+                      // <div 
+                      //   className="prose max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 
+                      //   prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700"
+                      //   dangerouslySetInnerHTML={{
+                      //     __html: marked(stepContent[activeStep] || 'No content available')
+                      //   }}
+                      // />
+                        <ReactMarkdown className="prose max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700">
+                        {stepContent[activeStep] || 'No content available'}
+                      </ReactMarkdown>
                     )}
                   </div>
                 ) : (
