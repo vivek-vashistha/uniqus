@@ -232,6 +232,8 @@ Please replace all placeholders (marked with curly braces {{}}) with actual answ
     def get_step_content(self, project_id: str, step: str, output_dir: str) -> Optional[str]:
         """Get content of a specific step"""
         step_file = Path(output_dir) / f"{step}_filled.md"
+        logger.info(f"Looking for step file: {step_file}")
+        logger.info(f"File exists: {step_file.exists()}")
         if step_file.exists():
             with open(step_file, "r", encoding="utf-8") as f:
                 return f.read()

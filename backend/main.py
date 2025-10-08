@@ -15,8 +15,8 @@ from datetime import datetime
 import logging
 from dotenv import load_dotenv
 from openai import OpenAI
-from backend.services.cache_manager import CacheManager
-from backend.services.markdown_analyzer import MarkdownAnalyzer
+from services.cache_manager import CacheManager
+from services.markdown_analyzer import MarkdownAnalyzer
 
 # Load environment variables
 load_dotenv()
@@ -52,13 +52,17 @@ def initialize_existing_projects():
                 # Check if project already exists in cache
                 existing_project = cache_manager.get_project_by_id(project_id)
                 if not existing_project:
-                    # Create project entry in cache
+                    # Create project entry in cache with original project_id
                     project_name = project_id.replace("_", " ").title()
+                    # Create project using the cache manager's method
                     project = cache_manager.get_or_create_project(
                         project_name, 
                         [], 
                         vector_store_id
                     )
+                    # Update the project ID to match the original
+                    project.project_id = project_id
+                    cache_manager._save_cache()
                     logger.info(f"Initialized existing project: {project_name} ({project_id})")
                         
     except Exception as e:
@@ -869,7 +873,7 @@ async def get_project_steps(project_id: str, output_dir: Optional[str] = None):
     """Get all analysis steps for a project"""
     try:
         if not output_dir:
-            output_dir = f"output/{project_id}"
+            output_dir = f"../output/{project_id}"
         
         steps = {}
         for step_num in range(1, 6):
@@ -907,7 +911,7 @@ async def get_step_content(
     """Get content of a specific step"""
     try:
         if not output_dir:
-            output_dir = f"output/{project_id}"
+            output_dir = f"../output/{project_id}"
         
         content = markdown_analyzer.get_step_content(project_id, step, output_dir)
         if not content:
@@ -934,7 +938,7 @@ async def update_step_content(
     """Update content of a specific step"""
     try:
         if not output_dir:
-            output_dir = f"output/{project_id}"
+            output_dir = f"../output/{project_id}"
         
         success = markdown_analyzer.update_step_content(project_id, step, content, output_dir)
         if not success:
@@ -981,7 +985,7 @@ async def chat_with_step(
     """Chat about a specific step's content"""
     try:
         if not output_dir:
-            output_dir = f"output/{project_id}"
+            output_dir = f"../output/{project_id}"
         
         response = markdown_analyzer.chat_with_step(project_id, step, message, output_dir)
         
