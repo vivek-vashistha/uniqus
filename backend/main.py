@@ -5,10 +5,11 @@ Implements the POC plan for ASC-606 compliance automation
 
 from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, FileResponse
+from fastapi.responses import JSONResponse, FileResponse, StreamingResponse
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any, Literal
 import os
+import time
 import json
 import uuid
 from datetime import datetime
@@ -76,6 +77,9 @@ app = FastAPI(
     description="ASC-606 compliance automation with human-in-the-loop review",
     version="1.0.0"
 )
+
+# Base directory for analysis outputs (use backend/output to keep paths consistent)
+OUTPUT_BASE_DIR = os.path.join(os.path.dirname(__file__), "output")
 
 # CORS middleware for frontend integration
 app.add_middleware(
@@ -851,7 +855,7 @@ async def run_markdown_analysis(
     """Run ASC 606 analysis using markdown templates"""
     try:
         if not output_dir:
-            output_dir = f"output/{project_id}"
+            output_dir = os.path.join(OUTPUT_BASE_DIR, project_id)
         
         # Run the analysis
         results = markdown_analyzer.run_analysis(project_id, output_dir)
@@ -868,12 +872,93 @@ async def run_markdown_analysis(
         logger.error(f"Error running analysis: {e}")
         raise HTTPException(status_code=500, detail=f"Analysis failed: {str(e)}")
 
+def _sse_event(event: str, data: str) -> bytes:
+    """Format a Server-Sent Event (SSE) message."""
+    # Ensure data is single-line chunks per SSE spec
+    lines = data.splitlines() or [""]
+    payload = [f"event: {event}"] + [f"data: {line}" for line in lines]
+    return ("\n".join(payload) + "\n\n").encode("utf-8")
+
+@app.get("/projects/{project_id}/analyze/stream")
+def run_markdown_analysis_stream(project_id: str, output_dir: Optional[str] = None):
+    """Stream ASC 606 analysis progress using Server-Sent Events (SSE)."""
+    try:
+        if not output_dir:
+            output_dir = os.path.join(OUTPUT_BASE_DIR, project_id)
+
+        def event_generator():
+            try:
+                # Ensure vector store exists
+                vector_store_id = markdown_analyzer.ensure_vector_store(project_id)
+                logger.info(f"Initialized vector store: {vector_store_id}")
+                yield _sse_event("log", f"Initialized vector store: {vector_store_id}")
+
+                os.makedirs(output_dir, exist_ok=True)
+                logger.info(f"Output directory: {output_dir}")
+                yield _sse_event("log", f"Output directory: {output_dir}")
+
+                # Process each step with progress logs
+                for step_num in range(1, 6):
+                    step_name = f"step{step_num}"
+                    logger.info(f"START {step_name}")
+                    yield _sse_event("step", f"START {step_name}")
+                    try:
+                        template = markdown_analyzer.load_markdown_template(step_name)
+                        logger.info(f"Loaded template for {step_name} ({len(template)} chars)")
+                        yield _sse_event("log", f"Loaded template for {step_name} ({len(template)} chars)")
+
+                        context = markdown_analyzer.build_context_for_step(step_num, output_dir)
+                        if context:
+                            logger.info(f"Context size for {step_name}: {len(context)} chars")
+                            yield _sse_event("log", f"Context size for {step_name}: {len(context)} chars")
+
+                        start_ts = time.time()
+                        filled_content = markdown_analyzer.ask_rag_with_template(
+                            vector_store_id, template, context, project_id
+                        )
+                        elapsed = time.time() - start_ts
+                        logger.info(f"Model call for {step_name} completed in {elapsed:.2f}s")
+                        yield _sse_event("log", f"Model call for {step_name} completed in {elapsed:.2f}s")
+
+                        output_file = os.path.join(output_dir, f"{step_name}_filled.md")
+                        with open(output_file, "w", encoding="utf-8") as f:
+                            f.write(filled_content)
+                        logger.info(f"Saved {output_file} ({len(filled_content)} chars)")
+                        yield _sse_event("log", f"Saved {output_file} ({len(filled_content)} chars)")
+                        logger.info(f"DONE {step_name}")
+                        yield _sse_event("step", f"DONE {step_name}")
+                    except Exception as step_err:
+                        # Write an error file to keep sequence consistent
+                        output_file = os.path.join(output_dir, f"{step_name}_filled.md")
+                        try:
+                            with open(output_file, "w", encoding="utf-8") as f:
+                                f.write(f"# Error in {step_name}\n\nError: {str(step_err)}")
+                        except Exception:
+                            pass
+                        logger.error(f"{step_name} error: {str(step_err)}")
+                        yield _sse_event("error", f"{step_name}: {str(step_err)}")
+                        # Continue to next step
+
+                    # Gentle delay to avoid rate limiting
+                    time.sleep(2)
+
+                logger.info("Analysis completed")
+                yield _sse_event("done", "Analysis completed")
+            except Exception as e:
+                logger.error(f"Analysis failed: {str(e)}")
+                yield _sse_event("error", f"Analysis failed: {str(e)}")
+
+        return StreamingResponse(event_generator(), media_type="text/event-stream")
+    except Exception as e:
+        logger.error(f"Error starting analysis stream: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to start analysis stream: {str(e)}")
+
 @app.get("/projects/{project_id}/steps")
 async def get_project_steps(project_id: str, output_dir: Optional[str] = None):
     """Get all analysis steps for a project"""
     try:
         if not output_dir:
-            output_dir = f"../output/{project_id}"
+            output_dir = os.path.join(OUTPUT_BASE_DIR, project_id)
         
         steps = {}
         for step_num in range(1, 6):
@@ -911,7 +996,7 @@ async def get_step_content(
     """Get content of a specific step"""
     try:
         if not output_dir:
-            output_dir = f"../output/{project_id}"
+            output_dir = os.path.join(OUTPUT_BASE_DIR, project_id)
         
         content = markdown_analyzer.get_step_content(project_id, step, output_dir)
         if not content:
@@ -938,7 +1023,7 @@ async def update_step_content(
     """Update content of a specific step"""
     try:
         if not output_dir:
-            output_dir = f"../output/{project_id}"
+            output_dir = os.path.join(OUTPUT_BASE_DIR, project_id)
         
         success = markdown_analyzer.update_step_content(project_id, step, content, output_dir)
         if not success:
@@ -985,7 +1070,7 @@ async def chat_with_step(
     """Chat about a specific step's content"""
     try:
         if not output_dir:
-            output_dir = f"../output/{project_id}"
+            output_dir = os.path.join(OUTPUT_BASE_DIR, project_id)
         
         response = markdown_analyzer.chat_with_step(project_id, step, message, output_dir)
         

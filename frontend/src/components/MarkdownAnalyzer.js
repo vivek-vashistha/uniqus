@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { 
   Play, 
@@ -36,6 +36,9 @@ const MarkdownAnalyzer = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [chatType, setChatType] = useState('general'); // 'general' or 'step'
   const [chatLoading, setChatLoading] = useState(false);
+  const [analysisLogs, setAnalysisLogs] = useState([]);
+  const [stepStatuses, setStepStatuses] = useState({});
+  const eventSourceRef = useRef(null);
 
   const fetchProjects = async () => {
     try {
@@ -112,24 +115,67 @@ const MarkdownAnalyzer = () => {
     }
   };
 
-  const runAnalysis = async () => {
+  const runAnalysis = () => {
     if (!selectedProject) {
       toast.error('Please select a project first');
       return;
     }
 
-    setAnalyzing(true);
     try {
-      await axios.post(`http://localhost:8000/projects/${selectedProject}/analyze`);
-      toast.success('Analysis completed successfully');
-      fetchProjectSteps(); // Refresh steps
+      setAnalyzing(true);
+      setAnalysisLogs([]);
+      setStepStatuses({});
+      if (eventSourceRef.current) {
+        try { eventSourceRef.current.close(); } catch {}
+      }
+
+      const url = `http://localhost:8000/projects/${selectedProject}/analyze/stream`;
+      const es = new EventSource(url);
+      eventSourceRef.current = es;
+
+      es.addEventListener('log', (e) => {
+        setAnalysisLogs((prev) => [...prev, e.data]);
+      });
+
+      es.addEventListener('step', (e) => {
+        setAnalysisLogs((prev) => [...prev, e.data]);
+        const text = (e.data || '').toString();
+        if (text.startsWith('START ')) {
+          const step = text.replace('START ', '').trim();
+          setStepStatuses((prev) => ({ ...prev, [step]: 'running' }));
+        } else if (text.startsWith('DONE ')) {
+          const step = text.replace('DONE ', '').trim();
+          setStepStatuses((prev) => ({ ...prev, [step]: 'done' }));
+        }
+      });
+
+      es.addEventListener('error', (e) => {
+        setAnalysisLogs((prev) => [...prev, `ERROR ${e?.message || ''}`]);
+        setAnalyzing(false);
+        try { es.close(); } catch {}
+      });
+
+      es.addEventListener('done', () => {
+        setAnalysisLogs((prev) => [...prev, 'Analysis completed']);
+        setAnalyzing(false);
+        try { es.close(); } catch {}
+        fetchProjectSteps();
+        toast.success('Analysis completed successfully');
+      });
     } catch (error) {
       console.error('Analysis error:', error);
       toast.error('Failed to run analysis');
-    } finally {
       setAnalyzing(false);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (eventSourceRef.current) {
+        try { eventSourceRef.current.close(); } catch {}
+      }
+    };
+  }, []);
 
   const saveStepContent = async (step) => {
     try {
@@ -211,7 +257,7 @@ const MarkdownAnalyzer = () => {
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">
-          ASC 606 Markdown Analyzer
+          ASC 606 Form Filler
         </h1>
         
         {/* Project Selector */}
@@ -270,6 +316,19 @@ const MarkdownAnalyzer = () => {
             )}
             <span>{analyzing ? 'Filling...' : 'Fill ASC 606 Form'}</span>
           </button>
+        )}
+
+        {/* Live Analysis Logs */}
+        {selectedProject && analyzing && (
+          <div className="mt-4 border rounded-lg p-3 bg-gray-50 max-h-64 overflow-y-auto text-sm text-gray-700">
+            {analysisLogs.length === 0 ? (
+              <p>Starting analysis...</p>
+            ) : (
+              analysisLogs.map((line, idx) => (
+                <div key={idx}>{line}</div>
+              ))
+            )}
+          </div>
         )}
       </div>
 
