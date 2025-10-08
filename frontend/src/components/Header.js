@@ -18,7 +18,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-4">
-            <FileText className="h-8 w-8 text-blue-600" />
+            <img src="/uniqus_consultech_logo_.jpeg" alt="Uniqus" className="h-14 w-15 rounded" />
             <div>
               <h1 className="text-xl font-bold text-gray-900">Contract→606 Intelligence</h1>
               <p className="text-sm text-gray-500">ASC-606 Compliance Automation</p>

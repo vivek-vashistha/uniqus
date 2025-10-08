@@ -9,7 +9,9 @@ import {
   CheckCircle,
   AlertCircle,
   Loader,
-  X
+  X,
+  CornerDownLeft,
+  Send, ArrowUpRight, ArrowUpCircle, CornerRightUp, LucideSendHorizonal
 } from 'lucide-react';
 import axios from 'axios';
 // import { marked } from 'marked';
@@ -502,7 +504,8 @@ const MarkdownAnalyzer = () => {
                 {chatLoading ? (
                   <Loader className="h-4 w-4 animate-spin" />
                 ) : (
-                  <MessageCircle className="h-4 w-4" />
+                  // <CornerDownLeft className="h-4 w-4" />
+                  <LucideSendHorizonal className="h-4 w-4" />
                 )}
               </button>
             </div>
