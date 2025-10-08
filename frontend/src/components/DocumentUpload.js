@@ -5,6 +5,9 @@ import { toast } from 'react-toastify';
 import { Upload, FileText, CheckCircle, AlertCircle } from 'lucide-react';
 import axios from 'axios';
 
+// Get API base URL from environment variables
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
+
 const DocumentUpload = () => {
   const [uploading, setUploading] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -27,7 +30,7 @@ const DocumentUpload = () => {
       });
       
       await axios.post(
-        `http://localhost:8000/projects/${projectId}/ingest`,
+        `${API_BASE_URL}/projects/${projectId}/ingest`,
         formData,
         {
           headers: {

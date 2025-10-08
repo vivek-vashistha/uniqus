@@ -9,6 +9,9 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 
+// Get API base URL from environment variables
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
+
 const EvidenceBinder = () => {
   const { binderId } = useParams();
   const [binder, setBinder] = useState(null);
@@ -20,7 +23,7 @@ const EvidenceBinder = () => {
 
   const fetchBinder = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/evidence-binders/${binderId}`);
+      const response = await axios.get(`${API_BASE_URL}/evidence-binders/${binderId}`);
       setBinder(response.data);
       setLoading(false);
     } catch (error) {
@@ -32,7 +35,7 @@ const EvidenceBinder = () => {
 
   const downloadFile = async (format) => {
     try {
-      const response = await axios.get(`http://localhost:8000/download/${binderId}/${format}`, {
+      const response = await axios.get(`${API_BASE_URL}/download/${binderId}/${format}`, {
         responseType: 'blob'
       });
       

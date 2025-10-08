@@ -10,6 +10,9 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 
+// Get API base URL from environment variables
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
+
 const ProjectManager = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +26,7 @@ const ProjectManager = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/projects');
+      const response = await axios.get(`${API_BASE_URL}/projects`);
       setProjects(response.data.projects);
       setLoading(false);
     } catch (error) {
@@ -35,7 +38,7 @@ const ProjectManager = () => {
 
   const fetchCacheStats = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/cache/stats');
+      const response = await axios.get(`${API_BASE_URL}/cache/stats`);
       setCacheStats(response.data);
     } catch (error) {
       console.error('Error fetching cache stats:', error);
@@ -44,7 +47,7 @@ const ProjectManager = () => {
 
   const fetchProjectDetails = async (projectId) => {
     try {
-      const response = await axios.get(`http://localhost:8000/projects/${projectId}`);
+      const response = await axios.get(`${API_BASE_URL}/projects/${projectId}`);
       setSelectedProject(response.data);
     } catch (error) {
       console.error('Error fetching project details:', error);
@@ -54,7 +57,7 @@ const ProjectManager = () => {
 
   const cleanupCache = async () => {
     try {
-      await axios.post('http://localhost:8000/cache/cleanup');
+      await axios.post(`${API_BASE_URL}/cache/cleanup`);
       toast.success('Cache cleaned up successfully');
       fetchCacheStats();
     } catch (error) {

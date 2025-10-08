@@ -12,6 +12,9 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 
+// Get API base URL from environment variables
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
+
 const DocumentReview = () => {
   const { documentId } = useParams();
   const navigate = useNavigate();
@@ -27,7 +30,7 @@ const DocumentReview = () => {
 
   const fetchAnalysis = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/documents/${documentId}`);
+      const response = await axios.get(`${API_BASE_URL}/documents/${documentId}`);
       setAnalysis(response.data);
       setLoading(false);
     } catch (error) {
@@ -39,7 +42,7 @@ const DocumentReview = () => {
 
   const handleReviewerOverride = async (questionId, override, comment = '') => {
     try {
-      await axios.post(`http://localhost:8000/documents/${documentId}/review`, {
+      await axios.post(`${API_BASE_URL}/documents/${documentId}/review`, {
         question_id: questionId,
         reviewer_override: override,
         reviewer_comment: comment
@@ -58,7 +61,7 @@ const DocumentReview = () => {
 
   const handleReanalyze = async (questionId) => {
     try {
-      await axios.post(`http://localhost:8000/documents/${documentId}/reanalyze`, {
+      await axios.post(`${API_BASE_URL}/documents/${documentId}/reanalyze`, {
         question_id: questionId
       });
       
@@ -73,7 +76,7 @@ const DocumentReview = () => {
 
   const generateEvidenceBinder = async () => {
     try {
-      const response = await axios.post(`http://localhost:8000/documents/${documentId}/evidence-binder`);
+      const response = await axios.post(`${API_BASE_URL}/documents/${documentId}/evidence-binder`);
       toast.success('Evidence binder generated successfully');
       navigate(`/evidence/${response.data.binder_id}`);
     } catch (error) {

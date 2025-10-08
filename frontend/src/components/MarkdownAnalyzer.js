@@ -14,15 +14,19 @@ import {
   Send, ArrowUpRight, ArrowUpCircle, CornerRightUp, LucideSendHorizonal
 } from 'lucide-react';
 import axios from 'axios';
-// import { marked } from 'marked';
+
+import { marked } from 'marked';
 import ReactMarkdown from 'react-markdown';
 
+// Get API base URL from environment variables
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
+
 // Configure marked for GitHub Flavored Markdown
-// marked.setOptions({
-//   gfm: true,
-//   breaks: true,
-//   tables: true
-// });
+marked.setOptions({
+  gfm: true,
+  breaks: true,
+  tables: true
+});
 // Note: For GFM (tables, task lists), consider installing `remark-gfm`
 // and passing it to ReactMarkdown. Keeping it minimal to avoid extra deps.
 
@@ -46,7 +50,7 @@ const MarkdownAnalyzer = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/projects');
+      const response = await axios.get(`${API_BASE_URL}/projects`);
       setProjects(response.data.projects || []);
     } catch (error) {
       console.error('Error fetching projects:', error);
@@ -56,13 +60,13 @@ const MarkdownAnalyzer = () => {
 
   const fetchProjectSteps = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/projects/${selectedProject}/steps`);
+      const response = await axios.get(`${API_BASE_URL}/projects/${selectedProject}/steps`);
       setSteps(response.data.steps || {});
       
       // Load content for each step
       const contentPromises = Object.keys(response.data.steps).map(async (step) => {
         if (response.data.steps[step].exists) {
-          const stepResponse = await axios.get(`http://localhost:8000/projects/${selectedProject}/steps/${step}`);
+          const stepResponse = await axios.get(`${API_BASE_URL}/projects/${selectedProject}/steps/${step}`);
           return { step, content: stepResponse.data.content };
         }
         return { step, content: null };
@@ -104,7 +108,7 @@ const MarkdownAnalyzer = () => {
 
     try {
       await axios.post(
-        `http://localhost:8000/projects/${selectedProject}/ingest`,
+        `${API_BASE_URL}/projects/${selectedProject}/ingest`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
@@ -133,7 +137,7 @@ const MarkdownAnalyzer = () => {
         try { eventSourceRef.current.close(); } catch {}
       }
 
-      const url = `http://localhost:8000/projects/${selectedProject}/analyze/stream`;
+      const url = `${API_BASE_URL}/projects/${selectedProject}/analyze/stream`;
       const es = new EventSource(url);
       eventSourceRef.current = es;
 
@@ -183,7 +187,7 @@ const MarkdownAnalyzer = () => {
 
   const saveStepContent = async (step) => {
     try {
-      await axios.put(`http://localhost:8000/projects/${selectedProject}/steps/${step}`, {
+      await axios.put(`${API_BASE_URL}/projects/${selectedProject}/steps/${step}`, {
         content: stepContent[step]
       });
       toast.success('Step content saved successfully');
@@ -205,12 +209,12 @@ const MarkdownAnalyzer = () => {
       let response;
       if (chatType === 'step' && activeStep) {
         response = await axios.post(
-          `http://localhost:8000/projects/${selectedProject}/steps/${activeStep}/chat`,
+          `${API_BASE_URL}/projects/${selectedProject}/steps/${activeStep}/chat`,
           { message: userMessage }
         );
       } else {
         response = await axios.post(
-          `http://localhost:8000/projects/${selectedProject}/chat`,
+          `${API_BASE_URL}/projects/${selectedProject}/chat`,
           { message: userMessage }
         );
       }
@@ -386,16 +390,16 @@ const MarkdownAnalyzer = () => {
                         placeholder="Enter markdown content..."
                       />
                     ) : (
-                      // <div 
-                      //   className="prose max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 
-                      //   prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700"
-                      //   dangerouslySetInnerHTML={{
-                      //     __html: marked(stepContent[activeStep] || 'No content available')
-                      //   }}
-                      // />
-                        <ReactMarkdown className="prose max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700">
-                        {stepContent[activeStep] || 'No content available'}
-                      </ReactMarkdown>
+                      <div 
+                        className="prose max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 
+                        prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700"
+                        dangerouslySetInnerHTML={{
+                          __html: marked(stepContent[activeStep] || 'No content available')
+                        }}
+                      />
+                      //   <ReactMarkdown className="prose max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700">
+                      //   {stepContent[activeStep] || 'No content available'}
+                      // </ReactMarkdown>
                     )}
                   </div>
                 ) : (

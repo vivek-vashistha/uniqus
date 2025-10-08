@@ -11,6 +11,9 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 
+// Get API base URL from environment variables
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
+
 const Analytics = () => {
   const [analytics, setAnalytics] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,7 +24,7 @@ const Analytics = () => {
 
   const fetchAnalytics = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/analytics');
+      const response = await axios.get(`${API_BASE_URL}/analytics`);
       setAnalytics(response.data);
       setLoading(false);
     } catch (error) {
