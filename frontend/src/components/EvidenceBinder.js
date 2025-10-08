@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { 
   Download, 
-  FileText, 
   CheckCircle, 
   XCircle, 
-  AlertCircle,
-  Eye,
-  ExternalLink
+  AlertCircle
 } from 'lucide-react';
 import axios from 'axios';
 
@@ -19,9 +16,9 @@ const EvidenceBinder = () => {
 
   useEffect(() => {
     fetchBinder();
-  }, [binderId]);
+  }, [fetchBinder]);
 
-  const fetchBinder = async () => {
+  const fetchBinder = useCallback(async () => {
     try {
       const response = await axios.get(`http://localhost:8000/evidence-binders/${binderId}`);
       setBinder(response.data);
@@ -31,7 +28,7 @@ const EvidenceBinder = () => {
       toast.error('Failed to load evidence binder');
       setLoading(false);
     }
-  };
+  }, [binderId]);
 
   const downloadFile = async (format) => {
     try {

@@ -4,7 +4,6 @@ import {
   BarChart3, 
   FileText, 
   CheckCircle, 
-  XCircle, 
   AlertCircle,
   TrendingUp,
   Clock,

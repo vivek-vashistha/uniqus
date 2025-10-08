@@ -6,8 +6,7 @@ import {
   Clock, 
   Database,
   Trash2,
-  RefreshCw,
-  Plus
+  RefreshCw
 } from 'lucide-react';
 import axios from 'axios';
 

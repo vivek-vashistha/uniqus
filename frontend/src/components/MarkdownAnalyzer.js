@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { 
-  Upload, 
   Play, 
   FileText, 
   Edit3, 
   Save, 
   MessageCircle,
-  ChevronRight,
   CheckCircle,
   AlertCircle,
   Loader
 } from 'lucide-react';
 import axios from 'axios';
-import ReactMarkdown from 'react-markdown';
+import { marked } from 'marked';
+
+// Configure marked for GitHub Flavored Markdown
+marked.setOptions({
+  gfm: true,
+  breaks: true,
+  tables: true
+});
 
 const MarkdownAnalyzer = () => {
   const [projects, setProjects] = useState([]);
@@ -29,16 +34,6 @@ const MarkdownAnalyzer = () => {
   const [chatType, setChatType] = useState('general'); // 'general' or 'step'
   const [chatLoading, setChatLoading] = useState(false);
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  useEffect(() => {
-    if (selectedProject) {
-      fetchProjectSteps();
-    }
-  }, [selectedProject]);
-
   const fetchProjects = async () => {
     try {
       const response = await axios.get('http://localhost:8000/projects');
@@ -49,7 +44,7 @@ const MarkdownAnalyzer = () => {
     }
   };
 
-  const fetchProjectSteps = async () => {
+  const fetchProjectSteps = useCallback(async () => {
     try {
       const response = await axios.get(`http://localhost:8000/projects/${selectedProject}/steps`);
       setSteps(response.data.steps || {});
@@ -73,7 +68,17 @@ const MarkdownAnalyzer = () => {
       console.error('Error fetching project steps:', error);
       toast.error('Failed to load project steps');
     }
-  };
+  }, [selectedProject]);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (selectedProject) {
+      fetchProjectSteps();
+    }
+  }, [selectedProject, fetchProjectSteps]);
 
   const handleFileUpload = async (files) => {
     if (!selectedProject) {
@@ -88,7 +93,7 @@ const MarkdownAnalyzer = () => {
     });
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `http://localhost:8000/projects/${selectedProject}/ingest`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
@@ -112,7 +117,7 @@ const MarkdownAnalyzer = () => {
 
     setAnalyzing(true);
     try {
-      const response = await axios.post(`http://localhost:8000/projects/${selectedProject}/analyze`);
+      await axios.post(`http://localhost:8000/projects/${selectedProject}/analyze`);
       toast.success('Analysis completed successfully');
       fetchProjectSteps(); // Refresh steps
     } catch (error) {
@@ -338,9 +343,12 @@ const MarkdownAnalyzer = () => {
                         placeholder="Enter markdown content..."
                       />
                     ) : (
-                      <div className="prose max-w-none">
-                        <ReactMarkdown>{stepContent[activeStep] || 'No content available'}</ReactMarkdown>
-                      </div>
+                      <div 
+                        className="prose max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700"
+                        dangerouslySetInnerHTML={{
+                          __html: marked(stepContent[activeStep] || 'No content available')
+                        }}
+                      />
                     )}
                   </div>
                 ) : (

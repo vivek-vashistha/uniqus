@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FileText, BarChart3, Upload, Eye, FolderOpen, BookOpen } from 'lucide-react';
+import { FileText, BarChart3, Upload, FolderOpen, BookOpen } from 'lucide-react';
 
 const Header = () => {
   const location = useLocation();

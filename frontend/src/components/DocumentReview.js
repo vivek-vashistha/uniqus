@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { 
   CheckCircle, 
   XCircle, 
   AlertCircle, 
-  FileText, 
   Download,
-  Eye,
   Edit3,
   Save,
   RefreshCw
@@ -25,9 +23,9 @@ const DocumentReview = () => {
 
   useEffect(() => {
     fetchAnalysis();
-  }, [documentId]);
+  }, [fetchAnalysis]);
 
-  const fetchAnalysis = async () => {
+  const fetchAnalysis = useCallback(async () => {
     try {
       const response = await axios.get(`http://localhost:8000/documents/${documentId}`);
       setAnalysis(response.data);
@@ -37,7 +35,7 @@ const DocumentReview = () => {
       toast.error('Failed to load document analysis');
       setLoading(false);
     }
-  };
+  }, [documentId]);
 
   const handleReviewerOverride = async (questionId, override, comment = '') => {
     try {
@@ -60,7 +58,7 @@ const DocumentReview = () => {
 
   const handleReanalyze = async (questionId) => {
     try {
-      const response = await axios.post(`http://localhost:8000/documents/${documentId}/reanalyze`, {
+      await axios.post(`http://localhost:8000/documents/${documentId}/reanalyze`, {
         question_id: questionId
       });
       

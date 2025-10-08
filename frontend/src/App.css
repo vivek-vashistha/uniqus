@@ -131,6 +131,31 @@
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
 }
 
+/* Markdown table styles */
+.prose table {
+  @apply w-full border-collapse border border-gray-300 my-4;
+}
+
+.prose thead {
+  @apply bg-gray-50;
+}
+
+.prose tbody {
+  @apply bg-white;
+}
+
+.prose tr {
+  @apply border-b border-gray-200 hover:bg-gray-50;
+}
+
+.prose th {
+  @apply px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 bg-gray-100;
+}
+
+.prose td {
+  @apply px-4 py-2 text-sm text-gray-900 border border-gray-300;
+}
+
 /* Print styles for evidence binder */
 @media print {
   .no-print {
