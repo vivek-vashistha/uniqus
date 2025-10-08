@@ -1,16 +1,14 @@
 Can you help in filling the step 2 form as below. Fill the place holders marked with curly braces "{}" with actual answers:
 
-# Step 2
-
-## Step 2: Identifying the performance obligation in a contract
+# Step 2: Identifying the performance obligation in a contract
 
 The process of identifying performance obligation requires an entity to determine whether it promises to transfer either goods or services that are distinct, or a series of distinct goods and services that meet certain conditions. There promises may not be limited to those explicitly included in written contracts.
 
 ## Analyzing whether identified promises represent performance obligations
 
-Guidance
+*Guidance*
 
-A promise is classified as a performance obligation, if the good or service is capable of being distinct  distinct (ASC 606-10-25-19 (a)) and distinct in the context of the contract (ASC 606-10-25-19 (b)). (ASC 606-10-25-14)
+A promise is classified as a performance obligation, if the good or service is capable of being distinct (ASC 606-10-25-19 (a)) and distinct in the context of the contract (ASC 606-10-25-19 (b)). (ASC 606-10-25-14)
 
 **Criterion 1**
 Can the customer benefit from the goods or services (e.g. good or service could be used, consumed, sold for an amount that is greater than scrap value) on its own or together with other readily available resources (a readily available resource is a good or service that is sold separately (by the entity or another entity) or a resource that the customer has already obtained from the entity (including goods or services that the entity will have already transferred to the customer under the contract) or from other transactions or events) (ASC 606-10-25-19(a))?

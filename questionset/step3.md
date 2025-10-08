@@ -1,28 +1,26 @@
 Can you fill the following Step 3 form, replace the placeholders identified by "{}" with actual answer:
 
-# Step 3
-
-Step 3: Determining transaction price
+# Step 3: Determining transaction price
 
 The 'transaction price' is the amount of consideration to which an entity expects to be entitled in exchange for transferring goods or services to a customer, excluding the amount collected on behalf of third parties - e.g. some sales taxes. To determine this amount, an entity considers multiple factors.
 
 An entity estimates the transaction price at contract inception, including any variable consideration, and updates the estimate each reporting period for any changes in circumstances. When determining the transaction price, an entity assumes that the goods or services will be transferred to the customer based on the terms of the existing contract, and does not take into consideration the possibility of a contract being cancelled, renewed, or modified.
 
-## Transaction price includes
+Transaction price includes:
 
-## i Variable consideration (and the constraint)
+**i Variable consideration (and the constraint)**
 
 The Company estimated the amount of variable consideration to which it expects to be entitled, giving consideration to the risk of revenue reversal in making an estimate.
 
-## Ii Non-cash consideration
+**ii Non-cash consideration**
 
 Non-cash consideration is measured at fair value, if it can be reasonably estimated, if not, an entity uses the stand-alone selling price of the good or service that was promised in exchange for noncash consideration.
 
-Iii Significant financing component
+**iii Significant financing component**
 
 For contracts with a significant financing component, an entity adjusts the promised amount of consideration to reflect the time value of money.
 
-## Iv Consideration payable to the customer
+**iv Consideration payable to the customer**
 
 An entity needs to determine whether consideration payable to a customer represents a reduction of the transaction price, a payment for a distinct goods or services or a combination of the two.
 
@@ -36,7 +34,7 @@ An entity needs to determine whether consideration payable to a customer represe
 
 **Answer:** {Answer in Yes/No alongwith Rationale}
 
-## Variable consideration consists of
+### Variable consideration consists of
 
 Service Credit |  {Refer Para no from} |  {Contract clauses Refer Exhibit XYZ Clause ABC}
 
@@ -54,11 +52,11 @@ Improvement Initiatives |  {Refer Para no from} |  {Contract clauses Refer Exhib
 
 **Answer:** {Answer in Yes/No alongwith Rationale}
 
-## If the previous questions were answered "Yes" please describe the facts and circumstances and specify why the criteria mentioned above are met
+### If the previous questions were answered "Yes" please describe the facts and circumstances and specify why the criteria mentioned above are met
 
-{ Enter answer }
+{ Enter your answer }
 
-Please describe the approach to estimate the variable amount for each variable consideration (most likely amount, expected value) and explain why the method used better predicts the consideration to which the Company will be entitled
+### Please describe the approach to estimate the variable amount for each variable consideration (most likely amount, expected value) and explain why the method used better predicts the consideration to which the Company will be entitled
 
 Variable consideration | Method | Explanation
 
@@ -70,11 +68,11 @@ Gain Share | {Choose one: Expected Value Method/Most Likely Method} | {Explanati
 
 Improvement Initiatives | {Choose one: Expected Value Method/Most Likely Method} | {Explanation}
 
-**Please explain the reasonableness whether it is highly probable that a significant reversal in the amount of cumulative revenue recognized will not occur (ASC 606-10-32-11. (Please consider the likelihood and the magnitude of a revenue reversal)**
+### Please explain the reasonableness whether it is highly probable that a significant reversal in the amount of cumulative revenue recognized will not occur (ASC 606-10-32-11. (Please consider the likelihood and the magnitude of a revenue reversal)
 
 {your answer to above question}
 
-Please consider the following factors, which could increase the likelihood or the magnitude of a revenue reversal (ASC 606-10-32-12)
+### Please consider the following factors, which could increase the likelihood or the magnitude of a revenue reversal (ASC 606-10-32-12)
 
 **Question:** Is the amount of consideration highly susceptible to factors outside the Company' influence (e.g. movement of a market or an index like commodity price index, subsequent sales of a good or service of the customer)? 
 
@@ -133,7 +131,7 @@ Consideration Payable to customer :
 **Question:** Is the period between the transfer of promised goods and services to a customer and the customer payment less than one year (also relevant in situations with regard to customer payments before transfer of goods and services) (ASC 606-10-32-18)?
 **Answer** { Answer in yes/no alongwith rationale }
 
-**If one of the following questions are answered with "No", no indication for a financing component exists (practical expedient)	**
+### If one of the following questions are answered with "No", no indication for a financing component exists (practical expedient)
 
 **Question:** The customer paid for the goods or services in advance, and the timing of the transfer of those goods or services is in the discretion of the customer.	
 **Answer:** {Answer in Yes/No alongwith rationale}
@@ -144,7 +142,7 @@ Consideration Payable to customer :
 **Question:** Differences between the promised consideration and the cash selling price arises for other reasons other than the provision of finance to either the customer or the entity.
 **Answer:** { answer in Yes/No alongwith rationale}
 
-**Please specify why the criteria mentioned above are met **
+**Please specify why the criteria mentioned above are met**
 { Your response }
 
 **Question:** A significant financing component exists for which the entity needs to account 

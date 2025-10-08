@@ -1,8 +1,6 @@
 Based on attached document fill up following. Replace the placeholder marked with curly-braces { }, with your answer:
 
-# Step 4
-
-Step 4: Allocate the transaction price to the performance obligations in the contract
+# Step 4: Allocate the transaction price to the performance obligations in the contract
 
 The transaction price is allocated to each performance obligation - generally each distinct good or service - to depict the amount of consideration to which an entity expects to be entities in exchange for transferring the promised goods or services to the customer.
 
